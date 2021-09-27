@@ -1,0 +1,46 @@
+table{
+    width: 100%;
+	height: 50px;
+
+}
+body{
+    background: rgb(131, 241, 241);
+}
+td{
+    text-align: center;
+    
+}
+.nombre{
+    font-size: 30px;
+}
+.nombre_pro{
+    font-size: 20px;
+}
+th{
+    background: silver;
+}
+button{
+    background: skyblue;
+    height: 30px;
+}
+img{
+    width: 200px;
+    height: 100px;   
+}
+.img_table:hover{
+    transform: scale(2);
+}
+.titulo{
+    background: silver;
+}
+.btn_acep{
+    margin-left: 20px;
+}
+label .nombre{
+    font-size: 30px;
+}
+
+.box{
+    width: 500px;
+    height: 100%;
+}
