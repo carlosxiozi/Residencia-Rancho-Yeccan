@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('trabajador');
+    return view('animales');
 });
+
+Route::resource('animales','AnimalesController');

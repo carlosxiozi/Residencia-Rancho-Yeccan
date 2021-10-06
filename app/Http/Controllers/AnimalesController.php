@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Animal;
+use Illuminate\support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AnimalesController extends Controller
 {
@@ -13,7 +15,9 @@ class AnimalesController extends Controller
      */
     public function index()
     {
-        //
+        $animales1=Animal::all();
+       // return $animales1;
+       return view('animales.Animals', compact('animales1'));
     }
 
     /**
@@ -23,7 +27,7 @@ class AnimalesController extends Controller
      */
     public function create()
     {
-        //
+        return view('animales.create');
     }
 
     /**
@@ -34,7 +38,32 @@ class AnimalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valor = $request ->all();
+        if (is_null($request['imagen']))
+            {
+                unset($request['imagen']);
+            }
+        else
+        {
+            $imagen = $request -> file('imagen')-> store('public/imagenes');
+            $url = Storage::url($imagen);
+            $valor['imagen'] = $url;
+        }
+       
+        $animales = new Animal();
+        $animales->nombre=$request->nombre;
+        $animales->fecha_de_nacimiento=$request->fecha_de_nacimiento;
+        $animales->padre=$request->padre;
+        $animales->sexo=$request->sexo;
+        $animales->arete=$request->arete;
+        $animales->peso_al_nacer=$request->peso_al_nacer;
+        $animales->peso_al_destete=$request->peso_al_destete;
+        $animales->madre=$request->madre;
+        $animales->clasificacion=$request->clasificacion;
+        $animales->imagen=$request->imagen;
+        //return $request->all();
+        $animales -> save();
+        return redirect('/animales')-> with('mensaje','Registro exitoso');
     }
 
     /**
@@ -45,7 +74,9 @@ class AnimalesController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $animales1 = Animal::find($id);
+        return view('animales.show', compact('animales1'));
     }
 
     /**
@@ -56,7 +87,8 @@ class AnimalesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $animales1= Animal::find($id);
+        return view('animales.edit', compact('animales1'));
     }
 
     /**
@@ -68,6 +100,32 @@ class AnimalesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $valor = $request ->all();
+        if (is_null($request['imagen']))
+            {
+                unset($request['imagen']);
+            }
+        else
+        {
+            $imagen = $request -> file('imagen')-> store('public/imagenes');
+            $url = Storage::url($imagen);
+            $valor['imagen'] = $url;
+        }
+       
+        $animales = new Animal();
+        $animales->nombre=$request->nombre;
+        $animales->fecha_de_nacimiento=$request->fecha_de_nacimiento;
+        $animales->padre=$request->padre;
+        $animales->sexo=$request->sexo;
+        $animales->arete=$request->arete;
+        $animales->peso_al_nacer=$request->peso_al_nacer;
+        $animales->peso_al_destete=$request->peso_al_destete;
+        $animales->madre=$request->madre;
+        $animales->clasificacion=$request->clasificacion;
+        $animales->imagen=$request->imagen;
+        //return $request->all();
+        $animales -> save();
+        return redirect('/animales')-> with('mensaje','Registro actualizado');
         //
     }
 
@@ -79,6 +137,7 @@ class AnimalesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Animal::destroy($id);
+        return redirect('/animales');
     }
 }
