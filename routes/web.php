@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('animales','AnimalesController');
+Route::resource('eventos','EventosController');
