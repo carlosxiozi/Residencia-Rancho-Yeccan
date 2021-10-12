@@ -43,7 +43,9 @@ class EventosController extends Controller
         $eventos1->fecha_final=$request->fecha_final;
         $eventos1->descripcion=$request->descripcion;
         $eventos1 -> save();
-        return redirect('/eventos')-> with('mensaje','Registro exitoso');
+        return redirect()->back()-> with('message','ok');
+        return redirect(('/eventos'))-> with('message','ok');
+        
     }
 
     /**
@@ -98,6 +100,7 @@ class EventosController extends Controller
     public function destroy($id)
     {
         Evento::destroy($id);
-        return redirect('/eventos');
+        //return redirect()->back()-> with('message','ok');
+        return redirect('/eventos')-> with('message','ok');
     }
 }

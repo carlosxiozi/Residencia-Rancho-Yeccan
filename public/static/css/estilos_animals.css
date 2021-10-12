@@ -3,12 +3,25 @@ table{
 	height: 50px;
 
 }
+
+.box{
+    align-items: center;
+    background: chocolate;
+}
 body{
-    background: rgb(131, 241, 241);
+    background: rgb(120, 121, 120);
+    color: white;
 }
 td{
     text-align: center;
+
     
+}
+.tabla{
+    width: 200px;
+}
+.tablaimg{
+    width: 450px;
 }
 .nombre{
     font-size: 30px;
@@ -17,11 +30,7 @@ td{
     font-size: 20px;
 }
 th{
-    background: silver;
-}
-button{
-    background: skyblue;
-    height: 30px;
+    background: rgb(0, 0, 0);
 }
 img{
     width: 200px;
@@ -31,7 +40,7 @@ img{
     transform: scale(2);
 }
 .titulo{
-    background: silver;
+    background: rgb(0, 0, 0);
 }
 .btn_acep{
     margin-left: 20px;

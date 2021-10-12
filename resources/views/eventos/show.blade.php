@@ -1,6 +1,7 @@
 <style>
     li{
         list-style: none;
+      
     }
     ul{
         display: flex;
@@ -19,28 +20,41 @@
 </style>
 <div class="content_bread">
     <ul>
-        <li>Inicio > </li>
-        <li>Usuarios > </li>
-        <li class="item_selected">Ver usuario</li>
+        
+        <li class="item_selected">Eventos > </li>
+        <li class="item_selected">Ver eventos</li>
     </ul>
 </div>
 
 <style>
     #lbCategoria{
-        color: black;
+        color: white;
     }
     #lu_c{
         list-style: none
     }
 </style>
 
+  
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel = "stylesheet" href="{{ asset('static/css/estilos_opciones.css') }}">
+        <title>Document</title>
+    </head>
+    <body>
     <lu id="lu_c">
-        <li><label id="lbCategoria">Nombre del evento: {{$eventos1->nombre_evento}}</label></li>
-        <li><label id="lbCategoria">Fecha de inicio: {{$eventos1->fecha_inicial}}</label></li>
-        <li><label id="lbCategoria">Fecha de terminación: {{$eventos1->fecha_final}}</label></li>
-        <li><label id="lbCategoria">Descripción: {{$eventos1->descripcion}}</label></li>
-        <a href="/eventos">Regresar</a>
-        
+        <center>
+        <br><br> <li><label class="" id="lbCategoria">Nombre del evento: {{$eventos1->nombre_evento}}</label></li> <br><br>
+        <li><label id="lbCategoria">Fecha de inicio: {{$eventos1->fecha_inicial}}</label></li><br><br>
+        <li><label id="lbCategoria">Fecha de terminación: {{$eventos1->fecha_final}}</label></li><br><br>
+        <li><label id="lbCategoria">Descripción: {{$eventos1->descripcion}}</label></li><br><br>
+        <a class=regreso href="/eventos">Regresar</a>
+</center>
     </lu>
     
-    
+    </body>
+    </html>

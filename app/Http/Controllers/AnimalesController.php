@@ -54,7 +54,7 @@ class AnimalesController extends Controller
         $animales->nombre=$request->nombre;
         $animales->fecha_de_nacimiento=$request->fecha_de_nacimiento;
         $animales->padre=$request->padre;
-        $animales->sexo=$request->sexo;
+       
         $animales->arete=$request->arete;
         $animales->peso_al_nacer=$request->peso_al_nacer;
         $animales->peso_al_destete=$request->peso_al_destete;
@@ -63,6 +63,7 @@ class AnimalesController extends Controller
         $animales->imagen=$request->imagen;
         //return $request->all();
         $animales -> save();
+        return redirect()->back()-> with('message','ok');
         return redirect('/animales')-> with('mensaje','Registro exitoso');
     }
 
@@ -100,23 +101,12 @@ class AnimalesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $valor = $request ->all();
-        if (is_null($request['imagen']))
-            {
-                unset($request['imagen']);
-            }
-        else
-        {
-            $imagen = $request -> file('imagen')-> store('public/imagenes');
-            $url = Storage::url($imagen);
-            $valor['imagen'] = $url;
-        }
-       
-        $animales = new Animal();
+        $animales = Animal::find($id);
+     
         $animales->nombre=$request->nombre;
         $animales->fecha_de_nacimiento=$request->fecha_de_nacimiento;
         $animales->padre=$request->padre;
-        $animales->sexo=$request->sexo;
+        
         $animales->arete=$request->arete;
         $animales->peso_al_nacer=$request->peso_al_nacer;
         $animales->peso_al_destete=$request->peso_al_destete;
@@ -125,6 +115,7 @@ class AnimalesController extends Controller
         $animales->imagen=$request->imagen;
         //return $request->all();
         $animales -> save();
+        
         return redirect('/animales')-> with('mensaje','Registro actualizado');
         //
     }
@@ -138,6 +129,7 @@ class AnimalesController extends Controller
     public function destroy($id)
     {
         Animal::destroy($id);
-        return redirect('/animales');
+        return redirect('/animales')-> with('message','ok');
+  
     }
 }

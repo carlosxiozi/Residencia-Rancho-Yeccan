@@ -4,44 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href="{{ asset('static/css/estilos_animals.css') }}">
+   
+    <link rel = "stylesheet" href="{{ asset('static/css/estilos_opciones.css') }}">
     <title></title>
    
 </head>
 
 <body class="cuerpo">
-    <center>
+<div class="content_bread">
+    <ul>
+        
+        <li class="item_selected">Animales > </li>
+        <li class="item_selected">Editar Animal</li>
+    </ul>
+</div>
+<center>
     <div class="box">
-    <form action="/animales" method="post" enctype="multipart/form-data">
+    <form action="/animales/{{$animales1->id}}" method="post" enctype="multipart/form-data">
         @csrf
-        <h2>Nombre:</h1><input type="text" name="nombre" value="{{$animales1->nombre}}">
-        <h2>Fecha de nacimiento :</h1><input type="date" name="fechadena" value="{{$animales1->fecha_de_nacimiento}}"> 
-        <h2>Padre:</h1><input type="text" name="padre"  value="{{$animales1->padre}}"> 
-        </div>
-    Sexo:   <select name="sexo" id="sexo" value="{{$animales1->sexo}}"> 
-            <option >Elija uno</option>
-            <option >Macho</option>
-            <option >Hembra</option>
-            </select><br><br>
-
-        <h2>Arete:</h1><input id="correos" type="text" name="arete" value="{{$animales1->arete}}">
+        @method('PUT')
+        <h3>Nombre:</h3><input type="text" name="nombre" value="{{$animales1->nombre}}">
+        <h3>Fecha de nacimiento :</h2><input type="date" name="fecha_de_nacimiento" value="{{$animales1->fecha_de_nacimiento}}"> 
+        <h3>Padre:</h3><input type="text" name="padre"  value="{{$animales1->padre}}"> 
+       
+   
+        <h3>Arete:</h3><input id="correos" type="text" name="arete" value="{{$animales1->arete}}">
         <br>
-        <h2>Peso al nacer:</h1><input id="correos" type="text" name="PesoNacer" value="{{$animales1->peso_al_nacer}}">
-        <h2>Peso al destete:</h1><input id="correos" type="text" name="pesoDestete" value="{{$animales1->peso_al_destete}}">
-        <h2>Madre:</h1><input id="correos" type="text" name="Madre" value="{{$animales1->madre}}">
-        clasificacion:   <select name="sexo" id="sexo" value="{{$animales1->clasificacion}}"> 
-            <option >Elija uno</option>
+        <h3>Peso al nacer:</h3><input id="correos" type="text" name="peso_al_nacer" value="{{$animales1->peso_al_nacer}}">
+        <h3>Peso al destete:</h3><input id="correos" type="text" name="peso_al_destete" value="{{$animales1->peso_al_destete}}">
+        <h3>Madre:</h3><input id="correos" type="text" name="madre" value="{{$animales1->madre}}"> <br><br>
+        clasificacion:   <select name="clasificacion" id="sexo" value="{{$animales1->clasificacion}}"> 
+            <option >{{$animales1->clasificacion}}</option>
             <option >Toro</option>
             <option >Vaca</option>
             <option >Becerro</option>
-            </select><br><br>
-        <br><br>
-        <h2>Imagen:</h1><input type="file" name="imagen" accept="image/*" value="{{$animales1->imagen}}">
-        @error('imagen') <small>{{$message}}</small> @enderror <br>
+            </select>
+     
+        <h3>Imagen:</h3><img src="{{$animales1->imagen}}" width="250px"height="150px"><input type="file" name="imagen" value="{{$animales1->imagen}}">
+         <br>
         
-        <input class="btn" type="submit" value="Actualizar">
+        <input class="regreso" type="submit" value="Actualizar">
     </form>
-    </div>
-    </center>
+</center>
+  
 </body>
 </html>
