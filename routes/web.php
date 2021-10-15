@@ -17,5 +17,6 @@ Route::get('/', function () {
     return view('principal');
 });
 
+Route::resource('controles_reproductivos','Control_reproductivoController');
 Route::resource('animales','AnimalesController');
 Route::resource('eventos','EventosController');
