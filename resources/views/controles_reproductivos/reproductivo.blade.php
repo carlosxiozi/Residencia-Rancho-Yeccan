@@ -15,12 +15,14 @@
 </head>
 <body>
     <center>
-    <div class=titulo>
+    <div class="titulo">
     <h1> Control Reproductivo </h1>
     </div>
     </center>
-
-
+    <input type="hidden" id="animal_id" value="{{$animal->id}}">
+    <label  ><h2> <b> Nombre : {{$animal->nombre}}    </b>    </h2> </label> 
+   
+    
     <center>
     <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
     </center>
@@ -32,6 +34,8 @@
                 <div class="contenedor-inputs">
                     @csrf
                     <input type="date" id="fecha_servicio" name="fecha_servicio">
+                    <h3>Ingrese la fecha de revision</h3>
+                    <input type="date" id="fecha_parto" name="fecha_parto">
                 </div>
                 <button  class="btn-submit" id="boton" type="submit"><span class="far fa-check-circle"></span>agregar</button>
             </form>
@@ -46,6 +50,7 @@
         <th>Fecha de servicio</th>
         <th>Fecha de revision o parto</th>
         <th>Acciones</th>
+        
     </thead>
     @forelse($reproductivo1 as $reproductor)
     <tr>
@@ -90,6 +95,8 @@
         <td colspan="3">sin registros</td>
         </tr>
     @endforelse
+
+
     </table>
 </body>
 </html>
