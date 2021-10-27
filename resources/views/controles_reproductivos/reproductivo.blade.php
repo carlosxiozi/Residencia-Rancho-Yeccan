@@ -24,7 +24,19 @@
    
     
     <center>
-    <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
+    @if(sizeof($reproductivo1)< 3)
+
+        <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
+        @elseif(sizeof($reproductivo1)==3)
+
+        <label  ><h2> <b> Ya existen 3 servicios, no es posible añadir uno nuevo.   </b>    </h2> </label> 
+
+        
+        
+
+        
+    @endif
+
     </center>
     <div class="overlay" id = "overlay">
         <div class="popup" id = "popup">
@@ -59,7 +71,7 @@
         <td class="fecha_naci" width="400px">{{$reproductor->fecha_de_parto}}</td>
         <td>
             <center>
-                <a href="/" class="acciones"><span class="fas fa-long-arrow-alt-left"></span>Revisar</a>
+                <a href="/controles_reproductivos/{{$reproductor->id}}/edit" class="acciones"><span class="fas fa-long-arrow-alt-left"></span>Revisar</a>
                 <form action="/controles_reproductivos/{{$reproductor->id}}" class="formulario" method="post" style="display: inline;">
                     @csrf
                     @method('DELETE')

@@ -11,6 +11,9 @@
 </head>
 
 <body class="cuerpo">
+
+
+
 <div class="content_bread">
     <ul>
         
@@ -33,11 +36,11 @@
         <h3>Peso al nacer:</h3><input id="correos" type="text" name="peso_al_nacer" value="{{$animales1->peso_al_nacer}}">
         <h3>Peso al destete:</h3><input id="correos" type="text" name="peso_al_destete" value="{{$animales1->peso_al_destete}}">
         <h3>Madre:</h3><input id="correos" type="text" name="madre" value="{{$animales1->madre}}"> <br><br>
-        clasificacion:   <select name="clasificacion" id="sexo" value="{{$animales1->clasificacion}}"> 
-            <option >{{$animales1->clasificacion}}</option>
-            <option >Toro</option>
-            <option >Vaca</option>
-            <option >Becerro</option>
+        Sexo:   <select name="clasificacion" id="sexo" value="{{$animales1->sexo}}"> 
+            <option >{{$animales1->sexo}}</option>
+            <option >Macho</option>
+            <option >Hembra</option>
+           
             </select>
      
         <h3>Imagen:</h3><img src="{{$animales1->imagen}}" width="250px"height="150px"><input type="file" name="imagen" value="{{$animales1->imagen}}">

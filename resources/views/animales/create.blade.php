@@ -15,6 +15,19 @@
 </head>
 
 <body class="cuerpo">
+<script>
+    let previewImage = document.getElementById('previewImage');
+    let inputFile = document.getElementById('image');
+    inputFile.addEventListener('change', function(e) {
+    let image = e.target.files[0];
+    let file = new FileReader();
+    file.onload = (e) => {
+        previewImage.setAttribute('src', e.target.result)
+    }
+    file.readAsDataURL(image);
+    });
+    
+</script>
 <div class="content_bread">
     <ul>
         
@@ -22,6 +35,7 @@
         <li class="item_selected">Agregar Animal</li>
     </ul>
 </div>
+
     <center>
     <div class="box">
     <form action="/animales" method="post" enctype="multipart/form-data">
@@ -37,20 +51,19 @@
         <h3>Peso al nacer: <input id="correos" type="text" name="peso_al_nacer"></h3>
         <h3>Peso al destete: <input id="correos" type="text" name="peso_al_destete"></h3>
         <h3>Madre: <input id="correos" type="text" name="madre"></h3>
-       <h3> clasificacion:   <select name="clasificacion" id="clasificacion"> 
+       <h3> Sexo:<select name="sexo" id="sexo"> 
             <option >Elija uno</option>
-            <option >Toro</option>
-            <option >Vaca</option>
-            <option >Becerro</option>
+            <option >Macho</option>
+            <option >Hembra</option>
             </select><br></h3>
  
         <h3>Imagen:<input type="file" name="imagen" accept="image/*">
         @error('imagen') <small>{{$message}}</small> @enderror <br></h3>
-
         
-        <button  class="regreso" type="submit"><span class="far fa-check-circle"></span>agregar</button>
+        
+        <button  class="regreso" type="submit"><span class="far fa-check-circle"></span> Agregar</button>
 
-        <a href="/animales" class="regreso"><span class="fas fa-long-arrow-alt-left"></span>back</a>
+        <a href="/animales" class="regreso"><span class="fas fa-long-arrow-alt-left"></span> Regresar</a>
         </form>
     
     </div>

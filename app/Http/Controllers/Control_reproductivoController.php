@@ -99,7 +99,9 @@ class Control_reproductivoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reproductivo1= Control_reproductivo::find($id);
+        
+        return view('controles_reproductivos.revisar', compact('reproductivo1'));
     }
 
     /**
@@ -111,7 +113,10 @@ class Control_reproductivoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $control = Control_reproductivo::find($id);
+        $control->expediente=$request->motivo;
+        $control -> save();
+        return redirect('/controles_reproductivos/'.$id.'')-> with('mensaje','Registro exitoso');
     }
 
     /**

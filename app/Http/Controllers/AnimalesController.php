@@ -59,7 +59,7 @@ class AnimalesController extends Controller
         $animales->peso_al_nacer=$request->peso_al_nacer;
         $animales->peso_al_destete=$request->peso_al_destete;
         $animales->madre=$request->madre;
-        $animales->clasificacion=$request->clasificacion;
+        $animales->sexo=$request->sexo;
         $animales->imagen=$request->imagen;
         //return $request->all();
         $animales -> save();
