@@ -11,5 +11,5 @@ class Control_reproductivo extends Model
     protected $fillable= ['expediente','fecha_de_servicio','fecha_de_parto','animal_id'];
     protected $table = 'controles_reproductivos';
     use HasFactory;
-    use HasFactory;
+    
 }

@@ -6,6 +6,7 @@ use Illuminate\support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Animal;
+use Carbon\Carbon;
 
 class Control_reproductivoController extends Controller
 {
@@ -86,6 +87,7 @@ class Control_reproductivoController extends Controller
         $reproductivo1=DB::table('controles_reproductivos')
         ->where('animal_id',$id)->get();
         $animal=Animal::find($id);
+       
 
        return view('controles_reproductivos.reproductivo', compact('reproductivo1','animal'));
         
@@ -113,10 +115,11 @@ class Control_reproductivoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $control = Control_reproductivo::find($id);
         $control->expediente=$request->motivo;
         $control -> save();
-        return redirect('/controles_reproductivos/'.$id.'')-> with('mensaje','Registro exitoso');
+        return redirect('/controles_reproductivos/'.$control->animal_id.'')-> with('mensaje','Registro exitoso');
     }
 
     /**

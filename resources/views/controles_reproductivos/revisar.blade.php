@@ -23,7 +23,9 @@
             <label class="nombre">Anotaciones anteriores:  {{$reproductivo1->expediente}}" </label><br><br><br>
             <textarea class="textarea" name="motivo" Onkeyup="charCount();" cols="45" rows="10" placeholder="Escribe las observaciones aqui..." maxlength="100" minlength="3"></textarea><br>
             <button class="btn_acep">Agregar</button><br><br>
-            <label class="nombre">¿La Vaca ah quedado preñada?" </label><br><br><br>
+
+            
+            <label class="nombre">¿La vaca ha quedado preñada?" </label><br><br><br>
 
           
           <button class="btn_acep">Si</button>

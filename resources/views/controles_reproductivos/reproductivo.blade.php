@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('static/css/css/all.css')}}">
     <script src="{{asset('static/css/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('static/js/jquery-3.6.0.min.js')}}"></script>
+    
     <title>Reproductivo</title>
 </head>
 <body>
@@ -21,11 +22,21 @@
     </center>
     <input type="hidden" id="animal_id" value="{{$animal->id}}">
     <label  ><h2> <b> Nombre : {{$animal->nombre}}    </b>    </h2> </label> 
-   
+    
     
     <center>
-    @if(sizeof($reproductivo1)< 3)
+    
+    <?php  use Carbon\Carbon;
+    $date=Carbon::now();
 
+    
+    
+    ?>
+    <label  ><h2> <b> Nombre : {{$date->toDateString();}}    </b>    </h2> </label> 
+    
+    @if((Carbon\Carbon::parse($date->toDateString();))->gte(Carbon\Carbon::parse($reproductivo1->fecha_de_servicio)))
+    <label  ><h2> <b> Ya existen 1 servicio  </b>    </h2> </label> 
+    
         <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
         @elseif(sizeof($reproductivo1)==3)
 
@@ -66,9 +77,11 @@
     </thead>
     @forelse($reproductivo1 as $reproductor)
     <tr>
+
+        <td class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_servicio)->format('d/m/Y')}}</td>
         
-        <td class="nombre_pro" width="400px">{{$reproductor->fecha_de_servicio}}</td>
-        <td class="fecha_naci" width="400px">{{$reproductor->fecha_de_parto}}</td>
+    <label  ><h2> <b> Nombre : {{$reproductor->fecha_de_parto}}    </b>    </h2> </label> 
+        <td class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_parto)->format('d/m/Y')}}</td>
         <td>
             <center>
                 <a href="/controles_reproductivos/{{$reproductor->id}}/edit" class="acciones"><span class="fas fa-long-arrow-alt-left"></span>Revisar</a>
