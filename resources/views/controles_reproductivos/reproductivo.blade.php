@@ -33,19 +33,9 @@
     
     ?>
     <label  ><h2> <b> Nombre : {{$date->toDateString();}}    </b>    </h2> </label> 
-    
-    @if((Carbon\Carbon::parse($date->toDateString();))->gte(Carbon\Carbon::parse($reproductivo1->fecha_de_servicio)))
-    <label  ><h2> <b> Ya existen 1 servicio  </b>    </h2> </label> 
-    
-        <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
-        @elseif(sizeof($reproductivo1)==3)
-
-        <label  ><h2> <b> Ya existen 3 servicios, no es posible añadir uno nuevo.   </b>    </h2> </label> 
-
         
-        
-
-        
+    @if($bandera == true)
+    <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
     @endif
 
     </center>

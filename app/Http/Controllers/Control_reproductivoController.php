@@ -84,12 +84,25 @@ class Control_reproductivoController extends Controller
     {
        //$reproductivo1=Control_reproductivo::all();
        // return view('controles_reproductivos.reproductivo', compact('reproductivo1'));
-        $reproductivo1=DB::table('controles_reproductivos')
-        ->where('animal_id',$id)->get();
+        $reproductivo1=Control_reproductivo::where('animal_id',$id)->get();
+        $bandera = false;
+
         $animal=Animal::find($id);
        
+        if(sizeof($reproductivo1) >0){
+        
+           for($i=0; $i<sizeof($reproductivo1); $i++){
+            if(Carbon::now()->gt($reproductivo1[$i]->fecha_de_parto)) {
+                $bandera = true;
+            }else{
+        $bandera = false;
 
-       return view('controles_reproductivos.reproductivo', compact('reproductivo1','animal'));
+            }
+           }
+        }elseif(sizeof($reproductivo1) == 0)
+            $bandera = true;
+
+      return view('controles_reproductivos.reproductivo', compact('reproductivo1','animal','bandera'));
         
     }
 
