@@ -54,7 +54,7 @@ class Control_reproductivoController extends Controller
        // $control->fecha_parto=$fechas;
            // $control['fecha_de_parto'] = $fechas;
        // $control['animal_id'] = $animal_id;
-
+       $control->estado_animal = 0;
         $control->animal_id=$variable['id'];
 
         $control -> save();
@@ -92,9 +92,15 @@ class Control_reproductivoController extends Controller
         if(sizeof($reproductivo1) >0){
         
            for($i=0; $i<sizeof($reproductivo1); $i++){
-            if(Carbon::now()->gt($reproductivo1[$i]->fecha_de_parto)) {
-                $bandera = true;
-            }else{
+            if(Carbon::now()->gt($reproductivo1[$i]->fecha_de_parto  )) {
+               
+                if(sizeof($reproductivo1) < 3){
+                    $bandera = true;
+                }
+            }elseif($reproductivo1[$i]-> estado_animal == 1){
+                $bandera = false;
+
+            } else{
         $bandera = false;
 
             }
@@ -115,8 +121,9 @@ class Control_reproductivoController extends Controller
     public function edit($id)
     {
         $reproductivo1= Control_reproductivo::find($id);
+        $expediente = explode('_', $reproductivo1->expediente);
         
-        return view('controles_reproductivos.revisar', compact('reproductivo1'));
+        return view('controles_reproductivos.revisar', compact('reproductivo1', 'expediente'));
     }
 
     /**
@@ -130,7 +137,22 @@ class Control_reproductivoController extends Controller
     {
 
         $control = Control_reproductivo::find($id);
-        $control->expediente=$request->motivo;
+        if($request->estadoTrue){
+           $control->estado_animal = 1;
+           $control ->fecha_de_parto = \Carbon\Carbon::parse($request->fecha_parto)->addDay(270);
+           
+        }
+        if($request->estadoFalse){
+            $control->estado_animal = 0;
+        }
+        if($request->motivo == "")
+        {
+
+        }
+        else{
+        $control->expediente=$control->expediente."_".$request->motivo;
+        
+        }
         $control -> save();
         return redirect('/controles_reproductivos/'.$control->animal_id.'')-> with('mensaje','Registro exitoso');
     }
@@ -146,5 +168,16 @@ class Control_reproductivoController extends Controller
         Control_reproductivo::destroy($id);
         return redirect()->back()-> with('message','ok');
        // return redirect('/controles_reproductivos')-> with('message','ok');
+    }
+
+    public function añadir(Request $request)
+    {
+        $fecha_parto = Control_reproductivo::find($request->id);
+        if(Carbon::now()->gte($request->fecha_de_parto)) {
+            return redirect('/')-> with('message','ok');
+        }else{
+            return redirect('/controles_reproductivos/'.$request->animal_id.'')->with('messsage','error');        
+        }
+        return redirect()->back();
     }
 }

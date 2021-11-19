@@ -20,20 +20,33 @@
         <div class="box">
            
            
-            <label class="nombre">Anotaciones anteriores:  {{$reproductivo1->expediente}}" </label><br><br><br>
+            <label class="nombre">Anotaciones anteriores:
+                @php 
+                    $i=1;
+                @endphp
+                @foreach($expediente as $expediente)
+                    @if($expediente=="")
+                    
+                    @else <br>{{$i++.".-".$expediente}}
+                    
+                    @endif
+                @endforeach
+                </label><br><br><br>
             <textarea class="textarea" name="motivo" Onkeyup="charCount();" cols="45" rows="10" placeholder="Escribe las observaciones aqui..." maxlength="100" minlength="3"></textarea><br>
             <button class="btn_acep">Agregar</button><br><br>
 
             
             <label class="nombre">¿La vaca ha quedado preñada?" </label><br><br><br>
-
-          
-          <button class="btn_acep">Si</button>
-          <button class="btn_acep">No</button>
-      
         </div>
     
 
+    </form>
+   
+    <form action="/controles_reproductivos/{{$reproductivo1->id}}" method="post" >
+    @csrf
+        @method('PUT')
+        <button class="btn_acep" name="estadoTrue" value="1">Si</button>
+        <button class="btn_acep"  name="estadoFalse" value = "0">No</button>
     </form>
     </center>
     

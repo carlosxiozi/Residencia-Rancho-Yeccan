@@ -16,6 +16,8 @@
 </head>
 <body>
     <center>
+   
+
     <div class="titulo">
     <h1> Control Reproductivo </h1>
     </div>
@@ -23,22 +25,11 @@
     <input type="hidden" id="animal_id" value="{{$animal->id}}">
     <label  ><h2> <b> Nombre : {{$animal->nombre}}    </b>    </h2> </label> 
     
-    
     <center>
-    
-    <?php  use Carbon\Carbon;
-    $date=Carbon::now();
-
-    
-    
-    ?>
-    <label  ><h2> <b> Nombre : {{$date->toDateString();}}    </b>    </h2> </label> 
-        
-    @if($bandera == true)
+@if($bandera == true)
     <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
     @endif
-
-    </center>
+   
     <div class="overlay" id = "overlay">
         <div class="popup" id = "popup">
             <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
@@ -57,9 +48,45 @@
     </div>
 
 
+    </center>
+    @php
+$bandera1= null;
+@endphp
+@foreach($reproductivo1 as $reproductor)
+@if($reproductor ->estado_animal == 1)
+@php 
+    $bandera1 = false; 
+    
+@endphp
 
-    <table border="1" id="tabla">
+
+
+
+<form action="/añadir" id="formulario" enctype="multipart/form-data">
+    <center>
+        @csrf
+        @method('PUT')
+        <input type="hidden" value="{{$reproductor->id}}" name = 'id'>
+        <input type="hidden" value="{{$reproductor->fecha_de_parto}}" name="fecha_parto">
+        <div class="contenedor-inputs">
+        <label  ><h2> <b> Fecha de ultimo  :  {{$reproductor->fecha_de_parto}}  </b>    </h2> </label> 
+        </div>
+        <button  class="btn-submit" id="parto" type="submit"><span class="far fa-check-circle"></span>Parto</button>
+    </center>
+    </form>
+
+@elseif($reproductor ->estado_animal == 0 )
+@php $bandera1 = true; @endphp
+    
+
+
+
+    @endif
+@endforeach
+   @if($bandera1 == true)
+   <table border="1" id="tabla">
     <thead>
+        
         <th>Fecha de servicio</th>
         <th>Fecha de revision o parto</th>
         <th>Acciones</th>
@@ -67,10 +94,10 @@
     </thead>
     @forelse($reproductivo1 as $reproductor)
     <tr>
-
+      
         <td class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_servicio)->format('d/m/Y')}}</td>
         
-    <label  ><h2> <b> Nombre : {{$reproductor->fecha_de_parto}}    </b>    </h2> </label> 
+    
         <td class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_parto)->format('d/m/Y')}}</td>
         <td>
             <center>
@@ -113,5 +140,8 @@
 
 
     </table>
+    
+    
+    @endif
 </body>
 </html>
