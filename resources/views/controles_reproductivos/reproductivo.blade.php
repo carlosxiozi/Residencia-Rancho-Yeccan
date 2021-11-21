@@ -15,9 +15,10 @@
     <title>Reproductivo</title>
 </head>
 <body>
-    <center>
-   
 
+
+
+    <center>
     <div class="titulo">
     <h1> Control Reproductivo </h1>
     </div>
@@ -26,9 +27,11 @@
     <label  ><h2> <b> Nombre : {{$animal->nombre}}    </b>    </h2> </label> 
     
     <center>
-@if($bandera == true)
+    
+@if($bandera == true and $j==false)
     <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
-    @endif
+@endif
+
    
     <div class="overlay" id = "overlay">
         <div class="popup" id = "popup">
@@ -52,37 +55,37 @@
     @php
 $bandera1= null;
 @endphp
+
 @foreach($reproductivo1 as $reproductor)
 @if($reproductor ->estado_animal == 1)
 @php 
     $bandera1 = false; 
-    
 @endphp
-
-
-
 
 <form action="/añadir" id="formulario" enctype="multipart/form-data">
     <center>
         @csrf
         @method('PUT')
-        <input type="hidden" value="{{$reproductor->id}}" name = 'id'>
-        <input type="hidden" value="{{$reproductor->fecha_de_parto}}" name="fecha_parto">
         <div class="contenedor-inputs">
-        <label  ><h2> <b> Fecha de ultimo  :  {{$reproductor->fecha_de_parto}}  </b>    </h2> </label> 
+        <label  ><h2> <b> Fecha de parto  :  {{\Carbon\Carbon::parse($reproductor->fecha_de_parto)->format('d/m/Y')}}  </b>    </h2> </label>
         </div>
+        @if(\Carbon\Carbon::now()->gte($reproductor->fecha_de_parto))
         <button  class="btn-submit" id="parto" type="submit"><span class="far fa-check-circle"></span>Parto</button>
+        @else
+        <script> alert('no se uwu')</script>
+        @endif
     </center>
     </form>
 
 @elseif($reproductor ->estado_animal == 0 )
-@php $bandera1 = true; @endphp
-    
-
-
-
+@php $bandera1 = true;
+@endphp
     @endif
 @endforeach
+
+
+
+
    @if($bandera1 == true)
    <table border="1" id="tabla">
     <thead>
