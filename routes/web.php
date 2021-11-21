@@ -18,7 +18,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/añadir','Control_reproductivoController@añadir');
 
 Route::resource('controles_reproductivos','Control_reproductivoController');
 Route::resource('animales','AnimalesController');

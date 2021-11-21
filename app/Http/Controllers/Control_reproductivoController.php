@@ -169,17 +169,5 @@ class Control_reproductivoController extends Controller
        // return redirect('/controles_reproductivos')-> with('message','ok');
     }
 
-    public function añadir(Request $request)
-    {
-        $fecha_parto = Control_reproductivo::find($request->id);
-        if(Carbon::now()->gte($request->fecha_parto)) {
-           return $request;
-
-        }else{
-           
-            return redirect()->back();
-           
-        }
-       
-    }
+    
 }

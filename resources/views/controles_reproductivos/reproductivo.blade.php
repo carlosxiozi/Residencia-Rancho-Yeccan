@@ -62,17 +62,19 @@ $bandera1= null;
     $bandera1 = false; 
 @endphp
 
-<form action="/añadir" id="formulario" enctype="multipart/form-data">
+<form action="/animales/create" id="formulario" method="GET">
     <center>
-        @csrf
-        @method('PUT')
+       
         <div class="contenedor-inputs">
+        <input type="hidden" name="madre" value = "{{$animal->nombre}}">
+        <input type="hidden" name="fecha_parto" value = "{{$reproductor->fecha_de_parto}}">
+        <input type="hidden" name="id_madre" value="{{$animal->id}}">
         <label  ><h2> <b> Fecha de parto  :  {{\Carbon\Carbon::parse($reproductor->fecha_de_parto)->format('d/m/Y')}}  </b>    </h2> </label>
         </div>
         @if(\Carbon\Carbon::now()->gte($reproductor->fecha_de_parto))
         <button  class="btn-submit" id="parto" type="submit"><span class="far fa-check-circle"></span>Parto</button>
         @else
-        <script> alert('no se uwu')</script>
+        <script> alert('La fecha de parto aun no se cumple, cuando se cumpla se habilitara el boton.')</script>
         @endif
     </center>
     </form>

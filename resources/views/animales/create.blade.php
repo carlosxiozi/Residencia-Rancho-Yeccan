@@ -25,6 +25,7 @@
         previewImage.setAttribute('src', e.target.result)
     }
     file.readAsDataURL(image);
+
     });
     
 </script>
@@ -38,11 +39,16 @@
 
     <center>
     <div class="box">
-    <form action="/animales" method="post" enctype="multipart/form-data">
+    <form id="form"name="form" action="/animales" method="post" enctype="multipart/form-data">
         @csrf
         <br>
         <h3>Nombre: <input type="text" name="nombre"></h3>
-      <h3>Fecha de nacimiento<input type="date" name = "fecha_de_nacimiento"></h3>
+        <input type="hidden" id="id_madre" name="madre_id" value="{{$madre_id}}">
+      @if($fecha_parto)
+        <h3>fecha de nacimiento: <input type="text" readonly name="fecha_de_nacimiento"  value="{{$fecha_parto}}"></h3>
+        @else
+        <h3>Fecha de nacimiento<input type="date" name = "fecha_de_nacimiento"></h3>
+        @endif
         <h3>Padre: <input type="text" name="padre"></h3>
     
   
@@ -50,7 +56,13 @@
       
         <h3>Peso al nacer: <input id="correos" type="text" name="peso_al_nacer"></h3>
         <h3>Peso al destete: <input id="correos" type="text" name="peso_al_destete"></h3>
-        <h3>Madre: <input id="correos" type="text" name="madre"></h3>
+        
+        @if($madre_nombre)
+        <h3>Madre: <input type="text" readonly name="madre"  value="{{$madre_nombre}}"></h3>
+        @else
+        <h3>Madre: <input id="" type="text" name="madre"></h3>
+        @endif
+       
        <h3> Sexo:<select name="sexo" id="sexo"> 
             <option >Elija uno</option>
             <option >Macho</option>
@@ -68,11 +80,13 @@
     
     </div>
     </center>
+    {{Session::get('madre_id')}}
 </body>
 
 
-    @if(Session::has('message') == ' ok ' )
+    @if(Session::get('message')  )
 
+</script>
 <script>
 Swal.fire({
   position: 'top-center',
@@ -80,7 +94,7 @@ Swal.fire({
   title: 'Se agrego correctamente',
   showConfirmButton: false,
   timer: 1500
- 
+
 })
 </script>
 @endif

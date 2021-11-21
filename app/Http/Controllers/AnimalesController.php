@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Animal;
+use App\Models\Control_reproductivo;
 use Illuminate\support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -25,9 +26,18 @@ class AnimalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('animales.create');
+        $madre_id = null;
+        $fecha_parto =null;
+        $madre_nombre= null;
+        if($request){
+            $madre_id = $request->id_madre;
+            $fecha_parto = $request->fecha_parto;
+            $madre_nombre= $request->madre;
+        }
+       
+        return view('animales.create', compact('madre_id','fecha_parto','madre_nombre'));
     }
 
     /**
@@ -39,6 +49,7 @@ class AnimalesController extends Controller
     public function store(Request $request)
     {
         $valor = $request ->all();
+        $animales = new Animal();
         if (is_null($request['imagen']))
             {
                 unset($request['imagen']);
@@ -49,8 +60,14 @@ class AnimalesController extends Controller
             $url = Storage::url($imagen);
             $valor['imagen'] = $url;
         }
-       
-        $animales = new Animal();
+       if($request->madre_id){
+        $borrarExp = Control_reproductivo::where('animal_id', $request->madre_id)->get();
+        for($i = 0; $i < sizeof($borrarExp); $i++){
+            $borrarExp[$i]->delete();
+        }
+            $animales -> id = $request->madre_id;
+       }
+        
         $animales->nombre=$request->nombre;
         $animales->fecha_de_nacimiento=$request->fecha_de_nacimiento;
         $animales->padre=$request->padre;
@@ -61,10 +78,16 @@ class AnimalesController extends Controller
         $animales->madre=$request->madre;
         $animales->sexo=$request->sexo;
         $animales->imagen=$request->imagen;
-        //return $request->all();
-        $animales -> save();
-        return redirect()->back()-> with('message','ok');
-        return redirect('/animales')-> with('mensaje','Registro exitoso');
+       //return $request->all();
+        //return $animales;
+        // $animales -> save();
+        
+        return redirect('animales/create?madre=&fecha_parto=')-> with([
+            'message'=>'ok',
+            'madre_id'=> null,]
+            
+        );
+      //  return redirect('/animales')-> with('mensaje','Registro exitoso');
     }
 
     /**
