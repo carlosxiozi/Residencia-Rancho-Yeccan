@@ -48,17 +48,11 @@ class AnimalesController extends Controller
      */
     public function store(Request $request)
     {
-        $valor = $request ->all();
         $animales = new Animal();
-        if (is_null($request['imagen']))
-            {
-                unset($request['imagen']);
-            }
-        else
-        {
+        if ($request->hasFile('imagen')){
             $imagen = $request -> file('imagen')-> store('public/imagenes');
             $url = Storage::url($imagen);
-            $valor['imagen'] = $url;
+            $animales->imagen= $url;
         }
        if($request->madre_id){
         $borrarExp = Control_reproductivo::where('animal_id', $request->madre_id)->get();
@@ -77,10 +71,9 @@ class AnimalesController extends Controller
         $animales->peso_al_destete=$request->peso_al_destete;
         $animales->madre=$request->madre;
         $animales->sexo=$request->sexo;
-        $animales->imagen=$request->imagen;
        //return $request->all();
-        //return $animales;
-        // $animales -> save();
+        //return $animales;    
+        $animales -> save();
         
         return redirect('animales/create?madre=&fecha_parto=')-> with([
             'message'=>'ok',
@@ -134,9 +127,15 @@ class AnimalesController extends Controller
         $animales->peso_al_nacer=$request->peso_al_nacer;
         $animales->peso_al_destete=$request->peso_al_destete;
         $animales->madre=$request->madre;
-        $animales->clasificacion=$request->clasificacion;
-        $animales->imagen=$request->imagen;
-        //return $request->all();
+        $animales->sexo=$request->clasificacion;
+        if($request ->hasFile('imagen')){
+            $url = str_replace('storage', 'public', $animales->imagen);
+            Storage::delete($url);
+            $imagen = $request->file('imagen')->store('public/imagenes');
+            $url = Storage::url($imagen);
+            $animales->imagen = $url;
+        }
+        
         $animales -> save();
         
         return redirect('/animales')-> with('mensaje','Registro actualizado');
