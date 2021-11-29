@@ -22,7 +22,19 @@
     <div class="titulo">
     <h1> Control Reproductivo </h1>
     </div>
+    
+<a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
     </center>
+    
+
+<div class="content_bread">
+    <ul>
+        
+        
+        <li class="item_selected">Animales> </li>
+        <li class="item_selected">Reproductivo</li>
+    </ul>
+</div>
     <input type="hidden" id="animal_id" value="{{$animal->id}}">
     <label  ><h2> <b> Nombre : {{$animal->nombre}}    </b>    </h2> </label> 
     

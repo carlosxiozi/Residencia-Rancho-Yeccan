@@ -37,6 +37,14 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
+
+        $animalinformation = $request-> all();
+        request()->validate([
+            'nombre' => 'required',
+            'fecha_inicio' => 'required',
+            'fecha_final' => 'required',
+           
+        ]);
         $eventos1 = new Evento();
         $eventos1->nombre_evento=$request->nombre;
         $eventos1->fecha_inicial=$request->fecha_inicio;

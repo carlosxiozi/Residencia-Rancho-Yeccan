@@ -48,6 +48,20 @@ class AnimalesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $animalinformation = $request-> all();
+        request()->validate([
+            'nombre' => 'required',
+            'fecha_de_nacimiento' => 'required',
+            'padre' => 'required',
+            'arete' => 'required',
+            'peso_al_nacer' => 'required',
+            'peso_al_destete' => 'required',
+            'madre' => 'required',
+            'sexo' => 'required',
+            'imagen' => 'required',
+        ]);
+
         $animales = new Animal();
         if ($request->hasFile('imagen')){
             $imagen = $request -> file('imagen')-> store('public/imagenes');
@@ -59,7 +73,7 @@ class AnimalesController extends Controller
         for($i = 0; $i < sizeof($borrarExp); $i++){
             $borrarExp[$i]->delete();
         }
-            $animales -> id = $request->madre_id;
+           // $animales -> id = $request->madre_id;
        }
         
         $animales->nombre=$request->nombre;

@@ -43,6 +43,7 @@ class Control_reproductivoController extends Controller
      */
     public function store(Request $request)
     {
+
         $variable=$request->all();
         $animal_id =(int)$request['id'];
         $control = new Control_reproductivo();

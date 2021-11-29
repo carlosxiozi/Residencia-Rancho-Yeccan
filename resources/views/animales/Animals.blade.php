@@ -16,6 +16,7 @@
     <div class=titulo>
     <h1> Animales </h1>
     </div>
+    <a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
     </center>
     <center>
     <tr class="btn_agregar"><td colspan="3"><a class="agregar" href="/animales/create"><span class="fas fa-plus"></span>Agregar Animal</a></td></tr>

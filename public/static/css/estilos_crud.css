@@ -62,6 +62,24 @@ a{
     border-radius: 35px;
     cursor: pointer;
 }
+.content_bread{
+    background-color: rgba(7, 7, 7, 0.39);
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+li{
+    list-style: none;
+}
+ul{
+    display: flex;
+    padding: 5px
+}
+.item_selected{
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+   
+}
+
 .cp:hover{
     transition: 500ms;
     background-color: #000000;

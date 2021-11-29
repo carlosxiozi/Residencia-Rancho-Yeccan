@@ -15,7 +15,10 @@
     <center>
     <div class=titulo>
     <h1> Evento </h1>
+    
+    
     </div>
+    <a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
     </center>
     <center>
     <a class="agregar"href="/eventos/create" ><span class="fas fa-plus"></span>Añadir Evento</a>

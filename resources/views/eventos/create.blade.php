@@ -26,9 +26,13 @@
     <form action="/eventos" method="post" id="formulario" enctype="off">
 
         @csrf
-        <h3>Nombre del evento <input type="text" name="nombre"> </h3><br>
-        <h3>Fecha de inicio <input type="date" name = "fecha_inicio"></h3><br>
-        <h3>Fecha de terminación<input type="date" name = "fecha_final"></h3><br>
+       
+        <h3>Nombre del evento: <input type="text" name="nombre" class="animalinformation" value="{{ old('nombre') }}"> <br> {!! $errors->first('nombre', '<small>:message</small>') !!}</h3>
+       
+        <h3>Fecha de inicio: <input type="date" name="fecha_inicio" class="animalinformation" value="{{ old('fecha_inicio') }}"> <br> {!! $errors->first('fecha_inicio', '<small>:message</small>') !!}</h3>
+        
+        
+        <h3>Fecha de terminacion: <input type="date" name="fecha_final" class="animalinformation" value="{{ old('fecha_final') }}"> <br> {!! $errors->first('fecha_final', '<small>:message</small>') !!}</h3>
         <textarea name="descripcion" id="" cols="60" rows="10" placeholder="Descripcion"></textarea><br><br>
         
         <button  class="regreso" type="submit"><span class="far fa-check-circle"></span>agregar</button>
