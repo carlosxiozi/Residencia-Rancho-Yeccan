@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::resource('controles_reproductivos','Control_reproductivoController');
 Route::resource('animales','AnimalesController');
 Route::resource('eventos','EventosController');
+Route::resource('controles_productivos','Control_productivoController');
