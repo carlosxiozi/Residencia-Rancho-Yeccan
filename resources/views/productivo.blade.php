@@ -20,16 +20,22 @@
         <th>Fecha de Nacimiento</th>
         <th>Acciones</th>
     </thead>
-    <tr>
-        <td class="nombre_pro" width="400px">Bonita</td>
-        <td class="fecha_naci" width="400px">30/10/2020</td>
+    <tbody>
+    @foreach($productivo as $animal)
+        <tr>
+            <td class="tabla"><h3>{{$animal->nombre}}</h3></td>
+            <td class="tablaimg"><img src="{{ $animal->imagen }}" width="250px"height="150px" class="img_product"></td>
+            
         <td>
             <center>
             <button class="btn_edit">Asignar</button>
             </center>
         </td>
     </tr>
+    @endforeach
+    </tbody>
     </table>
     </center>
+    
 </body>
 </html>

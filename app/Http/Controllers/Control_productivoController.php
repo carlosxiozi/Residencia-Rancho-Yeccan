@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Animal;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class Control_productivoController extends Controller
      */
     public function index()
     {
-        //
+        $productivo=Animal::all();
+        return view('productivo', compact('productivo'));
     }
 
     /**
