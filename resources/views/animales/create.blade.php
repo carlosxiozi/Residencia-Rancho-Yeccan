@@ -60,11 +60,11 @@
         @endif
        
        <h3> Sexo:<select name="sexo" id="sexo" > 
-            <option >Elija uno</option>
+            <option value="" >Elija uno</option>
             <option >Macho</option>
             <option >Hembra</option>
             </select><br></h3>
-            
+        {!! $errors->first('sexo', '<small>:message</small><br>') !!}
         <h3>Imagen:<input type="file" name="imagen" accept="image/*">
         @error('imagen') <small>{{$message}}</small> @enderror <br></h3>
         

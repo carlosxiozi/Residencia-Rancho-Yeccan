@@ -14,4 +14,7 @@ protected $fillable= ['nombre','fecha_de_nacimiento','padre','arete','peso_al_na
 protected $table = 'animales';
 
     use HasFactory;
+    public function eventos(){
+        return $this->belongsToMany('App\Models\Evento')->withPivot('animal_id','id');
+    }
 }

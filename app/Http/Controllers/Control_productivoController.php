@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Animal;
+use App\Models\Evento;
 
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class Control_productivoController extends Controller
      */
     public function index()
     {
+        
         $productivo=Animal::all();
         return view('productivo', compact('productivo'));
     }
@@ -23,9 +25,12 @@ class Control_productivoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create($id)
+    
+    {   $eventos=Evento::all();
+        $animal = Animal::with('eventos')->get()->find($id);
+      
+        return view('productivo', compact('animal','eventos'));
     }
 
     /**
@@ -36,7 +41,11 @@ class Control_productivoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $eventos= $request->eventos;
+            $animal = Animal::find($request->id);
+            $animal -> eventos()->attach($eventos);
+            
+            return redirect('control_productivo/'.$request->id);
     }
 
     /**
@@ -79,8 +88,14 @@ class Control_productivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        
+        $evento=Animal::findOrFail($id);
+      //  $evento = Animal::with('eventos')->get()->find($id);
+      //return $request->evento_id;
+        $evento->eventos()->detach($request->evento_id,$request->evento_animal);
+        //return $request->evento_animal;
+        return redirect('control_productivo/'.$id);
     }
 }

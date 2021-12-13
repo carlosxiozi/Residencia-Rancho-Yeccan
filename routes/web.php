@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 
 
+Route::get("control_productivo/{id}", 'Control_productivoController@create');
 Route::resource('controles_reproductivos','Control_reproductivoController');
 Route::resource('animales','AnimalesController');
 Route::resource('eventos','EventosController');

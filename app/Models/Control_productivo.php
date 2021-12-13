@@ -11,4 +11,6 @@ class Control_productivo extends Model
     protected $fillable= ['animal_id','evento_id'];
     protected $table = 'controles_productivos';
     use HasFactory;
+    
 }
+

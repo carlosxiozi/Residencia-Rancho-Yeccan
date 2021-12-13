@@ -11,4 +11,7 @@ class Evento extends Model
     protected $fillable= ['nombre_evento','fecha_inicial','fecha_final','descripcion'];
     protected $table = 'eventos';
     use HasFactory;
+    public function animales(){
+    return $this->belongsToMany('App\Models\Animal')->withPivot('evento_id','id');
+    }
 }

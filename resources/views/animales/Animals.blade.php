@@ -42,8 +42,7 @@
                 @csrf
                 @method('DELETE')
                 <button class="eliminar" type="submit"><span class="fas fa-trash-alt" title="Eliminar"></span>Eliminar</button>
-                <a href="/controles_reproductivos/{{$animal->id}}" class="cp"><span class="fas fa-long-arrow-alt-left"></span>Control reproductivo</a>
-                <a href="/controles_productivos" class="cp"><span class="fas fa-long-arrow-alt-left"></span>Control productivo</a>
+               
 <script>
      eliminar1=document.getElementsByClassName('formulario');
     for(let i = 0; i < eliminar1.length; i++){
@@ -67,7 +66,8 @@
     }
 </script>
             </form>
-
+            <a href="/controles_reproductivos/{{$animal->id}}" class="cp"><span class="fas fa-long-arrow-alt-left"></span>Control reproductivo</a>
+            <a href="/control_productivo/{{$animal->id}}" class="cp"><span class="fas fa-long-arrow-alt-left"></span>Control productivo</a>
         
         
         </td>
