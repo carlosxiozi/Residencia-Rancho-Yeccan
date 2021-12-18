@@ -7,6 +7,7 @@
     <link rel = "stylesheet" href="{{ asset('static/css/estilos_animals.css') }}">
     <link rel = "stylesheet" href="{{ asset('static/css/css/all.css') }}">
     <script src="{{asset('static/css/sweetalert2.all.min.js')}}"></script>
+    <script src="{{asset('static/js/jquery-3.6.0.min.js')}}"></script>
     <title>Animales</title>
 </head>
 <body>
@@ -17,6 +18,20 @@
     flex-wrap:wrap;
 
 }
+.nombre {
+    color: black;
+    font-size: 18px;
+    display:flex;
+    overflow: hidden;
+    background: linear-gradient(
+100deg, #0ad2ff, #0273ff00);
+}
+ .descripcion {
+    color: black;
+    font-size: 15px;
+    display:flex;
+    
+}
 .evento-container {
     display: flex;
     border-radius:5px;
@@ -24,6 +39,10 @@
     border: 1px solid;
     width: max-content;
     padding: 8px;
+    background-color:white;
+    margin: 1.5px;
+    
+padding-right: 10px;
     box-shadow: 1px 1px 5px #000000e8;
 }
 form {
@@ -37,8 +56,8 @@ form {
 }
 .btn1 {
     border: 0 !important;
-    
-    background: white !important;
+    cursor: pointer;
+    background: red !important;
     border-radius: 50%;
     padding: 5px;
     width: 25px;
@@ -55,18 +74,132 @@ form {
     top: 0;
 
 }
+.animal-container{
+    width: 50%;
+    display: flex;
+    max-width: 1100px;
+    height: 450px;
+    flex-wrap:wrap;
+    justify-content:center;
+ 
+
+}
+.animal-container .tarjeta{
+width:60%;
+margin:20px;
+border-radius: 6px;
+overflow: hidden;
+box-shadow: 0px 1 px 10px rgba(0,0,0,0,2);
+cursor: default;
+color: black;
+font-size:20px;
+background-image: url('/static/img/azul.jpg');
+    text-align: center;
+  
+}
+.animal-container .tarjeta img{
+width:300px;
+height: 200px;
+border-radius:8px;
+box-shadow: 0 2px 2px rgba(0,0,0,0,2);
+overflow: hidden;
+margin:20px;
+text-align:center;
+transition: all 0.25s;
+}
+.animal-container .tarjeta animal-name{
+font-weight:600;
+color: #black;
+
+}
+.animal-container .tarjeta animal-sec{
+    padding:15px;
+    font-size:200px;
+    font-weight:300;
+    color: #black;
+    text-decoration:none;
+  
+    color: black;
+    text-align: center;
+}
+.contenido {
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 100;
+}
+
+.content_bread{
+    background-color: rgba(7, 7, 7, 0.39);
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+li{
+    list-style: none;
+}
+ul{
+    display: flex;
+    padding: 5px
+}
+.item_selected{
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+   
+}
+ 
+.titulo{
+    background: rgb(0, 0, 0);
+}
+
+.inicio{
+    background:#000000;
+    color:#fff;
+    display:inline-block;
+    font-size:1.00em;
+    margin:0px;
+    padding:10px 0px;
+    text-align: center;
+    width:100px;
+    box-shadow: 0px 3px 0px #373c3c;
+}
+
     </style>
+    
+<div class="content_bread">
+    <ul>
+        
+        
+        <li class="item_selected">Animales> </li>
+        <li class="item_selected">Productivo</li>
+    </ul>
+</div>
+
+<center>
+    <div class="titulo">
+    <h1> Control Productivo </h1>
+    </div>
+    
+<a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a> <br>
+    </center>
     <section class="animal">
         <div class="animal-container">
-            <label for="" class="animal-name">nombre: {{$animal->nombre}}</label>
-          
-            <label for="" class="arete">arete: {{$animal->arete}}</label>
+            <div class="tarjeta">
             <figure class="animal-image_container">
                 <img src="{{$animal->imagen}}" alt="" class="animal-image">
             </figure>
+            <label for="" class="animal-name">Nombre: {{$animal->nombre}}</label><br><br>
+            <div class="contenido">
+            <label for="" class="animal-sec">Sexo: {{$animal->sexo}}</label><br>
+            <label for="" class="animal-sec">Fecha de nacimiento: {{$animal->fecha_de_nacimiento}}</label><br>
+            <label for="" class="animal-sec">Peso al destete: {{$animal->peso_al_destete}}</label><br>
+            <label for="" class="animal-sec">Arete: {{$animal->arete}}</label><br>
+            </div>
         </div>
+            </div>
+            
         <div class="animal-eventos">
             @foreach($animal->eventos as $evento)
+         
                 <div class="evento-container" >
                     
                     <form action="/controles_productivos/{{$animal->id}}" class="formulario" method="POST">
@@ -77,9 +210,14 @@ form {
                 
                     <button class="btn1 fas fa-trash-alt"></button>
                     </form>
-                <label for="">Evento: {{$evento->nombre_evento}}</label>
-                <label for="">Fecha inicial:{{$evento->nombre_evento}}</label>
-                <label for="">Fecha final: {{$evento->fecha_final}}</label>
+                    <div class="nombre">
+                    <label for="">Evento: {{$evento->nombre_evento}}</label>
+                    </div>
+                    <div class="descripcion">
+                    <label for="">Fecha inicial:{{$evento->fecha_inicial}}</label> 
+                    
+                    <br>   <label for="">Fecha final: {{$evento->fecha_final}}</label>
+                    </div>
                 </div>
             @endforeach
         </div>
@@ -89,10 +227,23 @@ form {
                 @csrf
                     <input type="hidden" name="id" value="{{$animal->id}}">
                     @foreach($eventos as $evento)
+                        @php
+                            $bandera4 = 0;
+                        @endphp
+                    @foreach($animal->eventos as $eventoanimal)
+                    @if($evento->id == $eventoanimal->pivot->evento_id)
+                        @php
+                            $bandera4 = 1;
+                        @endphp
+                    @endif
+                    @endforeach
+                    
+                @if($bandera4 == 0)
                    <label for="">
                    <input type="checkbox" value="{{$evento->id}}" name="eventos[]" class="animal-evento_name">{{$evento->nombre_evento}}
                    </label>
-                    @endforeach
+                @endif
+                   @endforeach
             <button type="submit">Enviar</button>
             </form>
                           
