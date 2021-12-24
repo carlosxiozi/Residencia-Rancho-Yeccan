@@ -21,7 +21,6 @@
 .nombre {
     color: black;
     font-size: 18px;
-    display:flex;
     overflow: hidden;
     background: linear-gradient(
 100deg, #0ad2ff, #0273ff00);
@@ -29,7 +28,7 @@
  .descripcion {
     color: black;
     font-size: 15px;
-    display:flex;
+    
     
 }
 .evento-container {
@@ -41,8 +40,7 @@
     padding: 8px;
     background-color:white;
     margin: 1.5px;
-    
-padding-right: 10px;
+    padding-right: 25px;
     box-shadow: 1px 1px 5px #000000e8;
 }
 form {
@@ -70,8 +68,8 @@ form {
     border: 0 !important;
     position: absolute;
     padding: 0 !important;
-    right: 0;
-    top: 0;
+    right: -5px;
+    top: -5px;
 
 }
 .animal-container{
@@ -214,10 +212,11 @@ ul{
                     <label for="">Evento: {{$evento->nombre_evento}}</label>
                     </div>
                     <div class="descripcion">
-                    <label for="">Fecha inicial:{{$evento->fecha_inicial}}</label> 
-                    
-                    <br>   <label for="">Fecha final: {{$evento->fecha_final}}</label>
+                    <label >Fecha inicial:{{$evento->fecha_inicial}}</label><br>
+                    <label>Fecha final: {{$evento->fecha_final}}</label>
                     </div>
+                   
+
                 </div>
             @endforeach
         </div>
@@ -226,6 +225,9 @@ ul{
             <form action="/controles_productivos" method="POST">
                 @csrf
                     <input type="hidden" name="id" value="{{$animal->id}}">
+                    @php
+                        $bandera5 = 0;
+                    @endphp
                     @foreach($eventos as $evento)
                         @php
                             $bandera4 = 0;
@@ -233,6 +235,7 @@ ul{
                     @foreach($animal->eventos as $eventoanimal)
                     @if($evento->id == $eventoanimal->pivot->evento_id)
                         @php
+                            $bandera5 = $bandera5+1;
                             $bandera4 = 1;
                         @endphp
                     @endif
@@ -244,7 +247,13 @@ ul{
                    </label>
                 @endif
                    @endforeach
+            @if(sizeof($eventos)== 0)
+                <label> No hay eventos existentes </label>  
+            @elseif(sizeof($eventos) == $bandera5)
+                <label> No hay mas eventos disponibles </label>
+            @else
             <button type="submit">Enviar</button>
+            @endif
             </form>
                           
 <script>
