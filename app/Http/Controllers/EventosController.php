@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Evento;
+use App\Models\Animal;
+use App\Models\Control_reproductivo;
 use Illuminate\support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -110,5 +112,16 @@ class EventosController extends Controller
         Evento::destroy($id);
         //return redirect()->back()-> with('message','ok');
         return redirect('/eventos')-> with('message','ok');
+    }
+
+    public function tareas_Trabajador(){
+
+
+        $animales=Animal::with('eventos', 'control_reproductivo')->get();
+        $eventos=Evento::all();
+        // return $animales;
+        return view('trabajador', compact('animales','eventos'));
+
+
     }
 }

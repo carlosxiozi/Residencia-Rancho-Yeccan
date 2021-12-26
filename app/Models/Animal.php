@@ -17,4 +17,7 @@ protected $table = 'animales';
     public function eventos(){
         return $this->belongsToMany('App\Models\Evento')->withPivot('animal_id','id');
     }
+    public function control_reproductivo(){
+        return $this->hasMany('App\Models\Control_reproductivo');
+    }
 }

@@ -168,4 +168,6 @@ class AnimalesController extends Controller
         return redirect('/animales')-> with('message','ok');
   
     }
+
+    
 }

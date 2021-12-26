@@ -162,7 +162,17 @@ ul{
 }
 
     </style>
+ 
+<center>
+    <div class="titulo">
+    <h1> Control Productivo </h1>
+    </div>
+  
+
     
+<a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a> <br>
+    </center>
+         
 <div class="content_bread">
     <ul>
         
@@ -171,14 +181,6 @@ ul{
         <li class="item_selected">Productivo</li>
     </ul>
 </div>
-
-<center>
-    <div class="titulo">
-    <h1> Control Productivo </h1>
-    </div>
-    
-<a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a> <br>
-    </center>
     <section class="animal">
         <div class="animal-container">
             <div class="tarjeta">

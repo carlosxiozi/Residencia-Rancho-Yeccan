@@ -47,6 +47,7 @@
          <br>
         
         <input class="regreso" type="submit" value="Actualizar">
+        <a href="/animales" class="regreso"><span class="fas fa-long-arrow-alt-left"></span> Regresar</a>
     </form>
 </center>
   

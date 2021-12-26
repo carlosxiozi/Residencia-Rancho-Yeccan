@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('principal');
 });
-
+Route::get('/tareas', 'EventosController@tareas_Trabajador');
 
 
 Route::get("control_productivo/{id}", 'Control_productivoController@create');

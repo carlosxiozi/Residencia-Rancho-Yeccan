@@ -36,7 +36,7 @@
         <textarea name="descripcion" id="" cols="60" rows="10" placeholder="Descripcion"></textarea><br><br>
         
         <button  class="regreso" type="submit"><span class="far fa-check-circle"></span>agregar</button>
- <a href="/eventos" class="regreso" > <span class="fas fa-long-arrow-alt-left"></span>back</a>
+ <a href="/eventos" class="regreso" > <span class="fas fa-long-arrow-alt-left"></span>regresar</a>
     
 </form>
     </div>

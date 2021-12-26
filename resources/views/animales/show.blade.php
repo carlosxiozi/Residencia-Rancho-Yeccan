@@ -45,7 +45,7 @@
        <br>  <li><label id="lbCategoria">Clasificacion: {{$animales1->clasificacion}}</label></li>
         
         <li><label id="lbCategoria">Imagen: </label><img width="100px" height="100px" src="{{ asset($animales1->imagen) }}" alt=""></li>
-        <a href="/animales" class="regreso"><span class="fas fa-long-arrow-alt-left"></span>back</a>
+        <a href="/animales" class="regreso"><span class="fas fa-long-arrow-alt-left"></span>regresar</a>
     </lu>    </center>
 
     </body>

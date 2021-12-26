@@ -14,7 +14,7 @@
 <body>
     <center>
     <div class=titulo>
-    <h1> Evento </h1>
+    <h1> Eventos </h1>
     
     
     </div>

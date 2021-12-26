@@ -28,6 +28,7 @@
         <textarea name="descripcion"  cols="60" rows="10"   >{{$eventos1->descripcion}}</textarea><br><br>
         
         <input class="regreso" type="submit" value="Actualizar">
+        <a href="/eventos" class="regreso"><span class="fas fa-long-arrow-alt-left"></span> Regresar</a>
     </form>
     </div>
     </center>
