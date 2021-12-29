@@ -1,55 +1,69 @@
-table{
+table {
     width: 100%;
-	height: 50px;
-
+    height: 50px;
 }
 
-.box{
+.box {
     align-items: center;
     background: chocolate;
 }
-body{
-    background: rgb(120, 121, 120);
-    color: white;
-}
-td{
-    text-align: center;
 
-    
+body {
+    background: rgb(255, 255, 255);
+    color: black;
 }
-.tabla{
+
+td {
+    text-align: center;
+}
+
+.tabla {
     width: 200px;
+    color: black;
+    font-size: 18px;
 }
-.tablaimg{
+
+.tablaimg {
     width: 450px;
 }
-.nombre{
+
+.nombre {
     font-size: 30px;
+    color: black;
 }
-.nombre_pro{
+
+.nombre_pro {
     font-size: 20px;
+    color: black;
 }
-th{
+
+th {
+    color: rgb(255, 255, 255);
     background: rgb(0, 0, 0);
 }
-img{
+
+img {
     width: 200px;
-    height: 100px;   
+    height: 100px;
 }
-.img_table:hover{
+
+.img_table:hover {
     transform: scale(2);
 }
-.titulo{
+
+.titulo {
     background: rgb(0, 0, 0);
 }
-.btn_acep{
+
+.btn_acep {
     margin-left: 20px;
 }
-label .nombre{
+
+label .nombre {
     font-size: 30px;
 }
 
-.box{
+.box {
     width: 500px;
     height: 100%;
 }

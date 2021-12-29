@@ -118,9 +118,10 @@ class EventosController extends Controller
 
 
         $animales=Animal::with('eventos', 'control_reproductivo')->get();
+        $var= DB::table('animal_evento')->get();
         $eventos=Evento::all();
         // return $animales;
-        return view('trabajador', compact('animales','eventos'));
+        return view('trabajador', compact('animales','eventos','var'));
 
 
     }

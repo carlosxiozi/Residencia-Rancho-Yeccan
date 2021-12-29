@@ -66,7 +66,9 @@
     }
 </script>
             </form>
+            @if($animal->sexo=="Hembra")
             <a href="/controles_reproductivos/{{$animal->id}}" class="cp"><span class="fas fa-long-arrow-alt-left"></span>Control reproductivo</a>
+            @endif
             <a href="/control_productivo/{{$animal->id}}" class="cp"><span class="fas fa-long-arrow-alt-left"></span>Control productivo</a>
         
         

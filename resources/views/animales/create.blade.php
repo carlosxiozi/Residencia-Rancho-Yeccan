@@ -50,9 +50,9 @@
         <h3>Arete: <input type="text" name="arete" class="animalinformation" value="{{ old('arete') }}"> <br> {!! $errors->first('arete', '<small>:message</small>') !!}</h3>
       
        
-        <h3>Peso al nacer: <input type="text" name="peso_al_nacer" class="animalinformation" value="{{ old('peso_al_nacer') }}"> <br> {!! $errors->first('peso_al_nacer', '<small>:message</small>') !!}</h3>
+        <h3>Peso al nacer: <input type="number" name="peso_al_nacer" class="animalinformation" value="{{ old('peso_al_nacer') }}"> <br> {!! $errors->first('peso_al_nacer', '<small>:message</small>') !!}</h3>
        
-        <h3>Peso al destete: <input type="text" name="peso_al_destete" class="animalinformation" value="{{ old('peso_al_destete') }}"> <br> {!! $errors->first('peso_al_destete', '<small>:message</small>') !!}</h3>
+        <h3>Peso al destete: <input type="number" name="peso_al_destete" class="animalinformation" value="{{ old('peso_al_destete') }}"> <br> {!! $errors->first('peso_al_destete', '<small>:message</small>') !!}</h3>
         @if($madre_nombre)
         <h3>Madre: <input type="text" readonly name="madre"  value="{{$madre_nombre}}"></h3>
         @else

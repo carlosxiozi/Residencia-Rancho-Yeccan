@@ -1,68 +1,71 @@
-
-.item_selected{
+.item_selected {
     color: rgb(255, 255, 255);
     font-size: 20px;
-   
 }
-.content_bread{
+
+.content_bread {
     background-color: rgba(7, 7, 7, 0.39);
     margin-top: 0;
     margin-bottom: 5px;
 }
-li{
+
+li {
     list-style: none;
 }
-ul{
+
+ul {
     display: flex;
     padding: 5px
 }
 
-.regreso{
-    background:#37a8f3;
-    color:#fff;
-    display:inline-block;
-    font-size:1.00em;
-    margin:20px;
-    padding:10px 0px;
+.regreso {
+    background: #37a8f3;
+    color: #fff;
+    display: inline-block;
+    font-size: 1.00em;
+    margin: 20px;
+    padding: 10px 0px;
     text-align: center;
-    width:100px;
+    width: 100px;
     box-shadow: 0px 3px 0px #373c3c;
     cursor: pointer;
     text-decoration: none;
 }
-.regreso:hover{
+
+.regreso:hover {
     transition: 500ms;
     background-color: #f80404;
     color: rgb(0, 0, 0)
-    
 }
-.box{
-   
+
+.box {
     height: 450px;
     width: 400px;
-    
 }
-input{
+
+input {
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
-  font-size: 18px;
+    font-size: 18px;
     color: rgb(0, 0, 0);
 }
-h3{
+
+h3 {
     color: white;
     font-size: 15px;
 }
-body{
+
+body {
     margin: 0;
-    padding:0;
-   
+    padding: 0;
     height: 100ph;
     font-family: sans-serif;
     background-image: url('/static/img/azul.jpg');
     background-size: cover;
 }
-textarea{
+
+textarea {
     margin: 5px;
     border: none;
     outline: none;

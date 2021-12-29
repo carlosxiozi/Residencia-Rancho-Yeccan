@@ -44,6 +44,12 @@ font: message-box;
     padding: 5px;
     font-size: 17px;
 }
+.animal-eve{
+    
+    padding: 5px;
+    font-size: 17px;  
+    border-top: 1px solid;
+}
 .animal-body {
     flex: 1;
     font-size: 1.4rem;
@@ -70,6 +76,7 @@ font: message-box;
     }
 }
     </style>
+
 <center>
     <head>
         <div class="head">
@@ -83,15 +90,25 @@ font: message-box;
             style="width: 100%; padding: 5px;"
          >Eventos Activos: </h2>
         @foreach($eventos as $evento)
+            @php
+                $bandera = 0;
+            @endphp
+            @foreach($var as $event)
+                @if($evento->id == $event->evento_id)
+                    @php
+                        $bandera = 1;
+                    @endphp
+                @endif
+            @endforeach
+            @if($bandera == 1)
             <div class="evento">
-              
                 <label for="">Nombre: {{$evento->nombre_evento}}</label>
-                
                 <label for="">Descripción: {{$evento->descripcion}}</label>
                 <label for="">Fecha inicial: {{$evento->fecha_inicial}}</label>
                 <label for="">Fecha Final: {{$evento->fecha_final}}</label>
-               
             </div>
+            @endif
+                
         @endforeach
         </div>
     </section>
@@ -99,13 +116,29 @@ font: message-box;
         <div class="animales-container">
 
         @foreach($animales as $animal)
+
+        @php
+        $fechas=0;
+        @endphp
+
+        
+        
         @if(sizeof($animal->eventos) >0)
+        @foreach($animal->eventos as $fecha)
+        @if(\Carbon\Carbon::now()->gte($fecha->fecha_inicial) & \Carbon\Carbon::now()->lte($fecha->fecha_final))
+            @php
+                $fechas = 1;
+            @endphp
+        @endif
+        @endforeach
+        @if($fechas==1)
         @if($animal->sexo =="Hembra")
         <div class="animal">
            
            <img src="{{$animal->imagen}}" alt="" style="width:55%; height: 100%; margin:auto">
            <div class="animal-body">
                <div class="animal-inf">
+                   
                    Nombre: {{$animal->nombre}}
                </div>
                <div class="animal-inf">
@@ -114,23 +147,54 @@ font: message-box;
                <div class="animal-inf">
                   Sexo:  {{$animal->sexo}}
                </div>
+
                <div class="animal-reproductivo">
+               @foreach($animal->control_reproductivo as $fecha)
+        @php 
+            $nueva_fecha=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(7);
+            $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(1);
+            $dias=\Carbon\Carbon::now()->diffInDays($fecha->fecha_de_parto);
+            $horas=\Carbon\Carbon::now()->diffInHours($fecha->fecha_de_parto) - $dias * 24;
+            $hoy=\Carbon\Carbon::now();
+        @endphp
+        
+        @if(\Carbon\Carbon::now()->gte($nueva_fecha) & \Carbon\Carbon::now()->lte($fecha_final))
+            @php
+                $fechas = 1;
+            @endphp
+        @endif
+        @endforeach
+               
+
                    @foreach($animal->control_reproductivo as $controlRep)
                    @if($controlRep->estado_animal == 0)
+
+
                    <label for="">Estado: Sin preñar</label>
                    @elseif($controlRep->estado_animal == 1)
                    <label for="">Estado: embarazada</label>
+                   @if($fechas==1)
+                   <div class="animal-inf">
+                  Fecha de parto:  {{$controlRep->fecha_de_parto}} Faltan {{$dias}} dias con {{$horas}} horas.
+               </div>
+                  
+                    @endif
                    @endif
+
                    @endforeach
                </div>
+
                <div class="animal-productivo">
                    
                <h2 style="font-size:18px; text-align:center;"> Eventos: </h2>
                   @foreach($animal->eventos as $eventoA)
-                  
-                 <label for="">Nombre del evento: {{$eventoA->nombre_evento}}</label>
-                 <label for="">Fecha inicial:{{$eventoA->fecha_inical}}</label>
-                 <label for="">Fecha final:{{$eventoA->fecha_final}}</label>
+                  @if(\Carbon\Carbon::now()->gte($eventoA->fecha_inicial) & \Carbon\Carbon::now()->lte($eventoA->fecha_final))
+                    <div class="animal-eve">
+                        <label for="">Nombre del evento: {{$eventoA->nombre_evento}}</label><br>
+                        <label for="">Fecha inicial:{{$eventoA->fecha_inicial}}</label><br>
+                        <label for="">Fecha final:{{$eventoA->fecha_final}}</label>
+                    </div>  
+                    @endif
                   @endforeach
                </div>
            </div>
@@ -155,10 +219,16 @@ font: message-box;
                <h2 style="font-size:18px; text-align:center;"> Eventos: </h2>
                
                   @foreach($animal->eventos as $eventoA)
-                
-                 <label for="">Nombre del evento: {{$eventoA->nombre_evento}}</label>
-                 <label for="">Fecha inicial: {{$eventoA->fecha_inicial}}</label>
+                  @if(\Carbon\Carbon::now()->gte($eventoA->fecha_inicial) & \Carbon\Carbon::now()->lte($eventoA->fecha_final))
+                   
+               <div class="animal-eve">
+               
+                 <label for="">Nombre del evento: {{$eventoA->nombre_evento}}</label><br>
+                 <label for="">Fecha inicial: {{$eventoA->fecha_inicial}}</label><br>
                  <label for="">Fecha final: {{$eventoA->fecha_final}}</label>
+                 
+               </div>
+               @endif
                   @endforeach
        
                </div>
@@ -166,16 +236,34 @@ font: message-box;
           
            </div>
         @endif
+        @endif
         @else
-       
+        @foreach($animal->control_reproductivo as $fecha)
+        @php 
+            $nueva_fecha=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(7);
+            $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(1);
+            $dias=\Carbon\Carbon::now()->diffInDays($fecha->fecha_de_parto);
+            $horas=\Carbon\Carbon::now()->diffInHours($fecha->fecha_de_parto) - $dias * 24;
+            $hoy=\Carbon\Carbon::now();
+        @endphp
+        
+        @if(\Carbon\Carbon::now()->gte($nueva_fecha) & \Carbon\Carbon::now()->lte($fecha_final))
+            @php
+                $fechas = 1;
+            @endphp
+        @endif
+        @endforeach
+        
             @foreach($animal->control_reproductivo as $controlRep)
                 @if($controlRep->estado_animal == 0)
-                Nombre: {{$animal->nombre}}
+              
                 @elseif($controlRep->estado_animal == 1)
+                    @if($fechas==1)
+
            
                 <div class="animal">
            
-           <img src="{{$animal->imagen}}" alt="" style="width:55%; height: 100%; margin:auto">
+           <img src="{{$animal->imagen}}" alt="" style="width:55%; height: 100%; margin:auto;">
            <div class="animal-body">
                <div class="animal-inf">
                    Nombre: {{$animal->nombre}}
@@ -190,13 +278,17 @@ font: message-box;
                 <label for="">Estado: embarazada</label>
                </div>
                <div class="animal-inf">
-                  Fecha de parto:  {{$controlRep->fecha_de_parto}}
+                  Fecha de parto:  {{$controlRep->fecha_de_parto}} Faltan {{$dias}} dias con {{$horas}} horas.
                </div>
+               </div>
+               @endif
                 @endif
             @endforeach
                
+
         @endif
         @endforeach
+        
         </div>
     </section>
 </body>
