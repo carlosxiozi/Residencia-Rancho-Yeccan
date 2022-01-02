@@ -17,7 +17,7 @@
     <form action="/controles_reproductivos/{{$reproductivo1->id}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="box">
+        <div class="box-ini">
            
            
             <label class="nombre">Anotaciones anteriores:
@@ -33,7 +33,7 @@
                 @endforeach
                 </label><br><br><br>
             <textarea class="textarea" name="motivo" Onkeyup="charCount();" cols="45" rows="10" placeholder="Escribe las observaciones aqui..." maxlength="100" minlength="3"></textarea><br>
-            <button class="btn_acep">Agregar</button><br><br>
+            <button class="regreso">Agregar</button><br><br>
 
             
             <label class="nombre">¿La vaca ha quedado preñada?" </label><br><br><br>

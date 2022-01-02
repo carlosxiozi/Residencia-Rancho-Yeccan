@@ -104,8 +104,8 @@ font: message-box;
             <div class="evento">
                 <label for="">Nombre: {{$evento->nombre_evento}}</label>
                 <label for="">Descripción: {{$evento->descripcion}}</label>
-                <label for="">Fecha inicial: {{$evento->fecha_inicial}}</label>
-                <label for="">Fecha Final: {{$evento->fecha_final}}</label>
+                <label for="">Fecha inicial: {{\Carbon\Carbon::parse($evento->fecha_inicial)->format('d/m/Y')}}</label>
+                <label for="">Fecha Final: {{\Carbon\Carbon::parse($evento->fecha_final)->format('d/m/Y')}}</label>
             </div>
             @endif
                 
@@ -175,7 +175,7 @@ font: message-box;
                    <label for="">Estado: embarazada</label>
                    @if($fechas==1)
                    <div class="animal-inf">
-                  Fecha de parto:  {{$controlRep->fecha_de_parto}} Faltan {{$dias}} dias con {{$horas}} horas.
+                  Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
                </div>
                   
                     @endif
@@ -191,8 +191,8 @@ font: message-box;
                   @if(\Carbon\Carbon::now()->gte($eventoA->fecha_inicial) & \Carbon\Carbon::now()->lte($eventoA->fecha_final))
                     <div class="animal-eve">
                         <label for="">Nombre del evento: {{$eventoA->nombre_evento}}</label><br>
-                        <label for="">Fecha inicial:{{$eventoA->fecha_inicial}}</label><br>
-                        <label for="">Fecha final:{{$eventoA->fecha_final}}</label>
+                        <label for="">Fecha inicial:{{\Carbon\Carbon::parse($eventoA->fecha_inicial)->format('d/m/Y')}}</label><br>
+                        <label for="">Fecha final:{{\Carbon\Carbon::parse($eventoA->fecha_final)->format('d/m/Y')}}</label>
                     </div>  
                     @endif
                   @endforeach
@@ -224,8 +224,8 @@ font: message-box;
                <div class="animal-eve">
                
                  <label for="">Nombre del evento: {{$eventoA->nombre_evento}}</label><br>
-                 <label for="">Fecha inicial: {{$eventoA->fecha_inicial}}</label><br>
-                 <label for="">Fecha final: {{$eventoA->fecha_final}}</label>
+                 <label for="">Fecha inicial: {{\Carbon\Carbon::parse($eventoA->fecha_inicial)->format('d/m/Y')}}</label><br>
+                 <label for="">Fecha final: {{\Carbon\Carbon::parse($eventoA->fecha_final)->format('d/m/Y')}}</label>
                  
                </div>
                @endif
@@ -278,7 +278,7 @@ font: message-box;
                 <label for="">Estado: embarazada</label>
                </div>
                <div class="animal-inf">
-                  Fecha de parto:  {{$controlRep->fecha_de_parto}} Faltan {{$dias}} dias con {{$horas}} horas.
+                  Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
                </div>
                </div>
                @endif

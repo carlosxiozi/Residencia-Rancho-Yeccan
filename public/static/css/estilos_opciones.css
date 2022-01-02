@@ -17,7 +17,9 @@ ul {
     display: flex;
     padding: 5px
 }
-
+.btn_acep {
+    margin-left: 20px;
+}
 .regreso {
     background: #37a8f3;
     color: #fff;
@@ -42,6 +44,30 @@ ul {
     height: 450px;
     width: 400px;
 }
+.box-ini {
+    height: 370px;
+    width: 400px;
+}
+.btn_acep {
+    background: #37a8f3;
+    color: #fff;
+    display: inline-block;
+    font-size: 1.00em;
+    margin: 20px;
+    padding: 10px 0px;
+    text-align: center;
+    width: 50px;
+    box-shadow: 0px 3px 0px #373c3c;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn_acep:hover {
+    transition: 500ms;
+    background-color: #f80404;
+    color: rgb(0, 0, 0)
+}
+
+
 
 input {
     border: none;
