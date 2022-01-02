@@ -32,7 +32,7 @@
                     @endif
                 @endforeach
                 </label><br><br><br>
-            <textarea class="textarea" name="motivo" Onkeyup="charCount();" cols="45" rows="10" placeholder="Escribe las observaciones aqui..." maxlength="100" minlength="3"></textarea><br>
+            <textarea class="textarea" name="motivo" Onkeyup="charCount();" cols="45" rows="10" placeholder="Escribe las observaciones aqui..." maxlength="500" minlength="3"></textarea><br>
             <button class="regreso">Agregar</button><br><br>
 
             

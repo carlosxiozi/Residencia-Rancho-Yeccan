@@ -7,6 +7,7 @@ use App\Models\Control_reproductivo;
 use Illuminate\support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Carbon\carbon;
 
 class EventosController extends Controller
 {
@@ -39,22 +40,40 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-
+       $date= Carbon::now()->toDateString();
+      
         $animalinformation = $request-> all();
         request()->validate([
             'nombre' => 'required',
             'fecha_inicio' => 'required',
+            'descripcion' => 'required',
             'fecha_final' => 'required',
            
         ]);
+        $date2=Carbon::createFromDate($request->fecha_inicio);
+        $date3=Carbon::createFromDate($request->fecha_final);
         $eventos1 = new Evento();
         $eventos1->nombre_evento=$request->nombre;
-        $eventos1->fecha_inicial=$request->fecha_inicio;
-        $eventos1->fecha_final=$request->fecha_final;
-        $eventos1->descripcion=$request->descripcion;
-        $eventos1 -> save();
-        return redirect()->back()-> with('message','ok');
-        return redirect(('/eventos'))-> with('message','ok');
+        if(Carbon::today()->lte($date2)){
+
+            if(Carbon::today()->lte($date3)){
+                $eventos1->fecha_inicial=$request->fecha_inicio;
+                $eventos1->fecha_final=$request->fecha_final;
+                $eventos1->descripcion=$request->descripcion;
+                $eventos1 -> save();
+                return redirect()->back()-> with('message','ok');
+            }else{
+
+                return redirect()->back()-> with('msg','falta');
+            }
+        }else{
+          
+            return redirect()->back()-> with('msg','falta');
+        }
+      
+        
+   
+       // return redirect(('/eventos'))-> with('message','ok');
         
     }
 

@@ -31,7 +31,7 @@
     @forelse($eventos1 as $evento)
     <tr>
         <td class="nombre" width="300px">{{$evento->nombre_evento}}</td>
-        <td class="nombre" width="300px">{{$evento->fecha_inicial}}</td>
+        <td class="nombre" width="300px">{{\Carbon\Carbon::parse($evento->fecha_inicial)->format('d/m/Y')}}  </td>
         <td>
             <center>
             <a class="acciones" href="/eventos/{{$evento->id}}/edit"><span class="fas fa-edit"></span>Editar</a>

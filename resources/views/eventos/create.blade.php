@@ -28,12 +28,13 @@
         @csrf
        
         <h3>Nombre del evento: <input type="text" name="nombre" class="animalinformation" value="{{ old('nombre') }}"> <br> {!! $errors->first('nombre', '<small>:message</small>') !!}</h3>
-       
+     
         <h3>Fecha de inicio: <input type="date" name="fecha_inicio" class="animalinformation" value="{{ old('fecha_inicio') }}"> <br> {!! $errors->first('fecha_inicio', '<small>:message</small>') !!}</h3>
         
         
         <h3>Fecha de terminacion: <input type="date" name="fecha_final" class="animalinformation" value="{{ old('fecha_final') }}"> <br> {!! $errors->first('fecha_final', '<small>:message</small>') !!}</h3>
-        <textarea name="descripcion" id="" cols="60" rows="10" placeholder="Descripcion"></textarea><br><br>
+        <textarea name="descripcion" id="" cols="60" rows="10" placeholder="Descripcion"></textarea> <br>  <h3>{!! $errors->first('descripcion', '<small>:message</small>') !!}</h3><br>
+        
         
         <button  class="regreso" type="submit"><span class="far fa-check-circle"></span>agregar</button>
  <a href="/eventos" class="regreso" > <span class="fas fa-long-arrow-alt-left"></span>regresar</a>
@@ -54,7 +55,18 @@ Swal.fire({
  
 })
 </script>
+@elseif(Session::has('msg') == ' falta ' )
 
+<script>
+Swal.fire({
+  position: 'top-center',
+  icon: 'error',
+  title: 'Fecha atrasada',
+  showConfirmButton: false,
+  timer: 1500
+ 
+})
+</script>
 @endif
 </body>
 
