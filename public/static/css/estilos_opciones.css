@@ -4,7 +4,7 @@
 }
 
 .content_bread {
-    background-color: rgba(7, 7, 7, 0.39);
+    background-color: black;
     margin-top: 0;
     margin-bottom: 5px;
 }
@@ -43,11 +43,9 @@ ul {
 .box {
     height: 450px;
     width: 400px;
+    
 }
-.box-ini {
-    height: 370px;
-    width: 400px;
-}
+
 .btn_acep {
     background: #37a8f3;
     color: #fff;
@@ -97,3 +95,47 @@ textarea {
     outline: none;
     resize: none;
 }
+.box-con{
+    background: white;
+    text-align: left;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 400px;
+    width: 500px;
+    display: block;
+    margin: 0 auto;
+    
+}
+
+scroll-container::-webkit-scrollbar{
+    width: 7px;
+    
+}
+scroll-container::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background: black;
+}
+
+    scroll-page {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 100%;
+    font-size: 20px;
+  }
+  
+  .nombre1{
+    position: relative;
+    
+  }
+  .box-com{
+    display: flex;
+    justify-content: center;
+  }
+  .anotacion{
+    text-align: center;
+    margin-left: 190px;
+  }
+  p{
+      word-wrap: break-word;
+  }

@@ -22,8 +22,10 @@
     <div class="titulo">
     <h1> Control Reproductivo </h1>
     </div>
-    
-<a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
+    <div class="join">
+        <a class="inicio" href="/animales" ><span class="fas fa-long-arrow-alt-left"></span>Regresar</a>
+        <a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
+    </div>
     </center>
     
 

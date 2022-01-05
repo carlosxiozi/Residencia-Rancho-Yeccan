@@ -14,41 +14,44 @@
     <div class=titulo>
         <h1> Revisar </h1>
     </div>
-    <form action="/controles_reproductivos/{{$reproductivo1->id}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+    </center>
+    <div class="box-com">
         <div class="box-ini">
-           
-           
-            <label class="nombre">Anotaciones anteriores:
-                @php 
-                    $i=1;
-                @endphp
+            <form action="/controles_reproductivos/{{$reproductivo1->id}}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                    <textarea class="textarea" name="motivo" Onkeyup="charCount();" cols="45" rows="10" placeholder="Escribe las observaciones aqui..." maxlength="500" minlength="3"></textarea><br>
+                    <button class="regreso">Agregar</button><br><br>
+                    <label class="nombre">¿La vaca ha quedado preñada?" </label><br><br>
+            </form>
+    
+            <form action="/controles_reproductivos/{{$reproductivo1->id}}" method="post" >
+                @csrf
+                @method('PUT')
+                <button class="btn_acep" name="estadoTrue" value="1">Si</button>
+                <button class="btn_acep"  name="estadoFalse" value = "0">No</button>
+            </form>
+        </div>
+        <div class="anotacion">
+            <label class="nombre1">Anotaciones anteriores:</label>
+            
+            @php 
+                $i=1;
+            @endphp
+            <scroll-container class="box-con">
+            
+                
                 @foreach($expediente as $expediente)
                     @if($expediente=="")
-                    
-                    @else <br>{{$i++.".-".$expediente}}
-                    
+                        
+                    @else <p>{{$i++.".-"}}<br>{{$expediente}}</p>
+                        
                     @endif
                 @endforeach
-                </label><br><br><br>
-            <textarea class="textarea" name="motivo" Onkeyup="charCount();" cols="45" rows="10" placeholder="Escribe las observaciones aqui..." maxlength="500" minlength="3"></textarea><br>
-            <button class="regreso">Agregar</button><br><br>
+                
+            </scroll-container>
 
-            
-            <label class="nombre">¿La vaca ha quedado preñada?" </label><br><br><br>
         </div>
-    
-
-    </form>
-   
-    <form action="/controles_reproductivos/{{$reproductivo1->id}}" method="post" >
-    @csrf
-        @method('PUT')
-        <button class="btn_acep" name="estadoTrue" value="1">Si</button>
-        <button class="btn_acep"  name="estadoFalse" value = "0">No</button>
-    </form>
-    </center>
-    
+    </div>
 </body>
 </html>

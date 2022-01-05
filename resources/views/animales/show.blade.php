@@ -1,8 +1,3 @@
-<style>
-    
-    
-    
-</style>
 <div class="content_bread">
     <ul>
         

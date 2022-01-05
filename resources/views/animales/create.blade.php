@@ -13,11 +13,8 @@
     <title></title>
    
 </head>
-<script>
-    $(document).ready(function(){
-        alert("ascad");
-    });
-    </script>
+
+
 <body class="cuerpo">
 
 

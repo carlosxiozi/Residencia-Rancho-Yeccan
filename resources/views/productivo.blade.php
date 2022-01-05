@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href="{{ asset('static/css/estilos_animals.css') }}">
+    
     <link rel = "stylesheet" href="{{ asset('static/css/css/all.css') }}">
     <script src="{{asset('static/css/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('static/js/jquery-3.6.0.min.js')}}"></script>
@@ -73,25 +73,25 @@ form {
 
 }
 .animal-container{
-    width: 50%;
+    width: 60%;
     display: flex;
-    max-width: 1100px;
-    height: 450px;
-    flex-wrap:wrap;
-    justify-content:center;
- 
-
+    max-width: 500px;
+    height: 250px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    background-image: url('/static/img/azul.jpg');
+    flex-direction: row;
+    align-items: center;
 }
 .animal-container .tarjeta{
-width:60%;
-margin:20px;
+width:100%;
 border-radius: 6px;
 overflow: hidden;
 box-shadow: 0px 1 px 10px rgba(0,0,0,0,2);
 cursor: default;
 color: black;
 font-size:20px;
-background-image: url('/static/img/azul.jpg');
+
     text-align: center;
   
 }
@@ -101,7 +101,6 @@ height: 200px;
 border-radius:8px;
 box-shadow: 0 2px 2px rgba(0,0,0,0,2);
 overflow: hidden;
-margin:20px;
 text-align:center;
 transition: all 0.25s;
 }
@@ -128,9 +127,9 @@ color: #black;
 }
 
 .content_bread{
-    background-color: rgba(7, 7, 7, 0.39);
+    background-color: black;
     margin-top: 0;
-    margin-bottom: 5px;
+    
 }
 li{
     list-style: none;
@@ -146,7 +145,8 @@ ul{
 }
  
 .titulo{
-    background: rgb(0, 0, 0);
+    background: black;
+    color: white;
 }
 
 .inicio{
@@ -159,18 +159,36 @@ ul{
     text-align: center;
     width:100px;
     box-shadow: 0px 3px 0px #373c3c;
+    text-decoration: none;
+}
+img {
+    width: 200px;
+    height: 100px;
 }
 
+.img_table:hover {
+    transform: scale(2);
+}
+body {
+    background: rgb(255, 255, 255);
+    color: black;
+}
+span{
+    margin-right: 10px;
+}
     </style>
  
 <center>
     <div class="titulo">
     <h1> Control Productivo </h1>
     </div>
-  
+    <div class="join">
+        <a class="inicio" href="/animales" ><span class="fas fa-long-arrow-alt-left"></span>Regresar</a>
+        <a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
+    </div>
 
     
-<a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a> <br>
+
     </center>
          
 <div class="content_bread">
@@ -187,13 +205,15 @@ ul{
             <figure class="animal-image_container">
                 <img src="{{$animal->imagen}}" alt="" class="animal-image">
             </figure>
-            <label for="" class="animal-name">Nombre: {{$animal->nombre}}</label><br><br>
+            </div>
             <div class="contenido">
+            <label for="" class="animal-name">Nombre: {{$animal->nombre}}</label><br><br>
+           
             <label for="" class="animal-sec">Sexo: {{$animal->sexo}}</label><br>
             <label for="" class="animal-sec">Fecha de nacimiento: {{$animal->fecha_de_nacimiento}}</label><br>
             <label for="" class="animal-sec">Peso al destete: {{$animal->peso_al_destete}}</label><br>
             <label for="" class="animal-sec">Arete: {{$animal->arete}}</label><br>
-            </div>
+            
         </div>
             </div>
             
