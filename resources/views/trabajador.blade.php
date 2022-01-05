@@ -125,7 +125,13 @@ font: message-box;
         
         @if(sizeof($animal->eventos) >0)
         @foreach($animal->eventos as $fecha)
-        @if(\Carbon\Carbon::now()->gte($fecha->fecha_inicial) & \Carbon\Carbon::now()->lte($fecha->fecha_final))
+        @php
+        $fechaini=\Carbon\Carbon::createFromDate($fecha->fecha_inicial);
+        $fechafin=\Carbon\Carbon::createFromDate($fecha->fecha_final);
+
+        @endphp
+
+        @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
             @php
                 $fechas = 1;
             @endphp
@@ -156,9 +162,12 @@ font: message-box;
             $dias=\Carbon\Carbon::now()->diffInDays($fecha->fecha_de_parto);
             $horas=\Carbon\Carbon::now()->diffInHours($fecha->fecha_de_parto) - $dias * 24;
             $hoy=\Carbon\Carbon::now();
+            $fechaf=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto);
         @endphp
         
         @if(\Carbon\Carbon::now()->gte($nueva_fecha) & \Carbon\Carbon::now()->lte($fecha_final))
+        
+                        
             @php
                 $fechas = 1;
             @endphp
@@ -175,7 +184,13 @@ font: message-box;
                    <label for="">Estado: embarazada</label>
                    @if($fechas==1)
                    <div class="animal-inf">
-                  Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
+
+                   @if(\Carbon\Carbon::today()->eq($fechaf))
+                        Ya es la fecha indicada de parto. 
+                    @else
+    Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
+                    @endif
+                 
                </div>
                   
                     @endif
@@ -188,7 +203,12 @@ font: message-box;
                    
                <h2 style="font-size:18px; text-align:center;"> Eventos: </h2>
                   @foreach($animal->eventos as $eventoA)
-                  @if(\Carbon\Carbon::now()->gte($eventoA->fecha_inicial) & \Carbon\Carbon::now()->lte($eventoA->fecha_final))
+                  @php
+        $fechaini=\Carbon\Carbon::createFromDate($eventoA->fecha_inicial);
+        $fechafin=\Carbon\Carbon::createFromDate($eventoA->fecha_final);
+
+        @endphp
+                  @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
                     <div class="animal-eve">
                         <label for="">Nombre del evento: {{$eventoA->nombre_evento}}</label><br>
                         <label for="">Fecha inicial:{{\Carbon\Carbon::parse($eventoA->fecha_inicial)->format('d/m/Y')}}</label><br>
@@ -218,8 +238,14 @@ font: message-box;
                <div class="animal-productivo">
                <h2 style="font-size:18px; text-align:center;"> Eventos: </h2>
                
+               
                   @foreach($animal->eventos as $eventoA)
-                  @if(\Carbon\Carbon::now()->gte($eventoA->fecha_inicial) & \Carbon\Carbon::now()->lte($eventoA->fecha_final))
+                  @php
+        $fechaini=\Carbon\Carbon::createFromDate($eventoA->fecha_inicial);
+        $fechafin=\Carbon\Carbon::createFromDate($eventoA->fecha_final);
+
+        @endphp
+                  @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
                    
                <div class="animal-eve">
                
@@ -244,7 +270,9 @@ font: message-box;
             $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(1);
             $dias=\Carbon\Carbon::now()->diffInDays($fecha->fecha_de_parto);
             $horas=\Carbon\Carbon::now()->diffInHours($fecha->fecha_de_parto) - $dias * 24;
-            $hoy=\Carbon\Carbon::now();
+            $hoy=\Carbon\Carbon::today()->toDateString();
+
+            $fechaf=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto);
         @endphp
         
         @if(\Carbon\Carbon::now()->gte($nueva_fecha) & \Carbon\Carbon::now()->lte($fecha_final))
@@ -278,9 +306,15 @@ font: message-box;
                 <label for="">Estado: embarazada</label>
                </div>
                <div class="animal-inf">
-                  Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
+               @if(\Carbon\Carbon::today()->eq($fechaf))
+                        Ya es la fecha indicada de parto. 
+                    @else
+    Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
+                    @endif
+                 
                </div>
                </div>
+                </div>
                @endif
                 @endif
             @endforeach

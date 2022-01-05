@@ -31,6 +31,12 @@
     
     
 }
+.animal {
+    display:flex;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+}
 .evento-container {
     display: flex;
     border-radius:5px;
@@ -242,6 +248,7 @@ span{
                 </div>
             @endforeach
         </div>
+        </section>
         <div class="animal-evento">
             <label for="" class="evento"></label>
             <form action="/controles_productivos" method="POST">
@@ -301,6 +308,6 @@ span{
     }
 </script>
         </div>
-    </section>
+  
 </body>
 </html>
