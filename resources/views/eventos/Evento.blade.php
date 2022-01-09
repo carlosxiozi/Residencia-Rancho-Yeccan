@@ -6,22 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="{{ asset('static/css/style_events.css') }}">
-    <link rel="stylesheet" href="{{ asset('static/css/css/all.css')}}"
+    <link rel="stylesheet" href="{{ asset('static/css/css/all.css')}}">
     <script src="{{asset('static/css/sweetalert2.all.min.js')}}"></script>
     <title>Evento</title>
 </head>
 <body>
-    <center>
+<header class="header">
+       
+       <div class="header-container">
+       <figure class="header-img">
+           <img src="/static/img/cow.png" alt="">
+       </figure>
+           <span class="header-titile">Rancho Yeccan</span>
+       </div>
+   </header>
+   
     <div class=titulo>
-    <h1> Eventos </h1>
+    <h1 style="text-align: center;"> Eventos </h1>
     
     
     </div>
+    <div style="width: max-content;
+    margin: auto;">
     <a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
-    </center>
-    <center>
+   
+    
     <a class="agregar"href="/eventos/create" ><span class="fas fa-plus"></span>Añadir Evento</a>
-    <table border="1">
+    </div>
+    <table >
     <thead>
         <th>Nombre</th>
         <th>fecha</th>
@@ -32,7 +44,7 @@
         <td class="nombre" width="300px">{{$evento->nombre_evento}}</td>
         <td class="nombre" width="300px">{{\Carbon\Carbon::parse($evento->fecha_inicial)->format('d/m/Y')}}  </td>
         <td>
-            <center>
+           
             <a class="acciones" href="/eventos/{{$evento->id}}/edit"><span class="fas fa-edit"></span>Editar</a>
             <a class="acciones" href="/eventos/{{$evento->id}}"><span class="fas fa-book-open"></span>Mostrar</a>
             <form action="/eventos/{{$evento->id}}" class="formulario" method="post" style="display: inline;">

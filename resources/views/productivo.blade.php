@@ -12,6 +12,10 @@
 </head>
 <body>
     <style>
+        * {
+    padding: 0;
+    margin: 0;
+}
         .animal-eventos {
     display: flex;
     gap: 15px;
@@ -32,10 +36,12 @@
     
 }
 .animal {
-    display:flex;
+    display: flex;
     align-items: center;
     width: 100%;
     height: 80%;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 .evento-container {
     display: flex;
@@ -88,6 +94,10 @@ form {
     background-image: url('/static/img/azul.jpg');
     flex-direction: row;
     align-items: center;
+    background: #9CECFB;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+margin: 8px auto;
 }
 .animal-container .tarjeta{
 width:100%;
@@ -132,10 +142,11 @@ color: #black;
     font-weight: 100;
 }
 
-.content_bread{
-    background-color: black;
+
+.content_bread {
+    background-color: #21137e;
     margin-top: 0;
-    
+    margin-bottom: 5px;
 }
 li{
     list-style: none;
@@ -150,10 +161,7 @@ ul{
    
 }
  
-.titulo{
-    background: black;
-    color: white;
-}
+
 
 .inicio{
     background:#000000;
@@ -166,6 +174,11 @@ ul{
     width:100px;
     box-shadow: 0px 3px 0px #373c3c;
     text-decoration: none;
+}
+
+.titulo {
+    background: #2778c4;
+    color: white;
 }
 img {
     width: 200px;
@@ -182,11 +195,14 @@ body {
 span{
     margin-right: 10px;
 }
+tr:nth-child(odd) {
+    background: #d5d5d587;
+}
     </style>
  
 <center>
     <div class="titulo">
-    <h1> Control Productivo </h1>
+    <h1 style="text-align: center;"> Control Productivo </h1>
     </div>
     <div class="join">
         <a class="inicio" href="/animales" ><span class="fas fa-long-arrow-alt-left"></span>Regresar</a>
@@ -201,7 +217,7 @@ span{
     <ul>
         
         
-        <li class="item_selected">Animales> </li>
+        <li  class="item_selected">Animales> </li>
         <li class="item_selected">Productivo</li>
     </ul>
 </div>

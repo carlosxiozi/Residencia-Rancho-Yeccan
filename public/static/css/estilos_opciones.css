@@ -1,10 +1,15 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 .item_selected {
     color: rgb(255, 255, 255);
     font-size: 20px;
 }
 
 .content_bread {
-    background-color: black;
+    background-color: #21137e;
     margin-top: 0;
     margin-bottom: 5px;
 }
@@ -17,9 +22,11 @@ ul {
     display: flex;
     padding: 5px
 }
+
 .btn_acep {
     margin-left: 20px;
 }
+
 .regreso {
     background: #37a8f3;
     color: #fff;
@@ -43,7 +50,6 @@ ul {
 .box {
     height: 450px;
     width: 400px;
-    
 }
 
 .btn_acep {
@@ -59,13 +65,12 @@ ul {
     cursor: pointer;
     text-decoration: none;
 }
+
 .btn_acep:hover {
     transition: 500ms;
     background-color: #f80404;
     color: rgb(0, 0, 0)
 }
-
-
 
 input {
     border: none;
@@ -85,7 +90,12 @@ body {
     padding: 0;
     height: 100ph;
     font-family: sans-serif;
-    background-image: url('/static/img/azul.jpg');
+    background: #56CCF2;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F80ED, #56CCF2);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size: cover;
 }
 
@@ -95,7 +105,8 @@ textarea {
     outline: none;
     resize: none;
 }
-.box-con{
+
+.box-con {
     background: white;
     text-align: left;
     overflow-y: scroll;
@@ -104,38 +115,39 @@ textarea {
     width: 500px;
     display: block;
     margin: 0 auto;
-    
 }
 
-scroll-container::-webkit-scrollbar{
+scroll-container::-webkit-scrollbar {
     width: 7px;
-    
 }
-scroll-container::-webkit-scrollbar-thumb{
+
+scroll-container::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background: black;
 }
 
-    scroll-page {
+scroll-page {
     display: flex;
     align-items: center;
     justify-content: left;
     height: 100%;
     font-size: 20px;
-  }
-  
-  .nombre1{
+}
+
+.nombre1 {
     position: relative;
-    
-  }
-  .box-com{
+}
+
+.box-com {
     display: flex;
     justify-content: center;
-  }
-  .anotacion{
+}
+
+.anotacion {
     text-align: center;
     margin-left: 190px;
-  }
-  p{
-      word-wrap: break-word;
-  }
+}
+
+p {
+    word-wrap: break-word;
+}

@@ -11,15 +11,24 @@
     <title>Animales</title>
 </head>
 <body>
-    <center>
-    <div class=titulo>
-    <h1> Animales </h1>
+<header class="header">
+       
+       <div class="header-container">
+       <figure class="header-img">
+           <img src="/static/img/cow.png" alt="">
+       </figure>
+           <span class="header-titile">Rancho Yeccan</span>
+       </div>
+   </header>
+    <div class="titulo">
+    <h1 style="text-align: center;"> Animales </h1>
     </div>
+    <div style="width: max-content;
+    margin: auto;">
     <a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
-    </center>
-    <center>
     <tr class="btn_agregar"><td colspan="3"><a class="agregar" href="/animales/create"><span class="fas fa-plus"></span>Agregar Animal</a></td></tr>
-    <table border="1">
+    </div>
+    <table>
     <thead>
         <th>Nombre</th>
         <th>Imagen</th>

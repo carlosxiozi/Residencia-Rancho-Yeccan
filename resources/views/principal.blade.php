@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @laravelPWA
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,15 @@
     <title>Document</title>
 </head>
 <body>
+    <header class="header">
+       
+        <div class="header-container">
+        <figure class="header-img">
+            <img src="/static/img/cow.png" alt="">
+        </figure>
+            <span class="header-titile">Rancho Yeccan</span>
+        </div>
+    </header>
 <center><h1>Seleccione la opción a elegir</h1></center>
     <div class="primario">
     

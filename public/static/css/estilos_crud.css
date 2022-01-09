@@ -1,5 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 a {
     text-decoration: none;
+}
+
+.join {
+    margin: 8px;
+}
+
+h2 {
+    padding: 8px;
+}
+
+.titulo {
+    background: #2778c4;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background: #d5d5d587;
+}
+
+th {
+    color: rgb(255, 255, 255);
+    background: rgb(1 173 255);
+    padding: 5px;
+    font-size: 20px;
 }
 
 .acciones {
@@ -83,8 +112,9 @@ a {
 }
 
 .content_bread {
-    background-color: black;
+    background-color: #21137e;
     margin-top: 0;
+    margin-bottom: 5px;
 }
 
 li {
