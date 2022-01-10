@@ -8,6 +8,11 @@
 </head>
 <body>
     <style>
+   .body {
+    background: #E0EAFC;
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+}
         .eventos-container{
             display: flex;
 flex-wrap: wrap;
@@ -18,6 +23,7 @@ border-radius: 5px;
 margin: 8px;
 font: message-box;
         }
+
         .evento{
             display:flex;
             flex-direction: column;
