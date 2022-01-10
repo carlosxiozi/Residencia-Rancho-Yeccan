@@ -19,6 +19,15 @@
 
 
     <center>
+    <header class="header">
+       
+       <div class="header-container">
+       <figure class="header-img">
+           <img src="/static/img/cow.png" alt="">
+       </figure>
+           <span class="header-titile">Rancho Yeccan</span>
+       </div>
+   </header>
     <div class="titulo">
     <h1> Control Reproductivo </h1>
     </div>

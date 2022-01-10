@@ -125,6 +125,38 @@ font-weight:600;
 color: #black;
 
 }
+
+.header-container {
+    display: flex;
+    background: white;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    background: #E0EAFC;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+span.header-titile {
+    align-items: end;
+    font-size: 4rem;
+}
+
+.header-img {
+    width: 85px;
+    height: 100%;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.header-img img {
+    width: 100%;
+    height: 100%;
+}
 .animal-container .tarjeta animal-sec{
     padding:15px;
     font-size:200px;
@@ -201,6 +233,15 @@ tr:nth-child(odd) {
     </style>
  
 <center>
+<header class="header">
+       
+       <div class="header-container">
+       <figure class="header-img">
+           <img src="/static/img/cow.png" alt="">
+       </figure>
+           <span class="header-titile">Rancho Yeccan</span>
+       </div>
+   </header>
     <div class="titulo">
     <h1 style="text-align: center;"> Control Productivo </h1>
     </div>

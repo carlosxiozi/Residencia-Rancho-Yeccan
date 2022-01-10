@@ -44,6 +44,38 @@ font: message-box;
     padding: 5px;
     font-size: 17px;
 }
+.header-container {
+    display: flex;
+    background: white;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    background: #E0EAFC;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+span.header-titile {
+    align-items: end;
+    font-size: 4rem;
+}
+
+.header-img {
+    width: 85px;
+    height: 100%;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.header-img img {
+    width: 100%;
+    height: 100%;
+}
+
 .animal-eve{
     
     padding: 5px;
@@ -78,12 +110,17 @@ font: message-box;
     </style>
 
 <center>
-    <head>
-        <div class="head">
-           <h2 style="font-size:30px;"> Rancho Yeccan</h2>
-        </div>
+<header class="header">
+       
+       <div class="header-container">
+       <figure class="header-img">
+           <img src="/static/img/cow.png" alt="">
+       </figure>
+           <span class="header-titile">Rancho Yeccan</span>
+       </div>
+   </header>
 </center>
-    </head>
+   
     <section class="eventos">
         <div class="eventos-container">
             <h2 
