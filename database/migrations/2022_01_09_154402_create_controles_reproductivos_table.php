@@ -15,7 +15,7 @@ class CreateControlesReproductivosTable extends Migration
     {
         Schema::create('controles_reproductivos', function (Blueprint $table) {
             $table->id();
-            $table->longtext('expediente', 1000)->nullable();
+            $table->longtext('expediente')->nullable();
             $table->date('fecha_de_servicio');
             $table->date('fecha_de_parto');
             $table->unsignedBigInteger('animal_id');
