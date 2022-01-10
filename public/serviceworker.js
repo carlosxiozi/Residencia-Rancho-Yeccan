@@ -1,8 +1,11 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
     '/',
-
+    'serviceworker.js',
     '/tareas',
+    '/static/js/app.js',
+    '/static/js/libss/mdtoast.min.js',
+    '/static/js/libss/mdtoast.min.css',
     '/images/icons/icon-72x72.png',
     '/images/icons/icon-96x96.png',
     '/images/icons/icon-128x128.png',

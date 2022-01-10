@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel = "stylesheet" href="{{asset('static/js/libss/mdtoast.min.css')}}">
     <title>Actividades del dia</title>
 </head>
 <body>
     <style>
-   .body {
+  * {
+    padding: 0;
+    margin: 0;
+}
+
+  body {
     background: #E0EAFC;
     background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
     background: linear-gradient(to right, #CFDEF3, #E0EAFC);
@@ -23,6 +33,7 @@ border-radius: 5px;
 margin: 8px;
 font: message-box;
         }
+
 
         .evento{
             display:flex;
@@ -368,5 +379,7 @@ span.header-titile {
         
         </div>
     </section>
+    <script src="{{asset('static/js/libss/mdtoast.min.js')}}"></script>
+<script src="{{asset('static/js/app.js')}}"></script>
 </body>
 </html>
