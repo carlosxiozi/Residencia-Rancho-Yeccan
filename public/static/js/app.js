@@ -64,10 +64,6 @@ function notifica(mensajeTitle) {
             this.close();
         },
 
-
-
-
-
     };
 
 
