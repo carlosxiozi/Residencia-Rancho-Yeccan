@@ -4,16 +4,17 @@ var filesToCache = [
     'serviceworker.js',
     '/tareas',
     '/static/js/app.js',
+    '/static/img/cow.png',
     '/static/js/libss/mdtoast.min.js',
     '/static/js/libss/mdtoast.min.css',
-    '/images/icons/icon-72x72.png',
-    '/images/icons/icon-96x96.png',
-    '/images/icons/icon-128x128.png',
-    '/images/icons/icon-144x144.png',
-    '/images/icons/icon-152x152.png',
-    '/images/icons/icon-192x192.png',
-    '/images/icons/icon-384x384.png',
-    '/images/icons/icon-512x512.png',
+    '/images/icons/toro-72x72.png',
+    '/images/icons/toro-96x96.png',
+    '/images/icons/toro-128x128.png',
+    '/images/icons/toro-144x144.png',
+    '/images/icons/toro-152x152.png',
+    '/images/icons/toro-192x192.png',
+    '/images/icons/toro-384x384.png',
+    '/images/icons/toro-512x512.png',
 ];
 
 // Cache on install
@@ -41,7 +42,7 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Serve from Cache
+//Serve from Cache
 self.addEventListener("fetch", event => {
     event.respondWith(
         caches.match(event.request)
@@ -52,4 +53,46 @@ self.addEventListener("fetch", event => {
             return caches.match('offline');
         })
     )
+});
+
+
+// Cierra la notificacion
+self.addEventListener('notificationclose', e => {
+    console.log('Notificación cerrada', e);
+});
+
+
+self.addEventListener('notificationclick', e => {
+
+
+    const notificacion = e.notification;
+    const accion = e.action;
+
+
+    console.log({ notificacion, accion });
+    // console.log(notificacion);
+    // console.log(accion);
+
+
+    const respuesta = clients.matchAll()
+        .then(clientes => {
+
+            let cliente = clientes.find(c => {
+                return c.visibilityState === 'visible';
+            });
+
+            if (cliente !== undefined) {
+                cliente.navigate('/tareas');
+                cliente.focus();
+            } else {
+                clients.openWindow('/tareas');
+            }
+
+            return notificacion.close();
+
+        });
+
+    e.waitUntil(respuesta);
+
+
 });

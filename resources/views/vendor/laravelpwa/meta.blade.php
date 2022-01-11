@@ -32,11 +32,15 @@
 
 <script type="text/javascript">
     // Initialize the service worker
+    var swRegistration=null;
+
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/serviceworker.js', {
             scope: '.'
         }).then(function (registration) {
             // Registration was successful
+            swRegistration=registration;
+console.log(swRegistration);
             console.log('Laravel PWA: ServiceWorker registration successful with scope: ', registration.scope);
         }, function (err) {
             // registration failed :(

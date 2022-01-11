@@ -5,11 +5,11 @@ return [
     'manifest' => [
         'name' => 'Rancho Yeccan',
         'short_name' => 'Yeccan',
-        'start_url' => 'http://127.0.0.1:8000/./tareas',
+        'start_url' => './tareas',
         'background_color' => '#ffffff',
         'theme_color' => '#E0EAFC',
         'display' => 'standalone',
-        'orientation'=> 'any',
+        'orientation'=> 'portrait',
         'status_bar'=> 'black',
         'icons' => [
             '72x72' => [

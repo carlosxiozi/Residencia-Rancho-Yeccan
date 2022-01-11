@@ -60,6 +60,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{{asset('static/js/libss/mdtoast.min.js')}}"></script>
 <script src="{{asset('static/js/app.js')}}"></script>
+
+<script type="text/javascript">
+if (screen.width<=600) {
+window.location="/tareas";
+
+}
+</script>
 </body>
 </html>
 

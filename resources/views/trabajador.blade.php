@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link rel = "stylesheet" href="{{asset('static/js/libss/mdtoast.min.css')}}">
+ @laravelPWA
+<link rel = "stylesheet" href="{{asset('static/js/libss/mdtoast.min.css')}}">
     <title>Actividades del dia</title>
 </head>
 <body>
@@ -77,7 +78,7 @@ font: message-box;
 
 span.header-titile {
     align-items: end;
-    font-size: 4rem;
+    font-size: 2rem;
 }
 
 .header-img {
@@ -122,8 +123,15 @@ span.header-titile {
 @media screen and (min-width: 600px) {
     .animal{
         width:min-content;
+        
     }
+    span.header-titile {
+    align-items: end;
+    font-size: 4rem;
 }
+}
+
+
     </style>
 
 <center>
@@ -378,8 +386,23 @@ span.header-titile {
         @endforeach
         
         </div>
+        
     </section>
+    <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{asset('static/js/libss/mdtoast.min.js')}}"></script>
 <script src="{{asset('static/js/app.js')}}"></script>
+<script>
+    
+
+
+
+    
+    window.Echo.channel('home').listen('trabajadorEvent',(e)=>{
+console.log(e);
+notifica(e)
+    })
+
+    
+</script>
 </body>
 </html>
