@@ -10,5 +10,6 @@ class trabajador extends Model
 {
     use Notifiable;
     use HasFactory;
-    protected $timestamps = false;
+    protected $fillable = ['nombre'];
+    public $timestamps = false;
 }
