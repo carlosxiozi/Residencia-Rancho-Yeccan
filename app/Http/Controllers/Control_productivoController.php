@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Animal;
 use App\Models\Evento;
+use App\Events\trabajadorEvent;
 
 use Illuminate\Http\Request;
 
@@ -44,7 +45,9 @@ class Control_productivoController extends Controller
             $eventos= $request->eventos;
             $animal = Animal::find($request->id);
             $animal -> eventos()->attach($eventos);
-            
+            if (event(new trabajadorEvent($animal))) {
+                return 'Evento Aceptado';
+            }
             return redirect('control_productivo/'.$request->id);
     }
 
