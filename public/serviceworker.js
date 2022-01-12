@@ -1,9 +1,28 @@
-var staticCacheName = "pwa-v" + new Date().getTime();
-var filesToCache = [
+
+const cacheDynamicName = 'dynamic-v1'
+const cacheStaticName = 'Static-v2'
+const cacheInmutableName = 'inmutable-v1'
+const cacheItems = 50;
+
+function limpiarCache(cacheName, numeroItems) {
+    caches.open(cacheName).then(cache => {
+        cache.keys()
+            .then(keys => {
+                if (keys.length > numeroItems) {
+                    cache.delete(keys[0])
+                        .then(limpiarCache(cacheName, numeroItems))
+                }
+            })
+    });
+}
+const filesToCache = [
     '/',
     'serviceworker.js',
     '/tareas',
     '/static/js/app.js',
+    
+]
+const filesToCacheInmutable = [
     '/static/img/cow.png',
     '/static/js/libss/mdtoast.min.js',
     '/static/js/libss/mdtoast.min.css',
@@ -15,44 +34,44 @@ var filesToCache = [
     '/images/icons/toro-192x192.png',
     '/images/icons/toro-384x384.png',
     '/images/icons/toro-512x512.png',
-];
 
-// Cache on install
-self.addEventListener("install", event => {
-    this.skipWaiting();
-    event.waitUntil(
-        caches.open(staticCacheName)
-        .then(cache => {
-            return cache.addAll(filesToCache);
-        })
-    )
+]
+self.addEventListener('install', event => {
+    // se guarda el cache y cosas nuevas
+    console.log('SW: Installing')
+    const cacheProm = caches.open(cacheStaticName).then(cache => {
+        return cache.addAll(filesToCache).then(
+            console.log("Caching AppShell")
+        )
+    }).catch(err => { console.log('fallo appshell: ', err) })
+    const cacheInmutable = caches.open(cacheInmutableName).then(cache => {
+        return cache.addAll(filesToCacheInmutable).then(
+            console.log("Caching imutable cache")
+        )
+    }).catch(err => { console.log('fallo imuntable: ', err) })
+    event.waitUntil(Promise.all([cacheProm, cacheInmutable]));
 });
 
-// Clear cache on activate
 self.addEventListener('activate', event => {
-    event.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
-                cacheNames
-                .filter(cacheName => (cacheName.startsWith("pwa-")))
-                .filter(cacheName => (cacheName !== staticCacheName))
-                .map(cacheName => caches.delete(cacheName))
-            );
-        })
-    );
+    //borar cache viejo
+    console.log("SW: activated & ready")
 });
 
-//Serve from Cache
-self.addEventListener("fetch", event => {
-    event.respondWith(
-        caches.match(event.request)
-        .then(response => {
-            return response || fetch(event.request);
-        })
-        .catch(() => {
-            return caches.match('offline');
-        })
-    )
+self.addEventListener('fetch', event => {
+
+    const respuesta = fetch(event.request).then(res => {
+        console.log("respuesta del fetch", res)
+
+        caches.open(cacheDynamicName)
+            .then(cache => {
+                cache.put(event.request, res);
+                limpiarCache(cacheDynamicName, cacheItems)
+            })
+        return res.clone()
+    }).catch(err => {
+        return caches.match(event.request)
+    })
+    event.respondWith(respuesta)
 });
 
 
