@@ -1,4 +1,3 @@
-
 const cacheDynamicName = 'dynamic-v1'
 const cacheStaticName = 'Static-v2'
 const cacheInmutableName = 'inmutable-v1'
@@ -20,7 +19,7 @@ const filesToCache = [
     'serviceworker.js',
     '/tareas',
     '/static/js/app.js',
-    
+
 ]
 const filesToCacheInmutable = [
     '/static/img/cow.png',
@@ -59,19 +58,25 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
 
-    const respuesta = fetch(event.request).then(res => {
-        console.log("respuesta del fetch", res)
+    if (event.request.clone().method != 'GET') {
+        console.log("Hola tu solicitud es: ", event.request.clone().method)
+        return fetch(event.request)
+    } else {
+        const respuesta = fetch(event.request).then(res => {
+            console.log("respuesta del fetch", res)
 
-        caches.open(cacheDynamicName)
-            .then(cache => {
-                cache.put(event.request, res);
-                limpiarCache(cacheDynamicName, cacheItems)
-            })
-        return res.clone()
-    }).catch(err => {
-        return caches.match(event.request)
-    })
-    event.respondWith(respuesta)
+            caches.open(cacheDynamicName)
+                .then(cache => {
+                    cache.put(event.request, res);
+                    limpiarCache(cacheDynamicName, cacheItems)
+                })
+            return res.clone()
+        }).catch(err => {
+            return caches.match(event.request)
+        })
+        event.respondWith(respuesta)
+    }
+
 });
 
 
