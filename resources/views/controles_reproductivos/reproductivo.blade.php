@@ -149,10 +149,6 @@ $bandera1= null;
         <label><h2><b> Fecha inicial  :  {{\Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y')}}  </b></h2></label>
         <label><h2><b> Fecha final  :  {{\Carbon\Carbon::parse($fecha_final)->format('d/m/Y')}}  </b></h2></label>
         @if(\Carbon\Carbon::now()->gte($nueva_fecha) & \Carbon\Carbon::now()->lte($fecha_final))
-        
-        @endif
-        @if(\Carbon\Carbon::now()->gte($reproductor->$nueva_fecha))
-        
         <button   id="parto" type="submit" class="btn_acep"> <span class="far fa-check-circle"></span>Nuevo Animal</button>
         @else
         <script> alert('La fecha de parto aun no se cumple, cuando se cumpla se habilitara el boton.')</script>
