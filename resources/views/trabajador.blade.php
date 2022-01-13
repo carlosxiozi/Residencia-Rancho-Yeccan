@@ -174,19 +174,19 @@ img.imagenf {
        </div>
    </header>
 </center>
-
+@php
+    $noexiste=0;
+    @endphp
 @foreach($animales as $animal)
-@if(sizeof($animal->eventos) == 0)
+
+@if(sizeof($animal->eventos) > 0)
 @php
     $noexiste = 1;
 @endphp
 @else
-    @php
-    $noexiste=0;
-    @endphp
 @endif
 @endforeach
-@if($noexiste==1)
+@if($noexiste==0)
 <center>
 <label class="no eixste" for="">No hay eventos ni partos existentes </label>
 <figure class="bonita">
@@ -275,7 +275,7 @@ img.imagenf {
                @foreach($animal->control_reproductivo as $fecha)
         @php 
             $nueva_fecha=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(7);
-            $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(1);
+            $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(7);
             $dias=\Carbon\Carbon::now()->diffInDays($fecha->fecha_de_parto);
             $horas=\Carbon\Carbon::now()->diffInHours($fecha->fecha_de_parto) - $dias * 24;
             $hoy=\Carbon\Carbon::now();
@@ -319,11 +319,10 @@ img.imagenf {
                    @if($controlRep->estado_animal == 0)
                    
                    @elseif($controlRep->estado_animal == 1)
-                   @if(\Carbon\Carbon::today()->eq($fechaf))
-                        Ya es la fecha indicada de parto. 
-                    @else
-    Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
-                    @endif
+                  
+    Fechas de aproximación de parto:  {{\Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y')}}--{{\Carbon\Carbon::parse($fecha_final)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas para finalizar.
+   
+                   
                    @endif
                     @endforeach
 
@@ -471,7 +470,9 @@ img.imagenf {
     
     window.Echo.channel('home').listen('trabajadorEvent',(e)=>{
 console.log(e);
+
 notifica(e)
+
     })
 
     

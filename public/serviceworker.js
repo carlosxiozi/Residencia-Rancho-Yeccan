@@ -17,8 +17,12 @@ function limpiarCache(cacheName, numeroItems) {
 const filesToCache = [
     '/',
     'serviceworker.js',
-    '/tareas',
     '/static/js/app.js',
+    '/animales',
+    '/eventos',
+    '/controles_reproductivos',
+    '/controles_productivos',
+
 
 ]
 const filesToCacheInmutable = [
@@ -58,24 +62,22 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
 
-    if (event.request.clone().method != 'GET') {
-        console.log("Hola tu solicitud es: ", event.request.clone().method)
-        return fetch(event.request)
-    } else {
-        const respuesta = fetch(event.request).then(res => {
-            console.log("respuesta del fetch", res)
 
-            caches.open(cacheDynamicName)
-                .then(cache => {
-                    cache.put(event.request, res);
-                    limpiarCache(cacheDynamicName, cacheItems)
-                })
-            return res.clone()
-        }).catch(err => {
-            return caches.match(event.request)
-        })
-        event.respondWith(respuesta)
-    }
+
+    const respuesta = fetch(event.request).then(res => {
+        console.log("respuesta del fetch", res)
+
+        caches.open(cacheDynamicName)
+            .then(cache => {
+                cache.put(event.request, res);
+                limpiarCache(cacheDynamicName, cacheItems)
+            })
+        return res.clone()
+    }).catch(err => {
+        return caches.match(event.request)
+    })
+    event.respondWith(respuesta)
+
 
 });
 

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Carbon\carbon;
+use App\Events\trabajadorEvent;
+
 
 class EventosController extends Controller
 {
@@ -140,13 +142,16 @@ class EventosController extends Controller
         $var= DB::table('animal_evento')->get();
         $eventos=Evento::all();
         foreach ( $animales as $animal ){
+
+         
             foreach( $animal->eventos as $evento){
-                $date=Carbon::today()->toDateString();
-                if($date === $evento->fecha_inicial){
+                $nueva_fecha=Carbon::createFromDate($evento->fecha_inicial)->subDays(7);
+                $fecha_final=Carbon::createFromDate($evento->fecha_inicial)->addDays(7);
+                
+                if(Carbon::today()->gte($nueva_fecha) & Carbon::today()->lte($fecha_final))
                     if (event(new trabajadorEvent($animal))) {
                         return 'Evento Aceptado';
                      }
-                }
             }
         }
         // return $animales;
