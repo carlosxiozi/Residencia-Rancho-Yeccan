@@ -61,6 +61,8 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.0.5"
             },
             "time": "2022-01-03T15:27:13+00:00"
+<<<<<<< HEAD
+=======
         },
         {
             "name": "beyondcode/laravel-websockets",
@@ -143,6 +145,7 @@
                 "source": "https://github.com/beyondcode/laravel-websockets/tree/1.12.0"
             },
             "time": "2021-04-06T14:21:57+00:00"
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
         },
         {
             "name": "brick/math",
@@ -1095,6 +1098,18 @@
         },
         {
             "name": "guzzlehttp/psr7",
+<<<<<<< HEAD
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
+                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
+=======
             "version": "1.8.3",
             "source": {
                 "type": "git",
@@ -1105,6 +1120,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/guzzle/psr7/zipball/1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
                 "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
                 "shasum": ""
             },
             "require": {
@@ -1125,7 +1141,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
+                    "dev-master": "2.1-dev"
+=======
                     "dev-master": "1.7-dev"
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
                 }
             },
             "autoload": {
@@ -1160,6 +1180,19 @@
                     "name": "Tobias Nyholm",
                     "email": "tobias.nyholm@gmail.com",
                     "homepage": "https://github.com/Nyholm"
+<<<<<<< HEAD
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
+                    "homepage": "https://github.com/Tobion"
+=======
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
                 },
                 {
                     "name": "Márk Sági-Kazár",
@@ -1185,7 +1218,11 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
+<<<<<<< HEAD
+                "source": "https://github.com/guzzle/psr7/tree/2.1.0"
+=======
                 "source": "https://github.com/guzzle/psr7/tree/1.8.3"
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
             },
             "funding": [
                 {
@@ -1201,7 +1238,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
+            "time": "2021-10-06T17:43:30+00:00"
+=======
             "time": "2021-10-05T13:56:00+00:00"
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
         },
         {
             "name": "laravel/framework",
@@ -2947,6 +2988,10 @@
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
                 "source": "https://github.com/bobthecow/psysh/tree/v0.10.12"
+<<<<<<< HEAD
+            },
+            "time": "2021-11-30T14:05:36+00:00"
+=======
             },
             "time": "2021-11-30T14:05:36+00:00"
         },
@@ -3008,6 +3053,7 @@
                 "source": "https://github.com/pusher/pusher-http-php/tree/5.0.3"
             },
             "time": "2021-03-15T09:17:01+00:00"
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
         },
         {
             "name": "ralouphie/getallheaders",
@@ -4057,9 +4103,26 @@
                 "uri"
             ],
             "support": {
+<<<<<<< HEAD
+                "issues": "https://github.com/ramsey/uuid/issues",
+                "source": "https://github.com/ramsey/uuid/tree/4.2.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ramsey",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/ramsey/uuid",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-09-25T23:10:38+00:00"
+=======
                 "source": "https://github.com/ringcentral/psr7/tree/master"
             },
             "time": "2018-05-29T20:21:04+00:00"
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
         },
         {
             "name": "silviolleite/laravelpwa",
@@ -5847,6 +5910,8 @@
             "homepage": "https://symfony.com",
             "support": {
                 "source": "https://github.com/symfony/process/tree/v5.4.2"
+<<<<<<< HEAD
+=======
             },
             "funding": [
                 {
@@ -5935,6 +6000,7 @@
             "support": {
                 "issues": "https://github.com/symfony/psr-http-message-bridge/issues",
                 "source": "https://github.com/symfony/psr-http-message-bridge/tree/v2.1.2"
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
             },
             "funding": [
                 {
@@ -5950,7 +6016,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
+            "time": "2021-12-27T21:01:00+00:00"
+=======
             "time": "2021-11-05T13:13:39+00:00"
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
         },
         {
             "name": "symfony/routing",
@@ -6953,6 +7023,62 @@
                 "source": "https://github.com/facade/ignition"
             },
             "time": "2021-12-27T15:11:24+00:00"
+<<<<<<< HEAD
+        },
+        {
+            "name": "facade/ignition-contracts",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facade/ignition-contracts.git",
+                "reference": "3c921a1cdba35b68a7f0ccffc6dffc1995b18267"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facade/ignition-contracts/zipball/3c921a1cdba35b68a7f0ccffc6dffc1995b18267",
+                "reference": "3c921a1cdba35b68a7f0ccffc6dffc1995b18267",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^v2.15.8",
+                "phpunit/phpunit": "^9.3.11",
+                "vimeo/psalm": "^3.17.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Facade\\IgnitionContracts\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://flareapp.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Solution contracts for Ignition",
+            "homepage": "https://github.com/facade/ignition-contracts",
+            "keywords": [
+                "contracts",
+                "flare",
+                "ignition"
+            ],
+            "support": {
+                "issues": "https://github.com/facade/ignition-contracts/issues",
+                "source": "https://github.com/facade/ignition-contracts/tree/1.0.2"
+            },
+            "time": "2020-10-16T08:27:54+00:00"
+=======
+>>>>>>> 249a5655d2eabdfc96f6db10369cb939cfc409fa
         },
         {
             "name": "fakerphp/faker",
