@@ -36,10 +36,26 @@
     <table >
     <thead>
         <th>Nombre</th>
-        <th>fecha</th>
+        <th>fecha inicial</th>
         <th>Acciones</th>
+        <th>Estado</th>
     </thead>
     @forelse($eventos1 as $evento)
+   
+    @if(\Carbon\Carbon::today()->gte($evento->fecha_inicial) & \Carbon\Carbon::today()->lte($evento->fecha_final))
+    @php
+    $estado=1;
+    @endphp
+    @elseif(\Carbon\Carbon::today()->gte($evento->fecha_final))
+    @php
+    $estado=2;
+    @endphp
+    @else
+    @php
+    $estado=0;
+    @endphp
+    @endif
+    
     <tr>
         <td class="nombre" width="300px">{{$evento->nombre_evento}}</td>
         <td class="nombre" width="300px">{{\Carbon\Carbon::parse($evento->fecha_inicial)->format('d/m/Y')}}  </td>
@@ -52,7 +68,14 @@
                 @method('DELETE')
                 <button class="eliminar" type="submit"><span class="fas fa-trash-alt" title="Eliminar"></span>Eliminar</button>
             </form>
+            @if($estado==1)
+            <td class="nombre" width="300px"> Evento Activo  <span  style="color: #09d909;" class="dis fas fa-circle"></td>
+            
+            @elseif($estado==2)
+            <td class="nombre" width="300px">Evento Finalizado <span  style="color:red;" class="dis fas fa-circle"></span></td>
 
+            @else <td class="nombre" width="300px">Evento Aun no iniciado  <span  style="color:#e3e313;" class="dis fas fa-circle"></td>
+            @endif
         
             <script>
         eliminar=document.getElementsByClassName('formulario');

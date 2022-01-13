@@ -14,6 +14,33 @@
     
     <title>Reproductivo</title>
 </head>
+<style>
+
+.btn_acep {
+    margin-left: 20px;
+}
+
+.btn_acep {
+    background: #37a8f3;
+    color: #fff;
+    display: inline-block;
+    font-size: 1.00em;
+    margin: 20px;
+    padding: 10px 0px;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0px 3px 0px #373c3c;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn_acep:hover {
+    transition: 500ms;
+    background-color: #0be257;
+    color: rgb(0, 0, 0)
+}
+
+    </style>
 <body>
 
 
@@ -53,6 +80,23 @@
     
 @if($bandera == true and $j==false)
     <button class="agregar" id="agregar" ><span class="fas fa-plus"></span>Añadir </button>
+
+@endif
+@if($notifi==1)
+
+<label  ><h2> <b>  Se llego al maximo de 3 servicios </b>    </h2> </label>
+<script>
+    const options = {
+
+body: "Se llego al maximo de 3 servicios por vaca " ,
+
+icon: '/static/img/toro.png',
+interactionTimeout: 2000,
+
+    };
+
+new Notification('Rancho Yeccan',options); </script>
+
 @endif
 
    
@@ -90,17 +134,42 @@ $bandera1= null;
        
         <div class="contenedor-inputs">
         <input type="hidden" name="madre" value = "{{$animal->nombre}}">
-        <input type="hidden" name="fecha_parto" value = "{{$reproductor->fecha_de_parto}}">
+        @php
+            $fecha_parto=\Carbon\Carbon::today()->toDateString();
+        @endphp
+        <input type="hidden" name="fecha_parto" value = "{{$fecha_parto}}">
         <input type="hidden" name="id_madre" value="{{$animal->id}}">
-        <label  ><h2> <b> Fecha de parto  :  {{\Carbon\Carbon::parse($reproductor->fecha_de_parto)->format('d/m/Y')}}  </b>    </h2> </label>
+        <label><h2><b> El parto se dara entre las fechas indicadas  : </b></h2></label>
+
         </div>
-        @if(\Carbon\Carbon::now()->gte($reproductor->fecha_de_parto))
-        <button  class="btn-submit" id="parto" type="submit"><span class="far fa-check-circle"></span>Parto</button>
+        @php
+            $nueva_fecha=\Carbon\Carbon::createFromDate($reproductor->fecha_de_parto)->subDays(7);
+            $fecha_final=\Carbon\Carbon::createFromDate($reproductor->fecha_de_parto)->addDays(7);
+        @endphp
+        <label><h2><b> Fecha inicial  :  {{\Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y')}}  </b></h2></label>
+        <label><h2><b> Fecha final  :  {{\Carbon\Carbon::parse($fecha_final)->format('d/m/Y')}}  </b></h2></label>
+        @if(\Carbon\Carbon::now()->gte($nueva_fecha) & \Carbon\Carbon::now()->lte($fecha_final))
+        
+        @endif
+        @if(\Carbon\Carbon::now()->gte($reproductor->$nueva_fecha))
+        
+        <button   id="parto" type="submit" class="btn_acep"> <span class="far fa-check-circle"></span>Nuevo Animal</button>
         @else
         <script> alert('La fecha de parto aun no se cumple, cuando se cumpla se habilitara el boton.')</script>
         @endif
     </center>
     </form>
+
+
+
+
+
+
+
+
+
+
+
 
 @elseif($reproductor ->estado_animal == 0 )
 @php $bandera1 = true;

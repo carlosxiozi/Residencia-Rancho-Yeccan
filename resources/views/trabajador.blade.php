@@ -19,6 +19,20 @@
     margin: 0;
 }
 
+label.no.eixste {
+    margin: 40px;
+    font-size: 30px;
+}
+figure.bonita {
+    width: auto;
+    height: auto;
+}
+img.imagenf {
+    width: 60%;
+    height: 40%;
+    margin: 50px;
+}
+
   body {
     background: #E0EAFC;
     background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
@@ -125,6 +139,21 @@ span.header-titile {
         width:min-content;
         
     }
+    label.no.eixste {
+    font-size: 35px;
+    margin-top: 70px;
+    font-family: cursive;
+}
+figure.bonita {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+img.imagenf {
+    width: 35%;
+    height: 35%;
+    margin: 60px;
+}
     span.header-titile {
     align-items: end;
     font-size: 4rem;
@@ -145,7 +174,27 @@ span.header-titile {
        </div>
    </header>
 </center>
-   
+
+@foreach($animales as $animal)
+@if(sizeof($animal->eventos) ==0)
+@php
+    $noexiste = 1;
+@endphp
+     
+       
+
+@else $noexiste=0;
+@endif
+@endforeach
+@if($noexiste==1)
+<center>
+<label class="no eixste" for="">No hay eventos ni partos existentes </label>
+<figure class="bonita">
+           <img class="imagenf"src="/static/img/bonita.gif" alt="">
+       </figure>
+
+</center>
+@else
     <section class="eventos">
         <div class="eventos-container">
             <h2 
@@ -163,12 +212,18 @@ span.header-titile {
                 @endif
             @endforeach
             @if($bandera == 1)
+            @php
+                $fechaini=\Carbon\Carbon::createFromDate($evento->fecha_inicial);
+                $fechafin=\Carbon\Carbon::createFromDate($evento->fecha_final);
+            @endphp
+            @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
             <div class="evento">
                 <label for="">Nombre: {{$evento->nombre_evento}}</label>
                 <label for="">Descripción: {{$evento->descripcion}}</label>
                 <label for="">Fecha inicial: {{\Carbon\Carbon::parse($evento->fecha_inicial)->format('d/m/Y')}}</label>
                 <label for="">Fecha Final: {{\Carbon\Carbon::parse($evento->fecha_final)->format('d/m/Y')}}</label>
             </div>
+            @endif
             @endif
                 
         @endforeach
@@ -236,29 +291,48 @@ span.header-titile {
         @endif
         @endforeach
                
-
+                    @php
+                   $parto=0;
+                   @endphp
                    @foreach($animal->control_reproductivo as $controlRep)
+                   
+                 
                    @if($controlRep->estado_animal == 0)
-
-
-                   <label for="">Estado: Sin preñar</label>
+                   @php
+                   $parto=0;
+                   @endphp
                    @elseif($controlRep->estado_animal == 1)
+                   @php
+                   $parto=1;
+                   @endphp
+                   @endif
+                   @endforeach
+                   
+                   @if($parto==0)
+                   <label for="">Estado: Sin preñar</label>
+                   @elseif($parto==1)
                    <label for="">Estado: embarazada</label>
                    @if($fechas==1)
                    <div class="animal-inf">
 
+                   @foreach($animal->control_reproductivo as $controlRep)
+                   @if($controlRep->estado_animal == 0)
+                   
+                   @elseif($controlRep->estado_animal == 1)
                    @if(\Carbon\Carbon::today()->eq($fechaf))
                         Ya es la fecha indicada de parto. 
                     @else
     Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
                     @endif
-                 
+                   @endif
+                    @endforeach
+
                </div>
                   
                     @endif
                    @endif
 
-                   @endforeach
+                  
                </div>
 
                <div class="animal-productivo">
@@ -329,9 +403,9 @@ span.header-titile {
         @foreach($animal->control_reproductivo as $fecha)
         @php 
             $nueva_fecha=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(7);
-            $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(1);
-            $dias=\Carbon\Carbon::now()->diffInDays($fecha->fecha_de_parto);
-            $horas=\Carbon\Carbon::now()->diffInHours($fecha->fecha_de_parto) - $dias * 24;
+            $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(7);
+            $dias=\Carbon\Carbon::now()->diffInDays($fecha_final);
+            $horas=\Carbon\Carbon::now()->diffInHours($fecha_final) - $dias * 24;
             $hoy=\Carbon\Carbon::today()->toDateString();
 
             $fechaf=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto);
@@ -368,11 +442,9 @@ span.header-titile {
                 <label for="">Estado: embarazada</label>
                </div>
                <div class="animal-inf">
-               @if(\Carbon\Carbon::today()->eq($fechaf))
-                        Ya es la fecha indicada de parto. 
-                    @else
-    Fecha de parto:  {{\Carbon\Carbon::parse($controlRep->fecha_de_parto)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas.
-                    @endif
+               
+    Fechas de aproximación de parto:  {{\Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y')}}--{{\Carbon\Carbon::parse($fecha_final)->format('d/m/Y')}} Faltan {{$dias}} dias con {{$horas}} horas para finalizar.
+                   
                  
                </div>
                </div>
@@ -404,5 +476,6 @@ notifica(e)
 
     
 </script>
+@endif
 </body>
 </html>
