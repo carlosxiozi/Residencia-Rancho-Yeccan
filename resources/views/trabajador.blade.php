@@ -176,14 +176,14 @@ img.imagenf {
 </center>
 
 @foreach($animales as $animal)
-@if(sizeof($animal->eventos) ==0)
+@if(sizeof($animal->eventos) == 0)
 @php
     $noexiste = 1;
 @endphp
-     
-       
-
-@else $noexiste=0;
+@else
+    @php
+    $noexiste=0;
+    @endphp
 @endif
 @endforeach
 @if($noexiste==1)
