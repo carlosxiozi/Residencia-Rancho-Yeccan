@@ -14,14 +14,17 @@ class trabajadorEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $animal;
+   public $evento;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($animal)
+    public function __construct($animal,$evento)
     {
      $this->animal = $animal;   
+     $this->evento=$evento;
+    
     }
 
     /**

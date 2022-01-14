@@ -19,10 +19,10 @@ class animalNotification extends Notification implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(Animal $animal)
+    public function __construct(Animal $animal,$evento)
     {
         $this->animal = $animal;
-
+        $this->evento= $evento;
     }
 
     /**
@@ -59,8 +59,8 @@ class animalNotification extends Notification implements ShouldBroadcast
     public function toArray($notifiable)
     {
         return [
-            'nombre' => $this->animal -> nombre, 'imagen'=>this->animal->imagen, 'evento' => $this -> animal ->evento->nombre_evento
-            
+            'nombre' => $this->animal -> nombre, 'imagen'=>this->animal->imagen, 'evento' => $this -> animal ->evento->nombre_evento,
+            'eventos'=> $this->evento 
         ];
     }
     public function toBroadcast($notifiable): BroadcastMessage
@@ -71,7 +71,8 @@ class animalNotification extends Notification implements ShouldBroadcast
 
             //'message' => "$this->animal (User $notifiable->id)",
 
-            'animal'=>$this->animal->nombre
+            'animal'=>$this->animal->nombre,
+            'evento'=>$this->evento->nombre_evento
 
         ]);
         

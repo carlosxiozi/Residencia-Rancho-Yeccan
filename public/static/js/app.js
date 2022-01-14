@@ -47,12 +47,14 @@ notificarme();
 
 
 function notifica(mensajeTitle) {
+    /*for (i = 0; i < mensajeTitle.animal.eventos.length; i++) {
+        console.log(mensajeTitle.animal.eventos[i].nombre_evento)
 
-
-
+    }*/
+    console.log(mensajeTitle);
     const options = {
 
-        body: "Nuevo evento para: " + mensajeTitle.animal.nombre,
+        body: "Nuevo evento  de : " + mensajeTitle.evento.nombre_evento + " para : " + mensajeTitle.animal.nombre,
 
         vibrate: [125, 75, 125, 275, 200, 275, 125, 75, 125, 275, 200, 600, 200, 600],
         icon: '/static/img/toro.png',

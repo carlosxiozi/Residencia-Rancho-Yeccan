@@ -338,9 +338,27 @@ tr:nth-child(odd) {
             @elseif(sizeof($eventos) == $bandera5)
                 <label> No hay mas eventos disponibles </label>
             @else
-            <button type="submit">Enviar</button>
+            <button Onclick="notify()" type="submit">Enviar</button>
             @endif
             </form>
+            <script>
+                function notify(){
+                    const options = {
+
+body: "Se Agrego un nuevo evento para: {{$animal->nombre}}",
+
+icon: '/static/img/toro.png',
+        image: "{{$animal->imagen}}",
+interactionTimeout: 2000,
+
+    };
+
+new Notification('Rancho Yeccan',options);
+                }
+</script>
+                
+   
+
                           
 <script>
      eliminar1=document.getElementsByClassName('formulario');

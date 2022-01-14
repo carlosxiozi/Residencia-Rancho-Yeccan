@@ -147,9 +147,10 @@ class EventosController extends Controller
             foreach( $animal->eventos as $evento){
                 $nueva_fecha=Carbon::createFromDate($evento->fecha_inicial)->subDays(7);
                 $fecha_final=Carbon::createFromDate($evento->fecha_inicial)->addDays(7);
-                
+              
                 if(Carbon::today()->gte($nueva_fecha) & Carbon::today()->lte($fecha_final))
-                    if (event(new trabajadorEvent($animal))) {
+                    if (event(new trabajadorEvent($animal,$evento))) {
+                        
                         return 'Evento Aceptado';
                      }
             }

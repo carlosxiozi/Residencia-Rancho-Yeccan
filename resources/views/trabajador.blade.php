@@ -464,10 +464,6 @@ img.imagenf {
 <script src="{{asset('static/js/app.js')}}"></script>
 <script>
     
-
-
-
-    
     window.Echo.channel('home').listen('trabajadorEvent',(e)=>{
 console.log(e);
 
