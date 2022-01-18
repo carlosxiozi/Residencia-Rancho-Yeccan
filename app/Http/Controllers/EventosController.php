@@ -141,22 +141,29 @@ class EventosController extends Controller
         $animales=Animal::with('eventos', 'control_reproductivo')->get();
         $var= DB::table('animal_evento')->get();
         $eventos=Evento::all();
+        $mostrar = 0;
         foreach ( $animales as $animal ){
 
          
             foreach( $animal->eventos as $evento){
-                $nueva_fecha=Carbon::createFromDate($evento->fecha_inicial)->subDays(7);
-                $fecha_final=Carbon::createFromDate($evento->fecha_inicial)->addDays(7);
+                $nueva_fecha=Carbon::createFromDate($evento->fecha_inicial);
+                $fecha_final=Carbon::createFromDate($evento->fecha_final);
               
+      
                 if(Carbon::today()->gte($nueva_fecha) & Carbon::today()->lte($fecha_final))
+               
+                $mostrar = 1;
                     if (event(new trabajadorEvent($animal,$evento))) {
-                        
+
+                     
+
                         return 'Evento Aceptado';
                      }
             }
         }
         // return $animales;
-        return view('trabajador', compact('animales','eventos','var'));
+      //  return $nueva_fecha,$fecha_final;
+        return view('trabajador', compact('animales','eventos','var','mostrar'));
 
 
     }

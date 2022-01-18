@@ -178,8 +178,7 @@ img.imagenf {
     $noexiste=0;
     @endphp
 @foreach($animales as $animal)
-
-@if(sizeof($animal->eventos) > 0)
+@if(sizeof($animal->eventos) > 0 & $mostrar == 1)
 @php
     $noexiste = 1;
 @endphp
@@ -187,6 +186,7 @@ img.imagenf {
 @endif
 @endforeach
 @if($noexiste==0)
+{{$mostrar}}
 <center>
 <label class="no eixste" for="">No hay eventos ni partos existentes </label>
 <figure class="bonita">
