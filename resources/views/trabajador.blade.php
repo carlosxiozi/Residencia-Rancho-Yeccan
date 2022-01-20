@@ -186,7 +186,6 @@ img.imagenf {
 @endif
 @endforeach
 @if($noexiste==0)
-{{$mostrar}}
 <center>
 <label class="no eixste" for="">No hay eventos ni partos existentes </label>
 <figure class="bonita">
