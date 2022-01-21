@@ -10,7 +10,7 @@ class Animal extends Model
 {
     public $timestamps=false;
 
-protected $fillable= ['nombre','fecha_de_nacimiento','padre','arete','peso_al_nacer','peso_al_destete','madre','sexo','imagen'];
+protected $fillable= ['nombre','fecha_de_nacimiento','padre','arete','peso_al_nacer','peso_al_destete','madre','sexo','imagen','num_parto'];
 protected $table = 'animales';
 
     use HasFactory;

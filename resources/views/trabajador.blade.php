@@ -178,7 +178,7 @@ img.imagenf {
     $noexiste=0;
     @endphp
 @foreach($animales as $animal)
-@if(sizeof($animal->eventos) > 0 & $mostrar == 1)
+@if($mostrar == 1)
 @php
     $noexiste = 1;
 @endphp
@@ -194,6 +194,7 @@ img.imagenf {
 
 </center>
 @else
+{{$mostrar}}
     <section class="eventos">
         <div class="eventos-container">
             <h2 
@@ -231,30 +232,26 @@ img.imagenf {
     <section class="animales">
         <div class="animales-container">
 
-        @foreach($animales as $animal)
+@foreach($animales as $animal)
 
         @php
         $fechas=0;
         @endphp
-
+            @foreach($animal->eventos as $fecha)
+                @php
+                    $fechaini=\Carbon\Carbon::createFromDate($fecha->fecha_inicial);
+                    $fechafin=\Carbon\Carbon::createFromDate($fecha->fecha_final);
+                @endphp
+            @if(sizeof($animal->eventos) >0 & \Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
+                @php
+                    $fechas = 1;
+                @endphp
+            @endif
+            @endforeach
         
-        
-        @if(sizeof($animal->eventos) >0)
-        @foreach($animal->eventos as $fecha)
-        @php
-        $fechaini=\Carbon\Carbon::createFromDate($fecha->fecha_inicial);
-        $fechafin=\Carbon\Carbon::createFromDate($fecha->fecha_final);
-
-        @endphp
-
-        @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
-            @php
-                $fechas = 1;
-            @endphp
-        @endif
-        @endforeach
-        @if($fechas==1)
-        @if($animal->sexo =="Hembra")
+    
+    @if($fechas==1)
+    @if($animal->sexo =="Hembra")
         <div class="animal">
            
            <img src="{{$animal->imagen}}" alt="" style="width:55%; height: 100%; margin:auto">
@@ -271,7 +268,7 @@ img.imagenf {
                </div>
 
                <div class="animal-reproductivo">
-               @foreach($animal->control_reproductivo as $fecha)
+        @foreach($animal->control_reproductivo as $fecha)
         @php 
             $nueva_fecha=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(7);
             $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(7);
@@ -282,7 +279,6 @@ img.imagenf {
         @endphp
         
         @if(\Carbon\Carbon::now()->gte($nueva_fecha) & \Carbon\Carbon::now()->lte($fecha_final))
-        
                         
             @php
                 $fechas = 1;
@@ -328,7 +324,7 @@ img.imagenf {
                </div>
                   
                     @endif
-                   @endif
+                    @endif
 
                   
                </div>
@@ -336,25 +332,25 @@ img.imagenf {
                <div class="animal-productivo">
                    
                <h2 style="font-size:18px; text-align:center;"> Eventos: </h2>
-                  @foreach($animal->eventos as $eventoA)
+        @foreach($animal->eventos as $eventoA)
                   @php
         $fechaini=\Carbon\Carbon::createFromDate($eventoA->fecha_inicial);
         $fechafin=\Carbon\Carbon::createFromDate($eventoA->fecha_final);
 
         @endphp
-                  @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
+                @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
                     <div class="animal-eve">
                         <label for="">Nombre del evento: {{$eventoA->nombre_evento}}</label><br>
                         <label for="">Fecha inicial:{{\Carbon\Carbon::parse($eventoA->fecha_inicial)->format('d/m/Y')}}</label><br>
                         <label for="">Fecha final:{{\Carbon\Carbon::parse($eventoA->fecha_final)->format('d/m/Y')}}</label>
                     </div>  
-                    @endif
-                  @endforeach
+                @endif
+        @endforeach
                </div>
            </div>
           
            </div>
-        @elseif($animal->sexo == "Macho")
+    @elseif($animal->sexo == "Macho")
         <div class="animal">
            
            <img src="{{$animal->imagen}}" alt="" style="width:55%; height: 100%; margin:auto">
@@ -373,13 +369,13 @@ img.imagenf {
                <h2 style="font-size:18px; text-align:center;"> Eventos: </h2>
                
                
-                  @foreach($animal->eventos as $eventoA)
-                  @php
+        @foreach($animal->eventos as $eventoA)
+        @php
         $fechaini=\Carbon\Carbon::createFromDate($eventoA->fecha_inicial);
         $fechafin=\Carbon\Carbon::createFromDate($eventoA->fecha_final);
 
         @endphp
-                  @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
+            @if(\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
                    
                <div class="animal-eve">
                
@@ -388,17 +384,16 @@ img.imagenf {
                  <label for="">Fecha final: {{\Carbon\Carbon::parse($eventoA->fecha_final)->format('d/m/Y')}}</label>
                  
                </div>
-               @endif
-                  @endforeach
+            @endif
+        @endforeach
        
                </div>
            </div>
           
            </div>
-        @endif
-        @endif
-        @else
-        @foreach($animal->control_reproductivo as $fecha)
+    @endif
+@else
+    @foreach($animal->control_reproductivo as $fecha)
         @php 
             $nueva_fecha=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(7);
             $fecha_final=\Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(7);
@@ -414,13 +409,13 @@ img.imagenf {
                 $fechas = 1;
             @endphp
         @endif
-        @endforeach
+    @endforeach
         
-            @foreach($animal->control_reproductivo as $controlRep)
-                @if($controlRep->estado_animal == 0)
+    @foreach($animal->control_reproductivo as $controlRep)
+        @if($controlRep->estado_animal == 0)
               
-                @elseif($controlRep->estado_animal == 1)
-                    @if($fechas==1)
+        @elseif($controlRep->estado_animal == 1)
+            @if($fechas==1)
 
            
                 <div class="animal">
@@ -447,13 +442,13 @@ img.imagenf {
                </div>
                </div>
                 </div>
-               @endif
-                @endif
-            @endforeach
+            @endif
+        @endif
+    @endforeach
                
 
-        @endif
-        @endforeach
+@endif
+@endforeach
         
         </div>
         
@@ -462,10 +457,8 @@ img.imagenf {
     <script src="{{asset('static/js/libss/mdtoast.min.js')}}"></script>
 <script src="{{asset('static/js/app.js')}}"></script>
 <script>
-    
     window.Echo.channel('home').listen('trabajadorEvent',(e)=>{
 console.log(e);
-
 notifica(e)
 
     })

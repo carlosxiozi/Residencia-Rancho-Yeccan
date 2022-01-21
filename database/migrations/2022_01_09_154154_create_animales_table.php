@@ -24,6 +24,7 @@ class CreateAnimalesTable extends Migration
             $table->string('madre', 45);
             $table->enum('sexo',["Macho","Hembra"]);
             $table->string('imagen', 1000)->nullable();
+            $table->integer('num_parto');
             $table->timestamps();
         });
     }

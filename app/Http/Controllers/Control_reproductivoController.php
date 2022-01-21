@@ -91,7 +91,7 @@ class Control_reproductivoController extends Controller
         $notifi=0;
         $animal=Animal::find($id);
        
-        if(sizeof($reproductivo1) >0 and sizeof($reproductivo1) < 3){
+        if(sizeof($reproductivo1) >0 and sizeof($reproductivo1) < 4){
         
            for($i=0; $i<sizeof($reproductivo1); $i++){
             if(Carbon::now()->gt($reproductivo1[$i]->fecha_de_parto)) {
@@ -110,8 +110,8 @@ class Control_reproductivoController extends Controller
             {
             $bandera = true;
             }
-         elseif(sizeof($reproductivo1)==3){
-            for($i=2; $i<sizeof($reproductivo1); $i++){
+         elseif(sizeof($reproductivo1)==4){
+            for($i=3; $i<sizeof($reproductivo1); $i++){
                 if(Carbon::now()->gt($reproductivo1[$i]->fecha_de_parto)) {
                     $notifi=1;
                 }

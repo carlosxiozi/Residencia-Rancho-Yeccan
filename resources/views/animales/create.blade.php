@@ -35,7 +35,7 @@
         <h3>Nombre: <input type="text" name="nombre" class="animalinformation" value="{{ old('nombre') }}"> <br> {!! $errors->first('nombre', '<small>:message</small>') !!}</h3>
         <input type="hidden" id="id_madre" name="madre_id" value="{{$madre_id}}">
       @if($fecha_parto)
-        <h3>fecha de nacimiento: <input type="text" readonly name="fecha_de_nacimiento"  value="{{$fecha_parto}}"></h3>
+        <h3>Fecha de nacimiento: <input type="text" readonly name="fecha_de_nacimiento"  value="{{$fecha_parto}}"></h3>
         
         @else
         <h3>Fecha de nacimiento: <input type="date" name="fecha_de_nacimiento" class="animalinformation" value="{{ old('fecha_de_nacimiento') }}"> <br> {!! $errors->first('fecha_de_nacimiento', '<small>:message</small>') !!}</h3>
@@ -43,9 +43,11 @@
        
         <h3>Padre: <input type="text" name="padre" class="animalinformation" value="{{ old('padre') }}"> <br> {!! $errors->first('padre', '<small>:message</small>') !!}</h3>
     
-  
-        <h3>Arete: <input type="text" name="arete" class="animalinformation" value="{{ old('arete') }}"> <br> {!! $errors->first('arete', '<small>:message</small>') !!}</h3>
-      
+        @if($madre_arete)
+            <h3>Arete <input type="text" readonly name="arete"  value="{{$madre_arete}}"></h3>
+        @else
+            <h3>Arete: <input type="text" name="arete" class="animalinformation" value="{{ old('arete') }}"> <br> {!! $errors->first('arete', '<small>:message</small>') !!}</h3>
+        @endif
        
         <h3>Peso al nacer: <input type="number" name="peso_al_nacer" class="animalinformation" value="{{ old('peso_al_nacer') }}"> <br> {!! $errors->first('peso_al_nacer', '<small>:message</small>') !!}</h3>
        

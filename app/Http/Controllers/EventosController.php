@@ -143,22 +143,27 @@ class EventosController extends Controller
         $eventos=Evento::all();
         $mostrar = 0;
         foreach ( $animales as $animal ){
+            foreach($animal->control_reproductivo as $control ){
+                $nueva_fecha=Carbon::createFromDate($control->fecha_de_parto)->subDays(7);
+                $fecha_final=Carbon::createFromDate($control->fecha_de_parto)->addDays(7);
+                if(Carbon::today()->gte($nueva_fecha) & Carbon::today()->lte($fecha_final) & $control->estado_animal==1 ){
+                    $mostrar = 1;
 
-         
+                }
+            }
             foreach( $animal->eventos as $evento){
                 $nueva_fecha=Carbon::createFromDate($evento->fecha_inicial);
                 $fecha_final=Carbon::createFromDate($evento->fecha_final);
-              
-      
-                if(Carbon::today()->gte($nueva_fecha) & Carbon::today()->lte($fecha_final))
-               
-                $mostrar = 1;
-                    if (event(new trabajadorEvent($animal,$evento))) {
-
-                     
-
-                        return 'Evento Aceptado';
-                     }
+                if(sizeof($animal->eventos) > 0){
+                    if(Carbon::today()->gte($nueva_fecha) & Carbon::today()->lte($fecha_final)){
+                
+                    $mostrar = 1;
+                        if (event(new trabajadorEvent($animal,$evento))) {
+                            
+                            return 'Evento Aceptado';
+                        }
+                    }
+                }
             }
         }
         // return $animales;

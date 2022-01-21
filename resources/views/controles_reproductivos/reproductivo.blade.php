@@ -84,11 +84,11 @@
 @endif
 @if($notifi==1)
 
-<label  ><h2> <b>  Se llego al maximo de 3 servicios </b>    </h2> </label>
+<label  ><h2> <b>  Se llego al maximo de 4 servicios </b>    </h2> </label>
 <script>
     const options = {
 
-body: "Se llego al maximo de 3 servicios por vaca " ,
+body: "Se llego al maximo de 4 servicios por vaca " ,
 
 icon: '/static/img/toro.png',
 interactionTimeout: 2000,
@@ -139,6 +139,8 @@ $bandera1= null;
         @endphp
         <input type="hidden" name="fecha_parto" value = "{{$fecha_parto}}">
         <input type="hidden" name="id_madre" value="{{$animal->id}}">
+        <input type="hidden" name="arete" value = "{{$animal->arete}}">
+        <input type="hidden" name="num_parto" value = "{{$animal->num_parto}}">
         <label><h2><b> El parto se dara entre las fechas indicadas  : </b></h2></label>
 
         </div>

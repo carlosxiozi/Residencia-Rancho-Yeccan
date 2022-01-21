@@ -28,16 +28,26 @@ class AnimalesController extends Controller
      */
     public function create(Request $request)
     {
+        
         $madre_id = null;
         $fecha_parto =null;
         $madre_nombre= null;
+        $madre_arete=null;
+
         if($request){
+            
+            
+           
             $madre_id = $request->id_madre;
             $fecha_parto = $request->fecha_parto;
             $madre_nombre= $request->madre;
+            $madre_arete= $request->arete;
+           
+
+         
         }
        
-        return view('animales.create', compact('madre_id','fecha_parto','madre_nombre'));
+        return view('animales.create', compact('madre_id','fecha_parto','madre_nombre','madre_arete'));
     }
 
     /**
@@ -48,7 +58,11 @@ class AnimalesController extends Controller
      */
     public function store(Request $request)
     {
-
+        if($request->madre_id){
+            $animal = Animal::find($request->madre_id);
+            $animal->num_parto= $animal->num_parto+1;
+            $animal -> save();
+        }
         $animalinformation = $request-> all();
         request()->validate([
             'nombre' => 'required',
@@ -85,6 +99,7 @@ class AnimalesController extends Controller
         $animales->peso_al_destete=$request->peso_al_destete;
         $animales->madre=$request->madre;
         $animales->sexo=$request->sexo;
+        
        //return $request->all();
         //return $animales;    
         $animales -> save();

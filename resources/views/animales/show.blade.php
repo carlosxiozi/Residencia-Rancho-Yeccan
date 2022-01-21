@@ -38,7 +38,7 @@
        <br><li><label id="lbCategoria">Peso al destete: {{$animales1->peso_al_destete}}</label></li>
        <br> <li><label id="lbCategoria">Madre: {{$animales1->madre}}</label></li>
        <br>  <li><label id="lbCategoria">Clasificacion: {{$animales1->clasificacion}}</label></li>
-        
+       <br> <li><label id="lbCategoria">Numero de partos : {{$animales1->num_parto}}</label></li>
         <li><label id="lbCategoria">Imagen: </label><img width="100px" height="100px" src="{{ asset($animales1->imagen) }}" alt=""></li>
         <a href="/animales" class="regreso"><span class="fas fa-long-arrow-alt-left"></span>regresar</a>
     </lu>    </center>
