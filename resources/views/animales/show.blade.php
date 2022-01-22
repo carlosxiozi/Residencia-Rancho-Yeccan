@@ -21,13 +21,15 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" href="{{ asset('static/css/estilos_opciones.css') }}">
-        <title>Document</title>
+        <title>Ficha Tecnica</title>
     </head>
     <body>
         <center>
     <lu id="lu_c">
+    <a href="/pdf/{{$animales1->id}}">Imprimir en pdf</a>
         
        <br> <li><label id="lbCategoria">Nombre: {{$animales1->nombre}}</label></li>
        <br> <li><label id="lbCategoria">Fecha de nacimiento: {{$animales1->fecha_de_nacimiento}}</label></li>

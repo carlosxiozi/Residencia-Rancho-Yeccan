@@ -18,9 +18,11 @@ Route::get('/', function () {
 });
 Route::get('/tareas', 'EventosController@tareas_Trabajador');
 
+Route::get('/pdf/{id}','AnimalesController@PDF');
 
 Route::get("control_productivo/{id}", 'Control_productivoController@create');
 Route::resource('controles_reproductivos','Control_reproductivoController');
 Route::resource('animales','AnimalesController');
 Route::resource('eventos','EventosController');
 Route::resource('controles_productivos','Control_productivoController');
+

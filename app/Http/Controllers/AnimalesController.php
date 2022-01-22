@@ -6,6 +6,9 @@ use App\Models\Control_reproductivo;
 use Illuminate\support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\App;
+
 
 class AnimalesController extends Controller
 {
@@ -99,7 +102,7 @@ class AnimalesController extends Controller
         $animales->peso_al_destete=$request->peso_al_destete;
         $animales->madre=$request->madre;
         $animales->sexo=$request->sexo;
-        
+        $animales->num_parto=0;
        //return $request->all();
         //return $animales;    
         $animales -> save();
@@ -184,5 +187,18 @@ class AnimalesController extends Controller
   
     }
 
+    public function PDF($id){
+        $animales1=Animal::find($id);
+        
+        $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML('
+        <h2>Ficha tecnica de: '.$animales1->nombre.'</h2>
+        
+        <img width="100px" height="100px" src="/static/img/toro.png" alt="">
+    
+    ');
+    return $pdf->stream();
+        
+    } 
     
 }
