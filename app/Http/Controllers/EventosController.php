@@ -21,6 +21,8 @@ class EventosController extends Controller
     public function index()
     {
         $eventos1=Evento::all();
+
+      //  return $mes;
         return view('eventos.Evento', compact('eventos1'));
     }
 

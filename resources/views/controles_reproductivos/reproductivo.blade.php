@@ -196,11 +196,15 @@ $bandera1= null;
         <td class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_parto)->format('d/m/Y')}}</td>
         <td>
             <center>
+                @can('revisarA', $reproductor)
                 <a href="/controles_reproductivos/{{$reproductor->id}}/edit" class="acciones"><span class="fas fa-long-arrow-alt-left"></span>Revisar</a>
+                @endcan
                 <form action="/controles_reproductivos/{{$reproductor->id}}" class="formulario" method="post" style="display: inline;">
                     @csrf
                     @method('DELETE')
+                    @can('deleteServicio',$reproductor)
                     <button class="eliminar" type="submit"><span class="fas fa-trash-alt" title="Eliminar"></span>Eliminar</button>
+                    @endcan
                     </form>
                     <script>
                         eliminar=document.getElementsByClassName('formulario');

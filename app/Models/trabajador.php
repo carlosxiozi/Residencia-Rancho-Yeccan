@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class trabajador extends Model
+class trabajador extends  Authenticatable
 {
     use Notifiable;
-    use HasFactory;
     protected $fillable = ['nombre'];
     public $timestamps = false;
 }

@@ -13,16 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login',function(){
+    return view('login');
+})->name('login')->middleware('guest');
+Route::post('/login','autenticarController@login');
 Route::get('/', function () {
     return view('principal');
-});
-Route::get('/tareas', 'EventosController@tareas_Trabajador');
+})->middleware('auth');
+
+Route::get('/salir','autenticarController@salir');
+Route::get('/tareas', 'EventosController@tareas_Trabajador')->middleware('auth');
 
 Route::get('/pdf/{id}','AnimalesController@PDF');
 
-Route::get("control_productivo/{id}", 'Control_productivoController@create');
-Route::resource('controles_reproductivos','Control_reproductivoController');
-Route::resource('animales','AnimalesController');
-Route::resource('eventos','EventosController');
-Route::resource('controles_productivos','Control_productivoController');
+Route::get("control_productivo/{id}", 'Control_productivoController@create')->middleware('auth');
+Route::resource('controles_reproductivos','Control_reproductivoController')->middleware('auth');
+Route::resource('animales','AnimalesController')->middleware('auth');
+Route::resource('eventos','EventosController')->middleware('auth');
+Route::resource('controles_productivos','Control_productivoController')->middleware('auth');
+Route::resource('usuarios','trabajadoresController')->middleware('auth');
 

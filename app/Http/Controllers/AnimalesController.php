@@ -189,16 +189,7 @@ class AnimalesController extends Controller
 
     public function PDF($id){
         $animales1=Animal::find($id);
-        
-        $pdf = App::make('dompdf.wrapper');
-    $pdf->loadHTML('
-        <h2>Ficha tecnica de: '.$animales1->nombre.'</h2>
-        
-        <img width="100px" height="100px" src="/static/img/toro.png" alt="">
-    
-    ');
-    return $pdf->stream();
-        
+        return view('PDF', compact('animales1'));
     } 
     
 }
