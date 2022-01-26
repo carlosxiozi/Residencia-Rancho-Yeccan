@@ -24,11 +24,11 @@ window.addEventListener("load", function() {
         event.preventDefault();
         let _token = $("input[name='_token']").val();
         let input = document.getElementById('fecha_servicio').value;
-        let fecha = document.getElementById('fecha_parto').value;
+       
         let animal_id =document.getElementById('animal_id').value;
        
                 $.ajax({
-            url:'/controles_reproductivos',method:'POST',data:{_token:_token,fecha_servicio:input,id:animal_id,fecha_parto:fecha}
+            url:'/controles_reproductivos',method:'POST',data:{_token:_token,fecha_servicio:input,id:animal_id}
         }) .done(function(res){
         response = JSON.parse(res);
         overlay.classList.remove("active")

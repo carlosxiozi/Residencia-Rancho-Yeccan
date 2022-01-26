@@ -48,8 +48,8 @@ class Control_reproductivoController extends Controller
         $animal_id =(int)$request['id'];
         $control = new Control_reproductivo();
         $control->fecha_de_servicio=$variable['fecha_servicio'];
-        $control->fecha_de_parto=$variable['fecha_parto'];
-
+        //$control->fecha_de_parto=$variable['fecha_parto'];
+        $control ->fecha_de_parto = Carbon::parse($variable['fecha_servicio'])->addDay(21);
         //$control->fecha_parto=$variable['fecha_servicio']->subweek();
             
        // $control->fecha_parto=$fechas;

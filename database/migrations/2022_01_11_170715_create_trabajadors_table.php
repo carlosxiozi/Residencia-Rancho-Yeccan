@@ -15,7 +15,11 @@ class CreateTrabajadorsTable extends Migration
     {
         Schema::create('trabajadors', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 45)->nullable();
+            $table->string('nombre', 200);
+            $table->string('apellidos', 60);
+            $table->string('telefono', 12);
+            $table->string('contrasena', 60);
+            $table->string('rol', 20);
             $table->timestamps();
         });
     }

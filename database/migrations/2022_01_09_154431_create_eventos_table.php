@@ -19,6 +19,8 @@ class CreateEventosTable extends Migration
             $table->date('fecha_inicial');
             $table->date('fecha_final');
             $table->longtext('descripcion');
+            $table->string('tipo', 45);
+            $table->longtext('nota')->nullable();
             $table->timestamps();
         });
     }

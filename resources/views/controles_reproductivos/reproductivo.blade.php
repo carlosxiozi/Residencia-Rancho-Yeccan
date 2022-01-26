@@ -108,8 +108,7 @@ new Notification('Rancho Yeccan',options); </script>
                 <div class="contenedor-inputs">
                     @csrf
                     <input type="date" id="fecha_servicio" name="fecha_servicio">
-                    <h3>Ingrese la fecha de revision</h3>
-                    <input type="date" id="fecha_parto" name="fecha_parto">
+                   
                 </div>
                 <button  class="btn-submit" id="boton" type="submit"><span class="far fa-check-circle"></span>agregar</button>
             </form>

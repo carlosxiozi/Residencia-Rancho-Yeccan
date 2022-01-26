@@ -44,7 +44,7 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-       $date= Carbon::now()->toDateString();
+        $date= Carbon::now()->toDateString();
       
         $animalinformation = $request-> all();
         request()->validate([
@@ -52,7 +52,7 @@ class EventosController extends Controller
             'fecha_inicio' => 'required',
             'descripcion' => 'required',
             'fecha_final' => 'required',
-           
+            'tipo' => 'required',
         ]);
         $date2=Carbon::createFromDate($request->fecha_inicio);
         $date3=Carbon::createFromDate($request->fecha_final);
@@ -61,11 +61,36 @@ class EventosController extends Controller
         if(Carbon::today()->lte($date2)){
 
             if(Carbon::today()->lte($date3)){
-                $eventos1->fecha_inicial=$request->fecha_inicio;
-                $eventos1->fecha_final=$request->fecha_final;
-                $eventos1->descripcion=$request->descripcion;
-                $eventos1 -> save();
+                if($request->tipo=="General"){
+
+                    $eventos1->fecha_inicial=$request->fecha_inicio;
+                    $eventos1->fecha_final=$request->fecha_final;
+                    $eventos1->descripcion=$request->descripcion;
+                    $eventos1->tipo=$request->tipo;
+                    $eventos1->nota=$request->nota;
+                    $eventos1 -> save();
+                    $animal = Animal::all();
+                    foreach($animal as $animal){
+                        
+                        $animal -> eventos()->attach($eventos1);
+
+                    }
+        
+                   
                 return redirect()->back()-> with('message','ok');
+                
+                } else{
+
+                   
+                    $eventos1->fecha_inicial=$request->fecha_inicio;
+                    $eventos1->fecha_final=$request->fecha_final;
+                    $eventos1->descripcion=$request->descripcion;
+                    $eventos1->tipo=$request->tipo;
+                    $eventos1->nota=$request->nota;
+                    $eventos1 -> save();
+                    return redirect()->back()-> with('message','ok');
+                }
+               
             }else{
 
                 return redirect()->back()-> with('msg','falta');
@@ -114,14 +139,22 @@ class EventosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->estadoTrue){
+            $eventos1 = Evento::find($id);
+            $eventos1->nota= $eventos1->nota."_".$request->notas;
+            $eventos1->save();
+            return redirect('/notas')-> with('mensaje','Registro exitoso');
+        }
+        else{
         $eventos1 = Evento::find($id);
         $eventos1->nombre_evento=$request->nombre;
         $eventos1->fecha_inicial=$request->fecha_inicio;
         $eventos1->fecha_final=$request->fecha_final;
         $eventos1->descripcion=$request->descripcion;
-
         $eventos1 -> save();
         return redirect('/eventos')-> with('mensaje','Registro exitoso');
+        }
+        
     }
 
     /**
@@ -173,5 +206,9 @@ class EventosController extends Controller
         return view('trabajador', compact('animales','eventos','var','mostrar'));
 
 
+    }
+    public function notas(){
+        $eventos1=Evento::all();
+        return view('notas', compact('eventos1'));
     }
 }

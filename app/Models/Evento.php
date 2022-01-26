@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Evento extends Model
 {
     public $timestamps=false;
-    protected $fillable= ['nombre_evento','fecha_inicial','fecha_final','descripcion'];
+    protected $fillable= ['nombre_evento','fecha_inicial','fecha_final','descripcion','tipo','nota'];
     protected $table = 'eventos';
     use HasFactory;
     public function animales(){

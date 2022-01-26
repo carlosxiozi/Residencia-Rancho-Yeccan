@@ -35,6 +35,13 @@
         <h3>Fecha de terminacion: <input type="date" name="fecha_final" class="animalinformation" value="{{ old('fecha_final') }}"> <br> {!! $errors->first('fecha_final', '<small>:message</small>') !!}</h3>
         <textarea name="descripcion" id="" cols="60" rows="10" placeholder="Descripcion"></textarea> <br>  <h3>{!! $errors->first('descripcion', '<small>:message</small>') !!}</h3><br>
         
+        <h3> Seleccione el tipo de evento :<select name="tipo" id="tipo" > 
+            <option value="" >Elija uno</option>
+            <option >General</option>
+            <option >Individual</option>
+            </select><br></h3>
+            {!! $errors->first('tipo', '<small>:message</small><br>') !!}
+          <h3>Ingrese una nota Opcional<textarea name="nota" id="" cols="30" rows="10" placeholder="nota"></textarea> <br></h3><br>
         
         <button  class="regreso" type="submit"><span class="far fa-check-circle"></span>agregar</button>
  <a href="/eventos" class="regreso" > <span class="fas fa-long-arrow-alt-left"></span>regresar</a>

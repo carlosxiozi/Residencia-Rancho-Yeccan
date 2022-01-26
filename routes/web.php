@@ -25,6 +25,7 @@ Route::get('/salir','autenticarController@salir');
 Route::get('/tareas', 'EventosController@tareas_Trabajador')->middleware('auth');
 
 Route::get('/pdf/{id}','AnimalesController@PDF');
+Route::get('/notas','EventosController@notas');
 
 Route::get("control_productivo/{id}", 'Control_productivoController@create')->middleware('auth');
 Route::resource('controles_reproductivos','Control_reproductivoController')->middleware('auth');
