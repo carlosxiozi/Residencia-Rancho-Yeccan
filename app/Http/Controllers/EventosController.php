@@ -177,14 +177,25 @@ class EventosController extends Controller
         $var= DB::table('animal_evento')->get();
         $eventos=Evento::all();
         $mostrar = 0;
+        $no_eventos = 0;
+        $servicio=0;
         foreach ( $animales as $animal ){
             foreach($animal->control_reproductivo as $control ){
-                $nueva_fecha=Carbon::createFromDate($control->fecha_de_parto)->subDays(7);
+
+                $nueva_fecha=Carbon::createFromDate($control->fecha_de_parto)->subDays(15);
                 $fecha_final=Carbon::createFromDate($control->fecha_de_parto)->addDays(7);
+                $nueva_fecha1=Carbon::createFromDate($control->fecha_de_servicio);
+                $fecha_final1=Carbon::createFromDate($control->fecha_de_parto);
                 if(Carbon::today()->gte($nueva_fecha) & Carbon::today()->lte($fecha_final) & $control->estado_animal==1 ){
                     $mostrar = 1;
 
                 }
+                if(Carbon::today()->gte($nueva_fecha1) & Carbon::today()->lte($fecha_final1) & $control->estado_animal==0 )
+                {
+                    $mostrar = 1;
+                    $servicio=1;
+                }
+                
             }
             foreach( $animal->eventos as $evento){
                 $nueva_fecha=Carbon::createFromDate($evento->fecha_inicial);
@@ -192,23 +203,39 @@ class EventosController extends Controller
                 if(sizeof($animal->eventos) > 0){
                     if(Carbon::today()->gte($nueva_fecha) & Carbon::today()->lte($fecha_final)){
                 
-                    $mostrar = 1;
+                        $mostrar = 1;
                         if (event(new trabajadorEvent($animal,$evento))) {
                             
                             return 'Evento Aceptado';
                         }
                     }
                 }
+                else
+                {
+                    $no_eventos = 1;
+                }
             }
         }
         // return $animales;
       //  return $nueva_fecha,$fecha_final;
-        return view('trabajador', compact('animales','eventos','var','mostrar'));
+        return view('trabajador', compact('animales','eventos','var','mostrar','no_eventos','servicio'));
 
 
     }
     public function notas(){
         $eventos1=Evento::all();
-        return view('notas', compact('eventos1'));
+        $bandera = 0;
+        foreach($eventos1 as $eventos)
+        {
+            if(is_null($eventos->nota))
+            {
+                
+            }else
+            {
+                $bandera = 1;
+            }
+        }
+        
+        return view('notas', compact('eventos1','bandera'));
     }
 }

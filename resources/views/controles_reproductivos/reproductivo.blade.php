@@ -144,7 +144,7 @@ $bandera1= null;
 
         </div>
         @php
-            $nueva_fecha=\Carbon\Carbon::createFromDate($reproductor->fecha_de_parto)->subDays(7);
+            $nueva_fecha=\Carbon\Carbon::createFromDate($reproductor->fecha_de_parto)->subDays(15);
             $fecha_final=\Carbon\Carbon::createFromDate($reproductor->fecha_de_parto)->addDays(7);
         @endphp
         <label><h2><b> Fecha inicial  :  {{\Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y')}}  </b></h2></label>

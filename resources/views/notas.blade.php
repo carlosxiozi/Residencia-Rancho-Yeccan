@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    @if($bandera == 1)
     <div class="contenedor">
         @foreach($eventos1 as $eventos)
             @php
@@ -27,12 +28,11 @@
     <script type="text/javascript">
         function mostrar(){
             let cod = document.getElementById('evento_id').value;
-            let formNotes = document.getElementById('form_notas')
-            let seleccion = document.getElementById('seleccion')
-            formNotes.setAttribute('action', '/eventos/'+cod)
-            sleccion.innerHTML = "algo"+evento
+            let formNotes = document.getElementById('form_notas');
+            //let seleccion = document.getElementById('seleccion');
+            formNotes.setAttribute('action', '/eventos/'+cod);
+            //seleccion.innerHTML = "Evento"+;
             formNotes.style.display = "block";
-
         }
     </script>
     <div>
@@ -45,5 +45,6 @@
         </form>
     
     </div>
+    @endif
 </body>
 </html>
