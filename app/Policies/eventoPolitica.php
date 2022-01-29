@@ -34,8 +34,8 @@ class eventoPolitica
     }
     public function editeve(trabajador $trabajador, Evento $evento){
 
-        if($trabajador->rol == "Veterinario" || $trabajador->rol == "Jefe") return true;
-        elseif($trabajador->rol == "Trabajador") return false;
+        if( $trabajador->rol == "Jefe") return true;
+        elseif($trabajador->rol == "Veterinario" || $trabajador->rol == "Trabajador") return false;
 
     }
     /**

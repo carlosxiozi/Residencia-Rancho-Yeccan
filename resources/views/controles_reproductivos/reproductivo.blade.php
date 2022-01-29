@@ -9,6 +9,7 @@
     <link rel = "stylesheet" href="{{ asset('static/css/estilos_ventana_emergente.css') }}">
     <script type ="text/javascript" src="{{asset('static/js/popup.js')}}"></script>
     <link rel="stylesheet" href="{{ asset('static/css/css/all.css')}}">
+    <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{asset('static/css/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('static/js/jquery-3.6.0.min.js')}}"></script>
     

@@ -130,10 +130,27 @@ class Control_reproductivoController extends Controller
      */
     public function edit($id)
     {
+        $ban=0;
         $reproductivo1= Control_reproductivo::find($id);
-        $expediente = explode('_', $reproductivo1->expediente);
-        
-        return view('controles_reproductivos.revisar', compact('reproductivo1', 'expediente'));
+        $reproductor=Animal::with('control_reproductivo')->get();
+        foreach($reproductor as $control){
+                foreach($control->control_reproductivo as $ocultar){
+                        if($ocultar->animal_id==$reproductivo1->animal_id){
+                            $variable=$ocultar->id;
+                                
+                        }
+                }
+
+                
+        }
+        if($reproductivo1->id==$variable){
+            $ban=1;
+        }
+
+       
+          $expediente = explode('_', $reproductivo1->expediente);
+        return view('controles_reproductivos.revisar', compact('reproductivo1', 'expediente','ban'));
+
     }
 
     /**

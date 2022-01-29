@@ -13,6 +13,10 @@
     #lu_c{
         list-style: none
     }
+    img:hover {
+    /* background: red; */
+    transform: scale(2.0);
+}
 </style>
 
     
@@ -24,6 +28,7 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" href="{{ asset('static/css/estilos_opciones.css') }}">
+        <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
         <title>Ficha Tecnica</title>
     </head>
     <body>

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="{{ asset('static/css/style_events.css') }}">
     <link rel="stylesheet" href="{{ asset('static/css/css/all.css')}}">
+    <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{asset('static/css/sweetalert2.all.min.js')}}"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=

@@ -8,6 +8,7 @@
     <link rel = "stylesheet" href="{{ asset('static/css/css/all.css') }}">
     <script src="{{asset('static/css/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('static/js/jquery-3.6.0.min.js')}}"></script>
+    <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
     <title>Animales</title>
 </head>
 <body>

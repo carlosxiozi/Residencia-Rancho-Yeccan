@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ asset('static/css/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{ asset('static/js/libss/mdtoast.min.css') }}">
     <title>Animales</title>
@@ -48,157 +49,187 @@
         } */
         .opciones-container {
             width: 80vw;
-height: auto;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: repeat(4, min-content);
-margin: auto;   
-gap: 10px;
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, min-content);
+            margin: auto;
+            gap: 10px;
 
         }
 
         .opciones-items {
-    flex: 1;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.356);
-    position: relative;
-    padding: 10px;
-    box-sizing: border-box;
-    box-shadow: 0px 6px 13px 0px #000000ab;
-}
-.opciones-image{
-    width: 100%;
-    height: 100%;
-    position:absolute;
-    padding: 10px;
+           
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.356);
+            position: relative;
+            
+        }
+
+        .opciones-image {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            padding: 10px;
 
 
-}
-.opciones-image img {
-    width: 100%;
-    height: 90%;
-    object-fit: contain;
-   
-}
-.opciones-body{
-    position: relative;
-    z-index: 100;
-}
-.opciones-items:nth-child(1) {
-    grid-column: 1/3;
-grid-row: 1/3;
-    background: rgba(102, 51, 153, 0.4);
-}
-.opciones-items:nth-child(2) {
-    background: rgba(227, 252, 1, 0.4);
-}
-.opciones-items:nth-child(3) {
-    background: rebeccapurple;
-}
-.opciones-items:nth-child(4) {
-    
-    background: rebeccapurple;
-}
-.opciones-items:nth-child(5) {
-    
-    background: rebeccapurple;
-}
-.opciones-items:nth-child(6) {
-    
-    background: rebeccapurple;
-}
+        }
 
+        .opciones-image img {
+            width: 100%;
+            height: 90%;
+            object-fit: contain;
+
+        }
+
+        .opciones-body {
+            position: relative;
+            z-index: 100;
+        }
+
+        .opciones-items:nth-child(1) {
+
+            background: rgb(254, 253, 255);
+        }
+
+        .opciones-items:nth-child(2) {
+            background: rgba(227, 252, 1, 0.4);
+        }
+
+        .opciones-items:nth-child(3) {
+            background: rebeccapurple;
+        }
+
+        .opciones-items:nth-child(4) {
+
+            background: rebeccapurple;
+        }
+
+        .opciones-items:nth-child(5) {
+
+            background: rebeccapurple;
+        }
+
+        .opciones-items:nth-child(6) {
+
+            background: rebeccapurple;
+        }
 
     </style>
-    <div class="opciones-container">
-        <div class="opciones-items">
-            <div class="opciones-image">
-                <img src="static/img/notas.png" alt="">
-            </div>
-            <div class="opciones-body">
-                <a href="/notas">
-                    <h3>Calendario</h3>
-                    <label>En este apartado se mostraran las notas hechas por cada uno de los
-                        evento.</label><br>
-                    <label>Presione para entrar</label>
-                </a>
-            </div>
-        </div>
-        <div class="opciones-items">
-            <div class="opciones-image">
-                <img src="static/img/notas.png" alt="">
-            </div>
-            <div class="opciones-body">
-                <a href="/notas">
-                    <h3>Notas</h3>
-                    <label>En este apartado se mostraran las notas hechas por cada uno de los
-                        evento.</label><br>
-                    <label>Presione para entrar</label>
-                </a>
-            </div>
-        </div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+    <script src="{{ asset('static/js/jquery-3.6.0.min.js') }}"></script>
+    <script>
+        /*fetch("/calendar")
+            .then((res ) =>res.json())
+            .then((data) => console.log(data));*/
+            
+           
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('agenda');
+            for(i=0;i<=5;i++){
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
 
-        <div class="opciones-items">
-            <div class="opciones-image">
-                <img src="static/img/cows.png" alt="">
-            </div>
-            <div class="opciones-body">
-                <a href="/animales">
-                    <h3>Animales</h3>
-                    <p> En animales donde se encuentra todos los registros de animales que estan con opciones de
-                        añadir mas o editar estos mismos</p>
-                    <p> Presione click para entrar</p>
-                </a>
-            </div>
+                locale: "es",
 
-        </div>
-        <div class="opciones-items">
-            <div class="opciones-image">
-                <img src="static/img/eventos1.png" alt="">
-            </div>
-            <div class="opciones-body">
-                <a href="/eventos">
-                    <h3>Eventos</h3>
-                    <p> Es donde se colocan los eventos a los animales con las opciones de añadir nuevos eventos
-                        o
-                        modificarlos</p>
-                    <p> Presione click para entrar</p>
-                </a>
-            </div>
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title'
+                },
+                height: '100 %',
+                
+                events: "{{ url('/calendar') }}"
+            });
+            }
 
-        </div>
 
-        @can('view', Auth::user())
-            <div class="opciones-items">
-                <div class="opciones-image">
-                    <img src="static/img/vaquero.png" alt="">
+            calendar.render();
+        });
+    </script>
+    <div class="container mx-auto ">
+        <div class="row p-1">
+            <div class="opciones-items mx-auto col-sm-12 col-md-12 col-lg-10" style="height: 450px" >
+                <div class="w-75 mx-auto" style="  height:100%; "id="agenda" >
                 </div>
-                <div class="opciones-body">
-                    <a href="/usuarios">
-                        <h3>Usuarios</h3>
+            </div>
+
+            <div class="opciones-items p-1  mx-auto col-sm col-md-2">
+                <div class="opciones-image">
+                    <img src="static/img/notas.png" alt="">
+                </div>
+                <div class="p-2">
+                    <a href="/notas">
+                        <h3>Notas</h3>
+                        <label>En este apartado se mostraran las notas hechas por cada uno de los
+                            evento.</label><br>
+                        <label>Presione para entrar</label>
+                    </a>
+                </div>
+            </div>
+            <div class="opciones-items p-1 m-2 col-sm-3 col-md">
+                <div class="opciones-image">
+                    <img src="static/img/cows.png" alt="">
+                </div>
+                <div class="p-2">
+                    <a href="/animales">
+                        <h3>Animales</h3>
                         <p> En animales donde se encuentra todos los registros de animales que estan con opciones de
                             añadir mas o editar estos mismos</p>
-                        <p> Presione para entrar</p>
+                        <p> Presione click para entrar</p>
                     </a>
                 </div>
 
             </div>
-        @endcan
+            <div class="opciones-items p-1  m-2 col-sm-3 col-md">
+                <div class="opciones-image">
+                    <img src="static/img/photoroom.png" alt="">
+                </div>
+                <div class="p-2">
+                    <a href="/eventos">
+                        <h3>Eventos</h3>
+                        <p> Es donde se colocan los eventos a los animales con las opciones de añadir nuevos eventos
+                            o
+                            modificarlos</p>
+                        <p> Presione click para entrar</p>
+                    </a>
+                </div>
 
-        <div class="opciones-items">
-            <div class="opciones-image">
-                <img src="static/img/tareas.png" alt="">
             </div>
-            <div class="opciones-body">
-                <a href="/tareas">
-                    <h3>Tareas</h3>
-                    <p> En animales donde se encuentra todos los registros de animales que estan con opciones de
-                        añadir mas o editar estos mismos</p>
-                    <p> Presione para entrar</p>
-                </a>
+
+            @can('view', Auth::user())
+                <div class="opciones-items p-1 m-2 col-sm-3 col-md">
+                    <div class="opciones-image">
+                        <img src="static/img/vaquero.png" alt="">
+                    </div>
+                    <div class="p-2">
+                        <a href="/usuarios">
+                            <h3>Usuarios</h3>
+                            <p> En animales donde se encuentra todos los registros de animales que estan con opciones de
+                                añadir mas o editar estos mismos</p>
+                            <p> Presione para entrar</p>
+                        </a>
+                    </div>
+
+                </div>
+            @endcan
+
+            <div class="opciones-items p-1 m-2 col-sm-3 col-md">
+                <div class="opciones-image">
+                    <img src="static/img/tareas.png" alt="">
+                </div>
+                <div class="p-2">
+                    <a href="/tareas">
+                        <h3>Tareas</h3>
+                        <p> En animales donde se encuentra todos los registros de animales que estan con opciones de
+                            añadir mas o editar estos mismos</p>
+                        <p> Presione para entrar</p>
+                    </a>
+
+                </div>
 
             </div>
-
         </div>
     </div>
 

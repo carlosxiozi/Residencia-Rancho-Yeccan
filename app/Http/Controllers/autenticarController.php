@@ -22,13 +22,13 @@ class autenticarController extends Controller
                 return redirect('/');
                 
             }else{
-                return "hola";
+               
                 return back()->withErrors('Datos ingresado erroneos!!')->withInput();
             }
            }
             
         }else{
-            return "Adios";
+            
 
          return back()->withErrors('Usuario no encontrado!!')->withInput();
         }

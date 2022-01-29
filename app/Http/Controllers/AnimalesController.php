@@ -19,7 +19,8 @@ class AnimalesController extends Controller
      */
     public function index()
     {
-        $animales1=Animal::all();
+        $animales1=Animal::orderBy('fecha_de_nacimiento','ASC')->get();
+       // $animales1=Animal::all();
        // return $animales1;
        return view('animales.Animals', compact('animales1'));
     }

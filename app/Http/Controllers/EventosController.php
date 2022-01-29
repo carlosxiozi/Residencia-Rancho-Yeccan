@@ -238,4 +238,23 @@ class EventosController extends Controller
         
         return view('notas', compact('eventos1','bandera'));
     }
+
+    public function calendar(){
+        $eventos1=Evento::where('tipo',"General")->get();
+        $a = [];
+        $i = 0;
+        foreach($eventos1 as $evento){
+            
+            $title = $evento->nombre_evento;
+            $start = $evento->fecha_inicial;
+            $end = $evento->fecha_final;
+            $a[$i] = array(
+                    "title" => $title,
+                    "start" => $start,
+                    "end" => $end
+                );
+            $i = $i+1;
+        }
+        return response()->json($a);
+    }
 }
