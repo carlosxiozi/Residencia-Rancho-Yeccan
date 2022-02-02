@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Carbon\carbon;
+use App\Models\Evidencia;
+use Illuminate\Support\Facades\Auth;
 use App\Events\trabajadorEvent;
 
 
@@ -151,6 +153,8 @@ class EventosController extends Controller
         $eventos1->fecha_inicial=$request->fecha_inicio;
         $eventos1->fecha_final=$request->fecha_final;
         $eventos1->descripcion=$request->descripcion;
+        $eventos1->tipo=$request->tipo;
+        $eventos1->nota=$request->nota;
         $eventos1 -> save();
         return redirect('/eventos')-> with('mensaje','Registro exitoso');
         }
@@ -223,6 +227,12 @@ class EventosController extends Controller
 
     }
     public function notas(){
+       // $trabajador= Evidencia::where('trabajador_id',Auth::user()->id);
+       $trabajador = null;
+       if(Auth::user()->rol == "Jefe"){
+           
+        $trabajador= Evidencia::all();
+
         $eventos1=Evento::all();
         $bandera = 0;
         foreach($eventos1 as $eventos)
@@ -233,13 +243,36 @@ class EventosController extends Controller
             }else
             {
                 $bandera = 1;
+                
             }
         }
         
-        return view('notas', compact('eventos1','bandera'));
+       }else{
+           
+        $trabajador= Evidencia::where('trabajador_id', Auth::user()->id)->get();
+        $eventos1=Evento::all();
+        $bandera = 0;
+
+        foreach($eventos1 as $eventos)
+        {
+            if(is_null($eventos->nota))
+            {
+                
+            }else
+            {
+                $bandera = 1;
+                
+            }
+        }
+        
+       }
+       
+
+        return view('notas', compact('eventos1','bandera','trabajador'));
     }
 
     public function calendar(){
+        
         $eventos1=Evento::where('tipo',"General")->get();
         $a = [];
         $i = 0;

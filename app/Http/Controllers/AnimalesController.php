@@ -17,12 +17,18 @@ class AnimalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $animales1=Animal::orderBy('fecha_de_nacimiento','ASC')->get();
-       // $animales1=Animal::all();
-       // return $animales1;
-       return view('animales.Animals', compact('animales1'));
+       
+        $texto=trim($request->get('texto'));
+        /*$animales1=DB::table('animales')
+                        ->select('id','nombre','fecha_de_nacimiento','padre','arete','peso_al_nacer','peso_al_destete','madre','sexo','imagen','num_parto')
+                        ->where('arete','LIKE','%'.$texto.'%')
+                        ->orderBy('fecha_de_nacimiento','ASC')->get();*/
+        
+        $animales1=Animal::where('arete','LIKE','%'.$texto.'%')
+        ->orderBy('fecha_de_nacimiento','ASC')->get();
+        return view('animales.Animals', compact('animales1'));
     }
 
     /**
@@ -62,6 +68,7 @@ class AnimalesController extends Controller
      */
     public function store(Request $request)
     {
+      
         if($request->madre_id){
             $animal = Animal::find($request->madre_id);
             $animal->num_parto= $animal->num_parto+1;
@@ -192,5 +199,27 @@ class AnimalesController extends Controller
         $animales1=Animal::find($id);
         return view('PDF', compact('animales1'));
     } 
+    public function cambio(Request $request){
+        
+        if($request->filtro ==1){
+            $animales1=Animal::where('sexo',"Macho")->orderBy('fecha_de_nacimiento','ASC')->get();
+           
+        
+            return view('animales.Animals', compact('animales1'));
+            }
+
+            elseif($request->filtro ==2){
+                $animales1=Animal::where('sexo',"Hembra")->orderBy('fecha_de_nacimiento','ASC')->get();
+                return view('animales.Animals', compact('animales1'));
+             
+            }
+        elseif($request->filtro ==0){
+                
+            $animales1=Animal::orderBy('fecha_de_nacimiento','ASC')->get();
+
+            return view('animales.Animals', compact('animales1'));
+            }
+
+    }
     
 }

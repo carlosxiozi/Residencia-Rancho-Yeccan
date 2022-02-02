@@ -47,14 +47,32 @@
     <title>Mostrar</title>
 </head>
 <body>
-    <lu id="lu_c">
-        <center>
-        <br><br> <li><label class="" id="lbCategoria">Nombre del usuario: {{$usuario->nombre}}</label></li> <br><br>
-        <li><label id="lbCategoria">Apellidos: {{$usuario->apellidos}}</label></li><br><br>
-        <li><label id="lbCategoria">Telefono: {{$usuario->telefono}}</label></li><br><br>
-        <li><label id="lbCategoria">Rol : {{$usuario->rol}}</label></li><br><br>
-        <a class=regreso href="/usuarios">Regresar</a>
-</center>
-    </lu>
+    <div class="container-fluid mt-5 row mx-auto">
+        <div style="background: white !important" class="row col-xs col-sm col-md col-xl-6 shadow p-2 mx-auto">
+            <a href="/usuarios" class="btn btn-info"><span class="fas fa-long-arrow-alt-left"></span> Regresar</a>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Nombre del usuario</span>
+                <span class="form-control"> {{$usuario->nombre}}</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Apellidos</span>
+                <span class="form-control"> {{$usuario->apellidos}}</span>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text">Telefono</span>
+                <span class="form-control"> {{$usuario->telefono}}</span>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text">Rol</span>
+                <span class="form-control"> {{$usuario->rol}}</span>
+            </div>
+        
+       
+
+        
+    </div>
+</div>
 </body>
 </html>

@@ -19,5 +19,6 @@ protected $table = 'animales';
     }
     public function control_reproductivo(){
         return $this->hasMany('App\Models\Control_reproductivo');
+        
     }
 }

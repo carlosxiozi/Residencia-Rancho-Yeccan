@@ -44,36 +44,25 @@
     </style>
 <body>
 
-
-
-    <center>
-    <header class="header">
-       
-       <div class="header-container">
-       <figure class="header-img">
-           <img src="/static/img/cow.png" alt="">
-       </figure>
-           <span class="header-titile">Rancho Yeccan</span>
-       </div>
-   </header>
-    <div class="titulo">
-    <h1> Control Reproductivo </h1>
-    </div>
-    <div class="join">
-        <a class="inicio" href="/animales" ><span class="fas fa-long-arrow-alt-left"></span>Regresar</a>
-        <a class="inicio" href="/" ><span class="fas fa-home"></span>Inicio</a>
+        <nav class="navbar navbar-light " style="background: #E0EAFC;
+        background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+        background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
+            <div class="container-fluid badge  text-wrap ">
+                <a class="navbar-brand  fs-1 mx-auto"style="font-size: calc(2.35rem + 1.2vw) !important;" href="/">
+                    <img src="/static/img/cow.png" style="height: 100px; width:100px;" alt="" width="80" height="60" class="d-inline-block align-text-top">
+                    Rancho Yeccan
+                </a>
+            </div>
+        </nav>
+    
+        <div style="width: max-content;
+        margin: auto; gap:10px padding:10px">
+        <a class="btn btn-secondary" href="/animales" ><span class="fas fa-long-arrow-alt-left"></span>Regresar</a>
+        <a class="btn btn-dark" href="/" ><span class="fas fa-home"></span>Inicio</a>
     </div>
     </center>
     
 
-<div class="content_bread">
-    <ul>
-        
-        
-        <li class="item_selected">Animales> </li>
-        <li class="item_selected">Reproductivo</li>
-    </ul>
-</div>
     <input type="hidden" id="animal_id" value="{{$animal->id}}">
     <label  ><h2> <b> Nombre : {{$animal->nombre}}    </b>    </h2> </label> 
     
@@ -179,8 +168,12 @@ $bandera1= null;
 
 
    @if($bandera1 == true)
-   <table border="1" id="tabla">
-    <thead>
+   <div class="container-fluid m-0 p-0 table-responsive">
+    <table class="table table-sm table-striped table-hover caption-top">
+        <caption class="m-1">
+            Listado de servicios
+        </caption>
+    <thead class="table-dark">
         
         <th>Fecha de servicio</th>
         <th>Fecha de revision o parto</th>
@@ -190,20 +183,21 @@ $bandera1= null;
     @forelse($reproductivo1 as $reproductor)
     <tr>
       
-        <td class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_servicio)->format('d/m/Y')}}</td>
+        <td style="text-align: initial;" class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_servicio)->format('d/m/Y')}}</td>
         
     
-        <td class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_parto)->format('d/m/Y')}}</td>
-        <td>
-            <center>
+        <td  style="text-align: initial;" class="nombre_pro" width="400px">{{\Carbon\Carbon::parse($reproductor->fecha_de_parto)->format('d/m/Y')}}</td>
+        <td >
+            
+                <div class="d-flex justify-center align-middle ">
                 @can('revisarA', $reproductor)
-                <a href="/controles_reproductivos/{{$reproductor->id}}/edit" class="acciones"><span class="fas fa-long-arrow-alt-left"></span>Revisar</a>
+                <a  href="/controles_reproductivos/{{$reproductor->id}}/edit" class="btn btn-primary m-1">Revisar</a>
                 @endcan
                 <form action="/controles_reproductivos/{{$reproductor->id}}" class="formulario" method="post" style="display: inline;">
                     @csrf
                     @method('DELETE')
                     @can('deleteServicio',$reproductor)
-                    <button class="eliminar" type="submit"><span class="fas fa-trash-alt" title="Eliminar"></span>Eliminar</button>
+                    <button class="btn btn-danger" type="submit">Eliminar</button>
                     @endcan
                     </form>
                     <script>
@@ -228,8 +222,9 @@ $bandera1= null;
                             });
                         }
                     </script>
-            </center>
+            
         </td>
+    </div>
     </tr>
     @empty
         <tr>
@@ -239,7 +234,7 @@ $bandera1= null;
 
 
     </table>
-    
+</div>
     
     @endif
 </body>

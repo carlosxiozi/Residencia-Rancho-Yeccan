@@ -12,4 +12,10 @@ class trabajador extends  Authenticatable
     use Notifiable;
     protected $fillable = ['nombre'];
     public $timestamps = false;
+    public function trabajador(){
+
+        return $this->hasMany('App\Models\Evidencia');
+        
+    }
 }
+ 

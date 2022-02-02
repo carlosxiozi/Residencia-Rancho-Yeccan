@@ -180,20 +180,21 @@
                 font-size: 4rem;
             }
         }
-
+        .fs-1 {
+    font-size: calc(2.35rem + 1.2vw) !important;
+}
     </style>
 
-    <center>
-        <header class="header">
-
-            <div class="header-container">
-                <figure class="header-img">
-                    <img src="/static/img/cow.png" alt="">
-                </figure>
-                <span class="header-titile">Rancho Yeccan</span>
-            </div>
-        </header>
-    </center>
+<nav class="navbar navbar-light " style="background: #E0EAFC;
+background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
+    <div class="container-fluid   text-wrap ">
+        <a class="navbar-brand  fs-1 mx-auto" href="/">
+            <img src="/static/img/cow.png" alt="" width="80" height="60" class="d-inline-block align-text-top">
+            Rancho Yeccan
+        </a>
+    </div>
+</nav>
     @php
         $noexiste = 0;
     @endphp

@@ -3,9 +3,8 @@
     margin: 0;
 }
 
-.item_selected {
-    color: rgb(255, 255, 255);
-    font-size: 20px;
+body {
+    background: var(--bs-gray-200) !important;
 }
 
 .content_bread {
@@ -23,131 +22,7 @@ ul {
     padding: 5px
 }
 
-.btn_acep {
-    margin-left: 20px;
-}
-
-.regreso {
-    background: #37a8f3;
-    color: #fff;
-    display: inline-block;
-    font-size: 1.00em;
-    margin: 20px;
-    padding: 10px 0px;
-    text-align: center;
-    width: 100px;
-    box-shadow: 0px 3px 0px #373c3c;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.regreso:hover {
-    transition: 500ms;
-    background-color: #f80404;
-    color: rgb(0, 0, 0)
-}
-
-.box {
-    height: 450px;
-    width: 400px;
-}
-
-.btn_acep {
-    background: #37a8f3;
-    color: #fff;
-    display: inline-block;
-    font-size: 1.00em;
-    margin: 20px;
-    padding: 10px 0px;
-    text-align: center;
-    width: 50px;
-    box-shadow: 0px 3px 0px #373c3c;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.btn_acep:hover {
-    transition: 500ms;
-    background-color: #f80404;
-    color: rgb(0, 0, 0)
-}
-
-input {
-    border: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
-    font-size: 18px;
-    color: rgb(0, 0, 0);
-}
-
-h3 {
-    color: white;
-    font-size: 15px;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    height: 100ph;
-    font-family: sans-serif;
-    background: #56CCF2;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2F80ED, #56CCF2);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background-size: cover;
-}
-
-textarea {
-    margin: 5px;
-    border: none;
-    outline: none;
-    resize: none;
-}
-
-.box-con {
-    background: white;
-    text-align: left;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    height: 400px;
-    width: 500px;
-    display: block;
-    margin: 0 auto;
-}
-
-scroll-container::-webkit-scrollbar {
-    width: 7px;
-}
-
-scroll-container::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background: black;
-}
-
-scroll-page {
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    height: 100%;
+.item_selected {
+    color: rgb(255, 255, 255);
     font-size: 20px;
-}
-
-.nombre1 {
-    position: relative;
-}
-
-.box-com {
-    display: flex;
-    justify-content: center;
-}
-
-.anotacion {
-    text-align: center;
-    margin-left: 190px;
-}
-
-p {
-    word-wrap: break-word;
 }

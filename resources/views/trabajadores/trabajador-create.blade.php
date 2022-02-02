@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script> src="{{asset('static/css/sweetalert2.all.min.js')}}"></script>
-    <link rel="stylesheet" href="{{ asset('static/css/css/all.css')}}">
-    <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel = "stylesheet" href="{{ asset('static/css/estilos_opciones.css') }}">
+    <script>
+        src = "{{ asset('static/css/sweetalert2.all.min.js') }}" >
+    </script>
+    <link rel="stylesheet" href="{{ asset('static/css/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('static/css/estilos_opciones.css') }}">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Crear</title>
@@ -18,57 +21,80 @@
         <li class="item_selected">Crear nuevo usuario</li>
     </ul>
 </div>
+
 <body>
     <section class="trabajador-create">
-        <center>
-        <div class="box">
-            <form action="/usuarios" method="POST" class="trabajador-form">
+
+        <div class="container-fluid mt-5 row mx-auto">
+            <form style="background: white !important" class="row col-xs col-sm col-md col-xl-5 shadow p-2 mx-auto"
+                action="/usuarios" method="POST" class="trabajador-form">
                 @csrf
-               
-                <h3>Nombre <input type="text" name="nombre"><h3> <br>
-                <h3>Apellidos: <input type="text" name="apellidos"><h3> <br>
-               <h3>Contraseña <input type="password" name="contrasena"><h3> <br>
-                <h3>Confirmar Contraseña<input type="password" name="contrasena_conf"><h3> <br>
-                <h3>Numero de telefono<input type="text" name="telefono"><h3> <br>
-                <select name="rol" id="">
-                    <option value="">Seleccione un rol</option>
-                    <option value="Veterinario">Veterinario</option>
-                    <option value="Trabajador">Trabajador</option>
-                </select> <br>
-                <button    class="regreso" type="submit">Agregar</button>
-                <a href="/usuarios" class="regreso" > <span class="fas fa-long-arrow-alt-left"></span>regresar</a>
-              
+                <a href="/usuarios" class="btn btn-info"><span class="fas fa-long-arrow-alt-left"></span> Regresar</a>
+                <div class="row p-2 mx-auto">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Nombre: </span>
+                        <input class="form-control" type="text" name="nombre">
+                  
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Apellidos: </span>
+                        <input class="form-control" type="text" name="apellidos">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Contraseña: </span>
+                        <input class="form-control" type="password" name="contrasena">
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Confirmar Contraseña: </span>
+                        <input class="form-control" type="password" name="contrasena_conf">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Numero de telefono: </span>
+                        <input class="form-control" type="text" name="telefono">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Rol: </span>
+                                                            <select  name="rol" id="">
+                                                                <option selected>Seleccione un rol</option>
+                                                                <option value="Veterinario">Veterinario</option>
+                                                                <option value="Trabajador">Trabajador</option>
+                                                            </select> <br>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Agregar</button>
+
+
             </form>
-            <center>
+
         </div>
     </section>
-    
-@if(Session::has('message') == ' ok ' )
 
-<script>
-Swal.fire({
-  position: 'top-center',
-  icon: 'success',
-  title: 'Se agrego correctamente',
-  showConfirmButton: false,
-  timer: 1500
- 
-})
-</script>
-@elseif(Session::has('msg') == ' falta ' )
+    @if (Session::has('message') == ' ok ')
 
-<script>
-Swal.fire({
-  position: 'top-center',
-  icon: 'error',
-  title: 'Fecha atrasada',
-  showConfirmButton: false,
-  timer: 1500
- 
-})
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Se agrego correctamente',
+                showConfirmButton: false,
+                timer: 1500
 
-</script>
-@endif
+            })
+        </script>
+    @elseif(Session::has('msg') == ' falta ')
+
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Fecha atrasada',
+                showConfirmButton: false,
+                timer: 1500
+
+            })
+        </script>
+    @endif
 </body>
 
 

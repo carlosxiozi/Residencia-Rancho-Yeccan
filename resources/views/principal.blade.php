@@ -19,25 +19,26 @@
 </head>
 
 <body>
-    <header class="header">
-
-        <div class="header-container">
-            <figure class="header-img">
-                <img src="/static/img/suizo.png" alt="">
-            </figure>
-            <span class="header-titile">Rancho Yeccan</span>
-            <a style=" 
-                right: -26%;
-                position: relative;
-            " class="regreso btn btn-primary" href="/salir"> <span class="fas fa-sign-out-alt"></span>Cerrar Sesión</a>
+    <nav class="navbar navbar-light " style="background: #E0EAFC;
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
+        <div class="container-fluid   text-wrap ">
+            <a class="navbar-brand  fs-1 mx-auto" href="/">
+                <img src="/static/img/suizo.png" alt="" width="80" height="60" class="d-inline-block align-text-top">
+                Rancho Yeccan
+            </a>
+            
+            <a  class="btn btn-dark btn-lg" href="/salir"> <span class="fas fa-sign-out-alt"></span>Cerrar Sesión</a>
         </div>
 
 
-    </header>
-    <center>
-        <h1>Seleccione la opción a elegir</h1>
-    </center>
+    </nav>
+
     <style>
+        .fs-1 {
+            font-size: calc(1.35rem + 2.2vw) !important;
+        }
+
         /* .opciones-container {
             width: 80vw;
     height: 100vh;
@@ -59,11 +60,12 @@
         }
 
         .opciones-items {
-           
-            border-radius: 10px;
+
+            border-radius: 20px;
             background: rgba(255, 255, 255, 0.356);
             position: relative;
-            
+
+
         }
 
         .opciones-image {
@@ -71,7 +73,14 @@
             height: 100%;
             position: absolute;
             padding: 10px;
+            cursor: pointer;
 
+
+        }
+
+        .opciones-image:hover.capa {
+            background: red;
+            cursor: pointer;
 
         }
 
@@ -82,37 +91,34 @@
 
         }
 
-        .opciones-body {
-            position: relative;
-            z-index: 100;
-        }
+
 
         .opciones-items:nth-child(1) {
 
-            background: rgb(254, 253, 255);
+            background: #f5f5f5
         }
 
         .opciones-items:nth-child(2) {
-            background: rgba(227, 252, 1, 0.4);
+            background: rgba(218, 250, 61, 0.564);
         }
 
         .opciones-items:nth-child(3) {
-            background: rebeccapurple;
+            background: #ffffff6b
         }
 
         .opciones-items:nth-child(4) {
 
-            background: rebeccapurple;
+            background: #ffffff6b
         }
 
         .opciones-items:nth-child(5) {
 
-            background: rebeccapurple;
+            background: #ffffff6b
         }
 
         .opciones-items:nth-child(6) {
 
-            background: rebeccapurple;
+            background: #ffffff6b
         }
 
     </style>
@@ -122,26 +128,26 @@
     <script src="{{ asset('static/js/jquery-3.6.0.min.js') }}"></script>
     <script>
         /*fetch("/calendar")
-            .then((res ) =>res.json())
-            .then((data) => console.log(data));*/
-            
-           
+                .then((res ) =>res.json())
+                .then((data) => console.log(data));*/
+
+
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('agenda');
-            for(i=0;i<=5;i++){
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
+            for (i = 0; i <= 5; i++) {
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
 
-                locale: "es",
+                    locale: "es",
 
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title'
-                },
-                height: '100 %',
-                
-                events: "{{ url('/calendar') }}"
-            });
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title'
+                    },
+                    height: '100 %',
+
+                    events: "{{ url('/calendar') }}"
+                });
             }
 
 
@@ -150,81 +156,98 @@
     </script>
     <div class="container mx-auto ">
         <div class="row p-1">
-            <div class="opciones-items mx-auto col-sm-12 col-md-12 col-lg-10" style="height: 450px" >
-                <div class="w-75 mx-auto" style="  height:100%; "id="agenda" >
+            <div class="opciones-items mx-auto col-sm-12 col-md-12 col-lg-10" style="height: 400px">
+                <div class="w-100 mx-auto" style="  height:100%; " id="agenda">
                 </div>
             </div>
 
-            <div class="opciones-items p-1  mx-auto col-sm col-md-2">
-                <div class="opciones-image">
-                    <img src="static/img/notas.png" alt="">
-                </div>
-                <div class="p-2">
-                    <a href="/notas">
-                        <h3>Notas</h3>
-                        <label>En este apartado se mostraran las notas hechas por cada uno de los
-                            evento.</label><br>
-                        <label>Presione para entrar</label>
+            <div class="opciones-items p-1  mx-auto col-sm col-md-2 position-relative">
+                <a href="/notas">
+                    <div class="opciones-image position-absolute">
+                        <img src="static/img/notas.png" alt="">
+                    </div>
+                </a>
+                <div class=" p-1" style="height: 150px">
+
+                    <a style="z-index: 100;
+                    position: relative;
+                    text-decoration: none;" class="fs-3">
+                        <h3  class="fw-bold fs-2">Notas</h3>
+                        
+                       
                     </a>
+
                 </div>
             </div>
-            <div class="opciones-items p-1 m-2 col-sm-3 col-md">
-                <div class="opciones-image">
+            <div class="opciones-items p-1 m-2 col-sm-3 col-md position-relative">
+                <a  href="/animales">
+                <div class="opciones-image position-absolute">
                     <img src="static/img/cows.png" alt="">
                 </div>
-                <div class="p-2">
-                    <a href="/animales">
-                        <h3>Animales</h3>
-                        <p> En animales donde se encuentra todos los registros de animales que estan con opciones de
-                            añadir mas o editar estos mismos</p>
-                        <p> Presione click para entrar</p>
+            </a>
+                <div class="p-2" style="height: 150px">
+                    <a style="z-index: 100;
+                    position: relative;
+                    text-decoration: none;" class="fs-3 " >
+                        <h3 class="fw-bold fs-2">Animales</h3>
+                       
+                      
                     </a>
                 </div>
 
             </div>
-            <div class="opciones-items p-1  m-2 col-sm-3 col-md">
-                <div class="opciones-image">
+            <div class="opciones-items p-1  m-2 col-sm-3 col-md position-relative">
+                <a href="/eventos">
+                <div class="opciones-image position-absolute">
                     <img src="static/img/photoroom.png" alt="">
                 </div>
-                <div class="p-2">
-                    <a href="/eventos">
-                        <h3>Eventos</h3>
-                        <p> Es donde se colocan los eventos a los animales con las opciones de añadir nuevos eventos
-                            o
-                            modificarlos</p>
-                        <p> Presione click para entrar</p>
+            </a>
+                <div class="p-2" style="height: 150px">
+                    <a style="z-index: 100;
+                    position: relative;
+                    text-decoration: none;" class="fs-3" >
+                        <h3 class="fw-bold fs-2">Eventos</h3>
+                        
                     </a>
                 </div>
 
             </div>
 
             @can('view', Auth::user())
-                <div class="opciones-items p-1 m-2 col-sm-3 col-md">
-                    <div class="opciones-image">
+                <div class="opciones-items p-1 m-2 col-sm-3 col-md position-relative ">
+                    <a href="/usuarios">
+
+                   
+                    <div class="opciones-image position-absolute">
                         <img src="static/img/vaquero.png" alt="">
                     </div>
-                    <div class="p-2">
-                        <a href="/usuarios">
-                            <h3>Usuarios</h3>
-                            <p> En animales donde se encuentra todos los registros de animales que estan con opciones de
-                                añadir mas o editar estos mismos</p>
-                            <p> Presione para entrar</p>
+                </a>
+                    <div class="p-2" style="height: 150px">
+                        <a style="z-index: 100;
+                            position: relative;
+                            text-decoration: none;" class="fs-2" >
+                            <h3 class="fw-bold fs-2">Usuarios</h3>
+                         
                         </a>
                     </div>
 
                 </div>
             @endcan
 
-            <div class="opciones-items p-1 m-2 col-sm-3 col-md">
-                <div class="opciones-image">
+            <div class="opciones-items p-1 m-2 col-sm-3 col-md position-relative">
+                <a href="/tareas">
+
+                
+                <div class="opciones-image position-absolute">
                     <img src="static/img/tareas.png" alt="">
                 </div>
-                <div class="p-2">
-                    <a href="/tareas">
-                        <h3>Tareas</h3>
-                        <p> En animales donde se encuentra todos los registros de animales que estan con opciones de
-                            añadir mas o editar estos mismos</p>
-                        <p> Presione para entrar</p>
+            </a>
+                <div class="p-2" style="height: 150px">
+                    <a style="z-index: 100;
+                    position: relative;
+                    text-decoration: none;" class="fs-3" >
+                        <h3 class="fw-bold fs-2">Tareas</h3>
+                        
                     </a>
 
                 </div>

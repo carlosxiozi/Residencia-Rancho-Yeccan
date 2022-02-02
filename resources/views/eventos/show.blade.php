@@ -44,18 +44,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" href="{{ asset('static/css/estilos_opciones.css') }}">
         <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
-        <title>Document</title>
+        <title>Ver eventos</title>
     </head>
     <body>
-    <lu id="lu_c">
-        <center>
-        <br><br> <li><label class="" id="lbCategoria">Nombre del evento: {{$eventos1->nombre_evento}}</label></li> <br><br>
-        <li><label id="lbCategoria">Fecha de inicio: {{$eventos1->fecha_inicial}}</label></li><br><br>
-        <li><label id="lbCategoria">Fecha de terminación: {{$eventos1->fecha_final}}</label></li><br><br>
-        <li><label id="lbCategoria">Descripción: {{$eventos1->descripcion}}</label></li><br><br>
-        <a class=regreso href="/eventos">Regresar</a>
-</center>
-    </lu>
-    
+        <div class="container-fluid mt-5 row mx-auto">
+            <div style="background: white !important" class="row col-xs col-sm col-md col-xl-6 shadow p-2 mx-auto">
+                <a href="/eventos" class="btn btn-info mb-3"><span class="fas fa-long-arrow-alt-left"></span>Regresar</a>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Nombre del evento</span>
+                    <span class="form-control"> {{$eventos1->nombre_evento}}</span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Fecha de inicio</span>
+                    <span class="form-control"> {{$eventos1->fecha_inicial}}</span>
+                </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Fecha final</span>
+                        <span class="form-control"> {{$eventos1->fecha_final}}</span>
+                    </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Descripción</span>
+                            <span class="form-control"> {{$eventos1->descripcion}}</span>
+                        </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Tipo</span>
+                                <span class="form-control"> {{$eventos1->tipo}}</span>
+                            </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">nota</span>
+                                    <span class="form-control"> {{$eventos1->nota}}</span>
+                                </div>
+        
+      
+            </div>
+        </div>
     </body>
     </html>

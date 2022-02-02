@@ -19,17 +19,53 @@
 
 <body class="cuerpo">
     <center>
-    <div class="box">
-    <form action="/eventos/{{$eventos1->id}}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        <br><h3>Nombre del evento <input type="text" name="nombre" value="{{$eventos1->nombre_evento}}"></h3><br>
-        <h3>Fecha de inicio <input type="date" name = "fecha_inicio" value="{{$eventos1->fecha_inicial}}"></h3><br>
-        <h3>Fecha de terminación <input type="date" name = "fecha_final" value="{{$eventos1->fecha_final}}"></h3><br>
-        <textarea name="descripcion"  cols="60" rows="10"   >{{$eventos1->descripcion}}</textarea><br><br>
+    <div  class="container-fluid mt-5 row mx-auto">
+    <form   style="background: white !important" class="row col-xs col-sm col-md col-xl-5 shadow p-2 mx-auto" 
+    action="/eventos/{{$eventos1->id}}" method="post" enctype="multipart/form-data">
         
-        <input class="regreso" type="submit" value="Actualizar">
-        <a href="/eventos" class="regreso"><span class="fas fa-long-arrow-alt-left"></span> Regresar</a>
+        @csrf
+        <a href="/eventos" class="btn btn-info"><span class="fas fa-long-arrow-alt-left"></span> Regresar</a>
+        <div class="row p-2 mx-auto">
+        @method('PUT')
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text">Nombre del evento </span>
+            <input class="form-control" type="text" name="nombre" value="{{$eventos1->nombre_evento}}">
+        </div>
+        <div class="input-group mb-3">
+            
+            <span class="input-group-text"> Fecha Inicial  </span>
+         <input  class="form-control" type="date" name = "fecha_inicio" value="{{$eventos1->fecha_inicial}}">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text"> Fecha de terminación  </span>
+        <input  class="form-control" type="date" name = "fecha_final" value="{{$eventos1->fecha_final}}">
+    </div>
+    
+    <div class="input-group mb-3">
+        <span class="input-group-text"> Descripción  </span>
+        <textarea  class="form-control"name="descripcion"  cols="20" rows="10"   >{{$eventos1->descripcion}}</textarea><br><br>
+    </div>
+    
+    <div class="input-group mb-3">
+        <span class="input-group-text"> Tipo de vento:</span><select name="tipo" id="tipo" value="{{ $eventos1->tipo }}">
+                <option>{{ $eventos1->tipo }}</option>
+                <option>General</option>
+                <option>Individual</option>
+            </select>
+          
+        </select>
+
+    </div>
+
+    <div class="input-group mb-3">
+        
+        <span class="input-group-text"> Descripción  </span>
+        <textarea  class="form-control"name="nota"  cols="20" rows="10"   >{{$eventos1->nota}}</textarea><br><br>
+
+    </div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Actualizar">
     </form>
     </div>
     </center>

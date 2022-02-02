@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\Animal' => 'App\Policies\animalPolitica',
          'App\Models\Control_reproductivo' => 'App\Policies\controlReproductivoPolitica',
          'App\Models\Evento' => 'App\Policies\eventoPolitica',
+         'App\Models\Evidencia' => 'App\Policies\evidenciaPolitica',
     ];
 
     /**
