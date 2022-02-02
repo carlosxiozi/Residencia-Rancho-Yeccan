@@ -98,8 +98,8 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                             @if (is_null($eventos->nota))
                             @else
                                 <div class="input-group mb-3">
-                                    <label class="input-group-text"> {{ $eventos->nombre_evento }} </label>
-                                    <label class="form-control" style="height: auto">
+                                    <label class="input-group-text" style="font-size:16px;"> {{ $eventos->nombre_evento }} </label>
+                                    <label class="form-control" style="height: auto; font-size:16px;">
                                         @php
                                             $j = 1;
                                             $notas = explode('_', $eventos->nota);
@@ -114,7 +114,7 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                             @endif
                         @endforeach
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3"style="height: auto; font-size:16px;">
                         <span class="input-group-text  fs-2 ">Evento</span><select name="evento_id" id="evento_id"
                             onchange="mostrar()" ;>
                             @foreach ($eventos1 as $eventos)
@@ -144,7 +144,7 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                 <h2 id="seleccion"></h2>
                 <textarea class="form-control  fs-2" name="notas" Onkeyup="charCount();" cols="45" rows="10"
                     placeholder="Escribe las observaciones aqui..." maxlength="500" minlength="3"></textarea>
-                <button class="btn btn-primary" name="estadoTrue" value="1"> <span class="far fa-check-circle"></span>
+                <button class="btn btn-primary fs-2" name="estadoTrue" value="1"> <span class="far fa-check-circle"></span>
                     Agregar
                 </button>
             </form>
@@ -159,7 +159,7 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
 
 
             <div class="row p-2 mx-auto">
-                <button class="btn btn-primary" Onclick="ver()"> <span class="far fa-check-circle"></span>
+                <button class="btn btn-primary" style="height: auto; font-size:16px;" Onclick="ver()"> <span class="far fa-check-circle"></span>
                     Añadir Evidencia
                 </button>
                 <script type="text/javascript">
@@ -209,7 +209,7 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                         @csrf
                         @method('DELETE')
                         @can('deleteEvi', $trabaja)
-                            <button class="btn btn-danger" type="submit">Eliminar</button>
+                            <button class="btn btn-danger" type="submit" style="height: auto; font-size:16px;">Eliminar</button>
                         @endcan
                     </form>
                 </div>
@@ -225,7 +225,7 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text fs-2">Descripcion</span>
-                        <span class="form-control fs-2"> {{ $trabaja->comentarios }}</span>
+                        <span class="form-control fs-2" style="height: auto"> {{ $trabaja->comentarios }}</span>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text fs-2">Fecha</span>
