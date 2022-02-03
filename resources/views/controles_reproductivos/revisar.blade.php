@@ -36,8 +36,8 @@
                     @csrf
                     @method('PUT')
                     <div class="input-group mb-3">
-                        <span class="input-group-text">  Observaciónes</span>
-                        <textarea  class="form-control" name="motivo" Onkeyup="charCount();" cols="45" rows="10"
+                        <span  class="input-group-text">  Observaciónes</span>
+                        <textarea style="resize: none;"  class="form-control" name="motivo" Onkeyup="charCount();"  rows="4"
                             placeholder="Escribe las observaciones aqui..." maxlength="500"
                             minlength="3"></textarea><br>
                     </div>

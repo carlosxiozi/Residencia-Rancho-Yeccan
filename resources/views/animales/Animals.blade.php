@@ -59,7 +59,7 @@
         </div>
         <div class="col-sm col-md-6 col-lg-5">
             <form action="{{ route('animales.index') }} " method="get" class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="texto">
+                <input class="form-control me-2" type="search" placeholder="Buscar por Arete" aria-label="Search" name="texto">
                 <button class="btn btn-outline-success" type="submit" value="Buscar">Buscar</button>
             </form>
         </div>

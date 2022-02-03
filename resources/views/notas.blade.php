@@ -14,48 +14,6 @@
         margin: 0;
     }
 
-    body {
-        background: #D3CCE3;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #E9E4F0, #D3CCE3);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-    }
-
-    .header-container {
-        display: flex;
-        background: white;
-        height: 70px;
-        align-items: center;
-        justify-content: center;
-        background: #E0EAFC;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #CFDEF3, #E0EAFC);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    }
-
-    span.header-titile {
-        align-items: end;
-        font-size: 4rem;
-    }
-
-    .header-img {
-        width: 85px;
-        height: 100%;
-        border-radius: 50%;
-        padding: 0;
-        margin: 0;
-    }
-
-    .header-img img {
-        width: 100%;
-        height: 100%;
-    }
-
 </style>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -72,7 +30,7 @@
 <nav class="navbar navbar-light " style="background: #E0EAFC;
 background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
 background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
-    <div class="container-fluid   text-wrap ">
+    <div class="container   text-wrap ">
         <a class="navbar-brand  fs-1 mx-auto" href="/">
             <img src="/static/img/suizo.png" alt="" width="80" height="60" class="d-inline-block align-text-top">
             Rancho Yeccan
@@ -81,85 +39,85 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
 </nav>
 
 <body>
-    <div class="container-fluid mt-5 row mx-auto">
-        <div style="margin-right: 500px; background: white !important"
-            class="row col-xs col-sm col-md col-xl-6 shadow p-2">
-            <a style=" 
-            right: 0%;
-            position: relative; font-size:16px;
-        " class="regreso btn btn-primary" href="/"> <span class="fas fa-sign-out-alt"></span>Regresar </a>
-            <div class="row p-2 mx-auto">
+    <div class="">
+        <div style=" background: white !important; " class="row shadow container mx-auto">
+            <a class="btn btn-primary w-100" href="/"> <span class="fas fa-sign-out-alt"></span>Regresar </a>
+            <div class="col-sm col-md-7 p-2 mx-auto">
                 @if ($bandera == 1)
-                    <div style="font-size: 16px;" class="contenedor">
+                    <div class=">
                         @foreach ($eventos1 as $eventos)
                             @php
                                 $i = 1;
                             @endphp
                             @if (is_null($eventos->nota))
                             @else
-                                <div class="input-group mb-3">
-                                    <label class="input-group-text" style="font-size:16px;"> {{ $eventos->nombre_evento }} </label>
-                                    <label class="form-control" style="height: auto; font-size:16px;">
-                                        @php
-                                            $j = 1;
-                                            $notas = explode('_', $eventos->nota);
-                                            for ($i = 0; $i < sizeof($notas); $i++) {
-                                                echo nl2br($j . '.- ' . $notas[$i] . "\n");
-                                                $j = $j + 1;
-                                            }
-                                            
-                                        @endphp
-                                    </label><br>
-                                </div>
-                            @endif
-                        @endforeach
+                                <div class="
+                        input-group mb-3">
+                        <label class="input-group-text" style="font-size:16px;">
+                            {{ $eventos->nombre_evento }} </label>
+                        <label class="form-control" style="height: auto; font-size:16px;">
+                            @php
+                                $j = 1;
+                                $notas = explode('_', $eventos->nota);
+                                for ($i = 0; $i < sizeof($notas); $i++) {
+                                    echo nl2br($j . '.- ' . $notas[$i] . "\n");
+                                    $j = $j + 1;
+                                }
+                            @endphp
+                        </label><br>
                     </div>
-                    <div class="input-group mb-3"style="height: auto; font-size:16px;">
-                        <span class="input-group-text  fs-2 ">Evento</span><select name="evento_id" id="evento_id"
-                            onchange="mostrar()" ;>
-                            @foreach ($eventos1 as $eventos)
-                                <option value="">Seleccione un evento </option>
-                                <option value="{{ $eventos->id }}">{{ $eventos->nombre_evento }}</option>
-                            @endforeach
-                        </select><br></h3>
-                    </div>
-                    <script type="text/javascript">
-                        function mostrar() {
-                            let cod = document.getElementById('evento_id').value;
-                            let formNotes = document.getElementById('form_notas');
-                            //let seleccion = document.getElementById('seleccion');
-                            formNotes.setAttribute('action', '/eventos/' + cod);
-                            //seleccion.innerHTML = "Evento"+;
-                            formNotes.style.display = "block";
-                        }
-                    </script>
-                    <div>
-                    </div>
-                    </form>
+                @endif
+                @endforeach
             </div>
-
-            <form id="form_notas" method="post" style="display:none;">
-                @csrf
-                @method('PUT')
-                <h2 id="seleccion"></h2>
-                <textarea class="form-control  fs-2" name="notas" Onkeyup="charCount();" cols="45" rows="10"
-                    placeholder="Escribe las observaciones aqui..." maxlength="500" minlength="3"></textarea>
-                <button class="btn btn-primary fs-2" name="estadoTrue" value="1"> <span class="far fa-check-circle"></span>
-                    Agregar
-                </button>
+            <div class="mb-3 input-group col-sm col-md-7">
+                <span class="input-group-text  fs-2 ">Evento</span>
+                <select class="form-select fs-3" name="evento_id" id="evento_id" onchange="mostrar()" ;>
+                    @foreach ($eventos1 as $eventos)
+                        <option value="">Seleccione un evento </option>
+                        <option value="{{ $eventos->id }}">{{ $eventos->nombre_evento }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <script type="text/javascript">
+                function mostrar() {
+                    let cod = document.getElementById('evento_id').value;
+                    let formNotes = document.getElementById('form_notas');
+                    //let seleccion = document.getElementById('seleccion');
+                    formNotes.setAttribute('action', '/eventos/' + cod);
+                    //seleccion.innerHTML = "Evento"+;
+                    formNotes.style.display = "block";
+                }
+            </script>
+            <div>
+            </div>
             </form>
         </div>
-        @endif
+
+        <form id="form_notas" method="post" style="display:none;">
+            @csrf
+            @method('PUT')
+            <h2 id="seleccion"></h2>
+            <textarea style="resize: none" class="form-control  fs-2" name="notas" Onkeyup="charCount();" rows="5"
+                placeholder="Escribe las observaciones aqui..." maxlength="500" minlength="3"></textarea>
+            <div class="d-flex justify-content-center p-2">
+                <button class="btn btn-primary fs-2" name="estadoTrue" value="1"> <span
+                        class="far fa-check-circle"></span>
+                    Agregar
+                </button>
+            </div>
+        </form>
+    </div>
+    @endif
 
 
     </div>
-    <div class="container-fluid mt-5 row mx-auto">
-        <div style="margin-right: 500px; background: white !important"
-            class="row col-xs col-sm col-md col-xl-6 shadow p-2">
+    <div class="container mt-5 row mx-auto">
+        <div style="background: white !important" class="row  shadow p-2 mx:auto">
 
 
             <div class="row p-2 mx-auto">
-                <button class="btn btn-primary" style="height: auto; font-size:16px;" Onclick="ver()"> <span class="far fa-check-circle"></span>
+                <button class="btn btn-primary" style="height: auto; font-size:16px;" Onclick="ver()"> <span
+                        class="far fa-check-circle"></span>
                     Añadir Evidencia
                 </button>
                 <script type="text/javascript">
@@ -176,8 +134,9 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                         <div class="input-group mb-3 ">
                             <span class="input-group-text ">Descripcion </span>
 
-                            <textarea class="form-control" name="comentarios" id="comentarios" cols="20" rows="10"
-                                placeholder="Describir que se realizo en la imagen anterior"></textarea> <br>
+                            <textarea class="form-control" name="comentarios" id="comentarios" rows="5"
+                                style="resize: none" placeholder="Describir que se realizo en la imagen"></textarea>
+                            <br>
                         </div>
                         <div class="input-group mb-3">
 
@@ -196,50 +155,45 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
         </div>
 
     </div>
-    <div class="container-fluid mt-5 row mx-auto">
-        <div style="margin-right: 500px; background: white !important"
-            class="row col-xs col-sm col-md col-xl-6 shadow p-2">
-            <div class="row p-2 mx-auto">
-
-
-                @foreach ($trabajador as $trabaja)
-                <div class="input-group mb-3">
-                    <form action="/evidencias/{{ $trabaja->id }}" class="formulario" method="post"
-                        style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        @can('deleteEvi', $trabaja)
-                            <button class="btn btn-danger" type="submit" style="height: auto; font-size:16px;">Eliminar</button>
-                        @endcan
-                    </form>
-                </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text fs-2">Nombre</span>
-                        <span class="form-control fs-2"> {{ $trabaja->nombre}}</span>
+    <div class="container mt-5  mx-auto">
+        <label style="font-size:22px " for="">Evidencias: </label>
+        <div style="background: rgb(253, 252, 252) !important" class="row g-3 justify-content-evenly">
+            @foreach ($trabajador as $trabaja)
+                <div class="bg-light col-sm-6 col-md-6 col-lg-4 shadow rounded-1 " >
+                    <div class="input-group my-3">
+                        <span class="input-group-text fs-2">Descripcion</span>
+                        <span class="form-control fs-2" style="height: auto"> {{ $trabaja->nombre }}</span>
                     </div>
-                 
                     <div class="input-group mb-3">
-
                         <img class="img-fluid img-thumbnail mx-auto d-block" src="{{ asset($trabaja->imagen) }}"
                             alt="">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text fs-2">Descripcion</span>
-                        <span class="form-control fs-2" style="height: auto"> {{ $trabaja->comentarios }}</span>
+                        <p class="form-control fs-2" style="height: auto"> {{ $trabaja->comentarios }}</p>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text fs-2">Fecha</span>
-                        <span class="form-control fs-2"> {{ \Carbon\Carbon::parse( $trabaja->fecha_evidencia)->format('d/m/Y')  }}</span>
+                        <span style="height: auto" class="form-control fs-2">
+                            {{ \Carbon\Carbon::parse($trabaja->fecha_evidencia)->format('d/m/Y') }}</span>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text fs-2">hora</span>
-                        <span class="form-control fs-2"> {{ $trabaja->hora_evidencia }}</span>
+                        <span style="height: auto" class="form-control fs-2"> {{ $trabaja->hora_evidencia }}</span>
                     </div>
-                @endforeach
-
-
-            </div>
-
+                    <div class="input-group mb-3">
+                        <form action="/evidencias/{{ $trabaja->id }}" class="mx-auto" method="post"
+                            style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            @can('deleteEvi', $trabaja)
+                                <button class="btn btn-danger" type="submit"
+                                    style="height: auto; font-size:16px;">Eliminar</button>
+                            @endcan
+                        </form>
+                    </div>
+                </div>
+            @endforeach
         </div>
 
     </div>
