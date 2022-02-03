@@ -82,3 +82,77 @@ git pull
 git pull
 git pull
 git pull
+git pull
+php artisan migrate:refresh
+jlazgdshlisgdhoiasgdiyhasiodhsauihdoiashdiuashiodhad
+git pull
+git pull
+nano /var/www/yeccan/.ssh/id_rsa.pub
+git pull
+git status
+git add -all
+git add --all
+git commit -m "c"
+git push origin master
+git pull
+git status
+git push origin master
+git pull origin master
+git merger master
+git merge master
+git stash
+git fetch
+git merge origin/master
+git merge --continue
+git status
+git add.
+git commit -m "composer"
+git add
+.
+git add.
+git add .
+git commit -m "composer"
+git pull
+git pull
+git status
+git push
+git pull
+git status
+php artisan db:seed
+php artisan websockets:serve &
+composer update
+php artisan websockets:serve &
+nano .env
+nano .env
+nano .env
+php artisan
+php artisan websockets &
+php artisan websockets:serve  &
+ls
+nano config/broadcasting.php 
+php artisan websockets:serve &
+nano /config/broadcdascasting.php
+nano /config/broadcasting.php
+ls
+nano config/broadcasting.php
+php artisan websockets:serve &
+git pull
+php artisan websocket:serv
+php artisan websocket:serve
+vi config/broadcasting.php 
+exit
+clear
+php artisan websockets:serve --port=6002
+clear
+php artisan websockets:serve --port=6002 & 
+php artisan websockets:serve --port=6002
+git pull
+git pull
+git pull
+git pull
+git pull
+git pull
+git pull
+php artisan migrate:refresh
+php artisan db:seed
+php artisan websockets:serve --port=6002
