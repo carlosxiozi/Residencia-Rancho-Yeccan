@@ -60,6 +60,7 @@
                 "issues": "https://github.com/asm89/stack-cors/issues",
                 "source": "https://github.com/asm89/stack-cors/tree/v2.1.1"
             },
+<<<<<<< Updated upstream
             "time": "2022-01-18T09:12:03+00:00"
         },
         {
@@ -127,6 +128,9 @@
                 }
             ],
             "time": "2020-12-27T12:05:53+00:00"
+=======
+            "time": "2022-01-03T15:27:13+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "beyondcode/laravel-websockets",
@@ -3165,7 +3169,11 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
+<<<<<<< Updated upstream
                 "source": "https://github.com/bobthecow/psysh/tree/v0.11.1"
+=======
+                "source": "https://github.com/bobthecow/psysh/tree/v0.10.12"
+>>>>>>> Stashed changes
             },
             "time": "2022-01-03T13:58:38+00:00"
         },
@@ -3229,7 +3237,11 @@
                 "issues": "https://github.com/pusher/pusher-http-php/issues",
                 "source": "https://github.com/pusher/pusher-http-php/tree/7.0.2"
             },
+<<<<<<< Updated upstream
             "time": "2021-12-07T13:09:00+00:00"
+=======
+            "time": "2021-03-15T09:17:01+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "ralouphie/getallheaders",
@@ -4280,6 +4292,7 @@
             ],
             "support": {
                 "source": "https://github.com/ringcentral/psr7/tree/master"
+<<<<<<< Updated upstream
             },
             "time": "2018-05-29T20:21:04+00:00"
         },
@@ -4335,6 +4348,10 @@
                 "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
             },
             "time": "2021-12-11T13:40:54+00:00"
+=======
+            },
+            "time": "2018-05-29T20:21:04+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "silviolleite/laravelpwa",

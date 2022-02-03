@@ -1,3 +1,4 @@
+
 <?php
 
 return [
@@ -39,7 +40,7 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'encrypted' => true,
                 'host' => '127.0.0.1',
-                'port' => 6001,
+                'port' => 6002,
                 'scheme' => 'http'
             ],
         ],

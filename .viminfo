@@ -11,6 +11,8 @@
 # hlsearch on (H) or off (h):
 ~h
 # Command Line History (newest to oldest):
+:q
+|2,0,1641996330,,"q"
 :wq
 |2,0,1641753419,,"wq"
 
@@ -28,16 +30,30 @@
 |3,1,36,0,1,0,1641753416,"/"
 
 # File marks:
-'0  1  4  ~/.gitignore
-|4,48,1,4,1641753419,"~/.gitignore"
+'0  68  0  ~/config/broadcasting.php
+|4,48,68,0,1641996330,"~/config/broadcasting.php"
+'1  1  4  ~/.gitignore
+|4,49,1,4,1641753419,"~/.gitignore"
 
 # Jumplist (newest first):
+-'  68  0  ~/config/broadcasting.php
+|4,39,68,0,1641996330,"~/config/broadcasting.php"
+-'  1  0  ~/config/broadcasting.php
+|4,39,1,0,1641996252,"~/config/broadcasting.php"
+-'  1  4  ~/.gitignore
+|4,39,1,4,1641753419,"~/.gitignore"
 -'  1  4  ~/.gitignore
 |4,39,1,4,1641753419,"~/.gitignore"
 -'  2  0  ~/.gitignore
 |4,39,2,0,1641753400,"~/.gitignore"
+-'  2  0  ~/.gitignore
+|4,39,2,0,1641753400,"~/.gitignore"
 
 # History of marks within files (newest to oldest):
+
+> ~/config/broadcasting.php
+	*	1641996329	0
+	"	68	0
 
 > ~/.gitignore
 	*	1641753417	0
