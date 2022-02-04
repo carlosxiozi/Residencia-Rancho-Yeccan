@@ -13,24 +13,23 @@ class autenticarController extends Controller
         $user = $request->input('usuario');
         $password = $request->input('contrasena');
         $usuario = trabajador::where('nombre',$user)->get();
-        if($usuario){
+        if($size = sizeof($usuario)==0){
            // return $password;
-           foreach ($usuario as $user1){
-               
-            if(Hash::check($password, $user1->contrasena)){
-                Auth::login($user1);
-                return redirect('/');
-                
-            }else{
-               
-                return back()->withErrors('Datos ingresado erroneos!!')->withInput();
-            }
-           }
+           return redirect('/login') ->with('error','Datos incorrectos!');
             
         }else{
             
-
-         return back()->withErrors('Usuario no encontrado!!')->withInput();
+            foreach ($usuario as $user1){
+            
+                if(Hash::check($password, $user1->contrasena)){
+                    Auth::login($user1);
+                    return redirect('/');
+                    
+                }else{
+                    return redirect('/login') ->with('error','Datos incorrectos!');
+                    
+                }
+               }
         }
     }
     public function salir(){

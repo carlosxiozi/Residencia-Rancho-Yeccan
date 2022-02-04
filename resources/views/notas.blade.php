@@ -41,18 +41,17 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
 <body>
     <div class="">
         <div style=" background: white !important; " class="row shadow container mx-auto">
-            <a class="btn btn-primary w-100" href="/"> <span class="fas fa-sign-out-alt"></span>Regresar </a>
+            <a class="btn btn-primary w-100 " href="/" style="font-size: 16px"> <span class="fas fa-sign-out-alt"></span>Regresar </a>
             <div class="col-sm col-md-7 p-2 mx-auto">
                 @if ($bandera == 1)
-                    <div class=">
+                    <div class="">
                         @foreach ($eventos1 as $eventos)
                             @php
                                 $i = 1;
                             @endphp
                             @if (is_null($eventos->nota))
                             @else
-                                <div class="
-                        input-group mb-3">
+                                <div class="input-group mb-3">
                         <label class="input-group-text" style="font-size:16px;">
                             {{ $eventos->nombre_evento }} </label>
                         <label class="form-control" style="height: auto; font-size:16px;">
@@ -99,9 +98,9 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
             <h2 id="seleccion"></h2>
             <textarea style="resize: none" class="form-control  fs-2" name="notas" Onkeyup="charCount();" rows="5"
                 placeholder="Escribe las observaciones aqui..." maxlength="500" minlength="3"></textarea>
-            <div class="d-flex justify-content-center p-2">
+            <div class="d-flex justify-content-center p-2" >
                 <button class="btn btn-primary fs-2" name="estadoTrue" value="1"> <span
-                        class="far fa-check-circle"></span>
+                        class="far fa-check-circle" ></span>
                     Agregar
                 </button>
             </div>
@@ -144,7 +143,7 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
 
                         </div>
 
-                        <button class="btn btn-primary" type="submit"><span class="far fa-check-circle"></span> Agregar
+                        <button class="btn btn-primary" type="submit" style="font-size: 16px;"><span class="far fa-check-circle"></span> Agregar
                         </button>
                     </div>
 

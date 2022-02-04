@@ -22,6 +22,11 @@ const filesToCache = [
     '/eventos',
     '/controles_reproductivos',
     '/controles_productivos',
+    '/usuarios',
+    '/notas',
+    '/tareas',
+    '/',
+    '/static/css/principal.css',
 
 
 ]

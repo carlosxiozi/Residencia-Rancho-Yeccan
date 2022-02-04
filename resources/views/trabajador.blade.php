@@ -279,22 +279,28 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                         <img src="{{ $animal->imagen }}" alt=""
                                             class="img-thumbnail rounded w-75 mx-auto card-img-top">
                                         <div class="card-body">
-                                            <div class="card-header">
+                                            <div class="card-header fs-3">
                                                 Información del animal
                                             </div>
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">Animal: {{ $animal->nombre }}</li>
-                                                <li class="list-group-item">Arete: {{ $animal->arete }}</li>
-                                                <li class="list-group-item"> Sexo: {{ $animal->sexo }}</li>
+                                                <li class="list-group-item fs-3">Animal: {{ $animal->nombre }}</li>
+                                                <li class="list-group-item fs-3">Arete: {{ $animal->arete }}</li>
+                                                <li class="list-group-item fs-3"> Sexo: {{ $animal->sexo }}</li>
                                                
                                                     @foreach ($animal->control_reproductivo as $fecha)
                                                         @php
                                                             $nueva_fecha = \Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(15);
                                                             $fecha_final = \Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->addDays(7);
-                                                            $dias = \Carbon\Carbon::now()->diffInDays($fecha->fecha_de_parto);
-                                                            $horas = \Carbon\Carbon::now()->diffInHours($fecha->fecha_de_parto) - $dias * 24;
+                                                            $dias = \Carbon\Carbon::now()->diffInDays($fecha_final);
+                                                            $horas = \Carbon\Carbon::now()->diffInHours($fecha_final) - $dias * 24;
                                                             $hoy = \Carbon\Carbon::now();
                                                             $fechaf = \Carbon\Carbon::createFromDate($fecha->fecha_de_parto);
+
+                                                            $colores=0;
+                                                            
+                                                            $nueva_fecha_verde = \Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(10);
+                                                            $nueva_fecha_amarillo = \Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(5);
+
                                                         @endphp
 
                                                         @if (\Carbon\Carbon::now()->gte($nueva_fecha) & \Carbon\Carbon::now()->lte($fecha_final))
@@ -303,6 +309,20 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                                                 $fechas = 1;
                                                             @endphp
                                                         @endif
+                                                        @if(\Carbon\Carbon::today()->gte($nueva_fecha) & \Carbon\Carbon::today()->lte($nueva_fecha_verde))
+                                                            @php
+                                                                $colores = 1;
+                                                            @endphp
+                                                        @elseif(\Carbon\Carbon::today()->gte($nueva_fecha_verde) & \Carbon\Carbon::today()->lte($nueva_fecha_amarillo))
+                                                            @php
+                                                                $colores = 2;
+                                                            @endphp
+                                                        @elseif(\Carbon\Carbon::today()->gte($nueva_fecha_amarillo) & \Carbon\Carbon::today()->lte($fecha_final))
+                                                            @php
+                                                                $colores = 3;
+                                                            @endphp
+                                                        @endif
+                                                        
                                                     @endforeach
 
                                                     @php
@@ -316,12 +336,12 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
 
                                                         @if ($controlRep->estado_animal == 0)
                                                             @if (\Carbon\Carbon::today()->gte($nueva_fecha1) & \Carbon\Carbon::today()->lte($fecha_final1))
-                                                            <div class="card-header">
+                                                            <div class="card-header fs-3">
                                                                 Fechas de servicio
                                                             </div>
                                                            <ul  class="list-group list-group-flush">
-                                                            <li class="list-group-item"> Fecha de servicio: {{ \Carbon\Carbon::parse($nueva_fecha1)->format('d/m/Y') }}</li>
-                                                            <li class="list-group-item"> Fecha de revision::{{ \Carbon\Carbon::parse($fecha_final1)->format('d/m/Y') }}</li>
+                                                            <li class="list-group-item fs-3"> Fecha de servicio: {{ \Carbon\Carbon::parse($nueva_fecha1)->format('d/m/Y') }}</li>
+                                                            <li class="list-group-item fs-3"> Fecha de revision::{{ \Carbon\Carbon::parse($fecha_final1)->format('d/m/Y') }}</li>
                                                            </ul>
                                                                
                                                             @else
@@ -337,10 +357,10 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                                     @endforeach
 
                                                     @if ($parto == 0)
-                                                    <li class="list-group-item"> Estado: Sin preñar</li>
+                                                    <li class="list-group-item fs-3"> Estado: Sin preñar</li>
                                                         
                                                     @elseif($parto == 1)
-                                                    <li class="list-group-item"> Estado: embarazada</li>
+                                                    <li class="list-group-item fs-3"> Estado: embarazada</li>
                                                         
                                                         @if ($fechas == 1)
                                                             
@@ -349,15 +369,26 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                                                     @if ($controlRep->estado_animal == 0)
 
                                                                     @elseif($controlRep->estado_animal == 1)
-
-                                                                    <div class="card-header">
+                                                                    
+                                                                    <div class="card-header fs-3">
                                                                         Fecha de parto
                                                                     </div>
                                                                      <ul  class="list-group list-group-flush">
-                                                                        <li class="list-group-item  border border-danger border-2 fw-bold ">  Fechas de aproximación de parto: {{ \Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y') }} -- {{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</li>
-                                                                        <li class="list-group-item  border border-danger  border-2 fw-bold">  Faltan {{ $dias }} dias con {{ $horas }}  horas para finalizar.</li>
+                                                                        @if($colores == 1)
+                                                                            <li class="list-group-item fs-3  border border-danger border-2 fw-bold ">  Fechas de aproximación de parto: <label style="color:green">{{ \Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y') }}</h1> -- <label>{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</label></li>
+                                                                            <li class="list-group-item fs-3  border border-danger  border-2 fw-bold">  Faltan {{ $dias }} dias con {{ $horas }}  horas para finalizar.</li>
+                                                                        @elseif($colores == 2)
+                                                                            <li class="list-group-item fs-3  border border-danger border-2 fw-bold ">  Fechas de aproximación de parto: <label style="color:yellow">{{ \Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y') }}</h1> -- <label>{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</label></li>
+                                                                            <li class="list-group-item fs-3  border border-danger  border-2 fw-bold">  Faltan {{ $dias }} dias con {{ $horas }}  horas para finalizar.</li>
+                                                                        @elseif($colores == 3)
+                                                                            <li class="list-group-item fs-3  border border-danger border-2 fw-bold ">  Fechas de aproximación de parto: <label style="color: red">{{ \Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y') }}</h1> -- <label>{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</label></li>
+                                                                            <li class="list-group-item fs-3  border border-danger  border-2 fw-bold">  Faltan {{ $dias }} dias con {{ $horas }}  horas para finalizar.</li>
+                                                                        @endif
+                                                                        
+                                                                        
                                                                      </ul>
                                                                     @endif
+                                                                    
                                                                 @endforeach
 
                                                       
@@ -366,7 +397,7 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                                     @endif
                                                 
                                             </ul>
-                                            <div class="card-header">
+                                            <div class="card-header fs-3">
                                                 Eventos
                                             </div>
                                             @foreach ($animal->eventos as $eventoA)
@@ -377,12 +408,12 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                                 @endphp
                                                 @if (\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
                                                     <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">Evento:
+                                                        <li class="list-group-item fs-3">Evento:
                                                             {{ $eventoA->nombre_evento }}</li>
-                                                        <li class="list-group-item">Fecha
+                                                        <li class="list-group-item fs-3">Fecha
                                                             inicial:{{ \Carbon\Carbon::parse($eventoA->fecha_inicial)->format('d/m/Y') }}
                                                         </li>
-                                                        <li class="list-group-item">Fecha
+                                                        <li class="list-group-item fs-3">Fecha
                                                             final:{{ \Carbon\Carbon::parse($eventoA->fecha_final)->format('d/m/Y') }}
                                                         </li>
                                                     </ul>
@@ -399,13 +430,13 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                     <div class="card" style="height: 100%">
                                         <img class="img-thumbnail rounded w-75 mx-auto card-img-top"
                                             src="{{ $animal->imagen }}" alt="">
-                                        <div class="card-header"> Datos del animal</div>
+                                        <div class="card-header fs-3"> Datos del animal</div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Nombre: {{ $animal->nombre }}</li>
-                                            <li class="list-group-item"> Arete: {{ $animal->arete }}</li>
-                                            <li class="list-group-item"> Sexo: {{ $animal->sexo }}</li>
+                                            <li class="list-group-item fs-3">Nombre: {{ $animal->nombre }}</li>
+                                            <li class="list-group-item fs-3"> Arete: {{ $animal->arete }}</li>
+                                            <li class="list-group-item fs-3"> Sexo: {{ $animal->sexo }}</li>
                                         </ul>
-                                        <div class="card-header">Eventos</div>
+                                        <div class="card-header fs-3">Eventos</div>
                                         @foreach ($animal->eventos as $eventoA)
                                             @php
                                                 $fechaini = \Carbon\Carbon::createFromDate($eventoA->fecha_inicial);
@@ -413,12 +444,12 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                             @endphp
                                             @if (\Carbon\Carbon::today()->gte($fechaini) & \Carbon\Carbon::today()->lte($fechafin))
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Nombre del evento:
+                                                    <li class="list-group-item fs-3">Nombre del evento:
                                                         {{ $eventoA->nombre_evento }}</li>
-                                                    <li class="list-group-item">Fecha inicial:
+                                                    <li class="list-group-item fs-3">Fecha inicial:
                                                         {{ \Carbon\Carbon::parse($eventoA->fecha_inicial)->format('d/m/Y') }}
                                                     </li>
-                                                    <li class="list-group-item">Fecha final:
+                                                    <li class="list-group-item fs-3">Fecha final:
                                                         {{ \Carbon\Carbon::parse($eventoA->fecha_final)->format('d/m/Y') }}
                                                     </li>
                                                 </ul>
@@ -436,6 +467,10 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                     $horas = \Carbon\Carbon::now()->diffInHours($fecha_final) - $dias * 24;
                                     $hoy = \Carbon\Carbon::today()->toDateString();
                                     
+                                    $colores=0;
+                                                            
+                                    $nueva_fecha_verde = \Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(10);
+                                    $nueva_fecha_amarillo = \Carbon\Carbon::createFromDate($fecha->fecha_de_parto)->subDays(5);
                                     $fechaf = \Carbon\Carbon::createFromDate($fecha->fecha_de_parto);
                                     
                                 @endphp
@@ -444,8 +479,19 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                     @php
                                         $fechas = 1;
                                     @endphp
-
-
+                                @endif
+                                @if(\Carbon\Carbon::today()->gte($nueva_fecha) & \Carbon\Carbon::today()->lte($nueva_fecha_verde))
+                                    @php
+                                        $colores = 1;
+                                    @endphp
+                                @elseif(\Carbon\Carbon::today()->gte($nueva_fecha_verde) & \Carbon\Carbon::today()->lte($nueva_fecha_amarillo))
+                                    @php
+                                        $colores = 2;
+                                    @endphp
+                                @elseif(\Carbon\Carbon::today()->gte($nueva_fecha_amarillo) & \Carbon\Carbon::today()->lte($fecha_final))
+                                    @php
+                                        $colores = 3;
+                                    @endphp
                                 @endif
                             @endforeach
 
@@ -464,20 +510,20 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
 
                                                 <img src="{{ $animal->imagen }}" alt=""
                                                     class="img-thumbnail rounded w-75 mx-auto card-img-top">
-                                                <div class="card-header"> Datos del animal</div>
+                                                <div class="card-header fs-3"> Datos del animal</div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Nombre: {{ $animal->nombre }}</li>
-                                                    <li class="list-group-item"> Arete: {{ $animal->arete }}</li>
-                                                    <li class="list-group-item"> Sexo: {{ $animal->sexo }}</li>
-                                                    <li class="list-group-item"> Estado: Sin preñar </li>
+                                                    <li class="list-group-item fs-3">Nombre: {{ $animal->nombre }}</li>
+                                                    <li class="list-group-item fs-3"> Arete: {{ $animal->arete }}</li>
+                                                    <li class="list-group-item fs-3"> Sexo: {{ $animal->sexo }}</li>
+                                                    <li class="list-group-item fs-3"> Estado: Sin preñar </li>
                                                    
                                                 </ul>
-                                                <div class="card-header">Fecha de servicio</div>
+                                                <div class="card-header fs-3">Fecha de servicio</div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item"> Fecha de servicio:
+                                                    <li class="list-group-item fs-3"> Fecha de servicio:
                                                         {{ \Carbon\Carbon::parse($nueva_fecha1)->format('d/m/Y') }}
                                                     </li>
-                                                    <li class="list-group-item"> Fecha de revision:
+                                                    <li class="list-group-item fs-3"> Fecha de revision:
                                                         {{ \Carbon\Carbon::parse($fecha_final1)->format('d/m/Y') }}
                                                     </li>
                                                 </ul>
@@ -492,19 +538,32 @@ background: linear-gradient(to right, #CFDEF3, #E0EAFC);">
                                             <div class="card">
                                                 <img src="{{ $animal->imagen }}" alt=""
                                                     class="img-thumbnail rounded w-75 mx-auto card-img-top">
-                                                <div class="card-header"> Datos del animal</div>
+                                                <div class="card-header fs-3"> Datos del animal</div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Nombre: {{ $animal->nombre }}</li>
-                                                    <li class="list-group-item"> Arete: {{ $animal->arete }}</li>
-                                                    <li class="list-group-item"> Sexo: {{ $animal->sexo }}</li>
-                                                    <li class="list-group-item">Estado: embarazada </li>   
+                                                    <li class="list-group-item fs-3">Nombre: {{ $animal->nombre }}</li>
+                                                    <li class="list-group-item fs-3"> Arete: {{ $animal->arete }}</li>
+                                                    <li class="list-group-item fs-3"> Sexo: {{ $animal->sexo }}</li>
+                                                    <li class="list-group-item fs-3">Estado: embarazada </li>   
                                                 </ul>
-                                                <div class="card-header">Fecha de parto</div>
+                                                <div class="card-header fs-3">Fecha de parto</div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li  class="list-group-item border border-danger border-2 fw-bold">Fecha de aproximacion del parto:
-                                                        {{ \Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y') }}--{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}
-                                                    </li>
-                                                    <li  class="list-group-item border border-danger border-2 fw-bold" >Faltan {{ $dias }} dias con {{ $horas }} horas para finalizar </li>
+                                                    @if($colores == 1)
+                                                        <li  class="list-group-item fs-3 border border-danger border-2 fw-bold">Fecha de aproximacion del parto:
+                                                            <label style="color:green">{{ \Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y') }}</label>-- <label style="color:green">{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</label>
+                                                        </li>
+                                                        <li  class="list-group-item fs-3 border border-danger border-2 fw-bold" >Faltan {{ $dias }} dias con {{ $horas }} horas para finalizar </li>                 
+                                                    @elseif($colores == 2)
+                                                        <li  class="list-group-item fs-3 border border-danger border-2 fw-bold">Fecha de aproximacion del parto:
+                                                            <label style="color:yellow">{{ \Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y') }}</label>--<label style="color:yellow">{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</label>
+                                                        </li>
+                                                        <li  class="list-group-item fs-3 border border-danger border-2 fw-bold" >Faltan {{ $dias }} dias con {{ $horas }} horas para finalizar </li>    
+                                                    @elseif($colores == 3)
+                                                        <li  class="list-group-item fs-3 border border-danger border-2 fw-bold">Fecha de aproximacion del parto:
+                                                            <label style="color:red">{{ \Carbon\Carbon::parse($nueva_fecha)->format('d/m/Y') }}</label>--<label style="color:red">{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</label>
+                                                        </li>
+                                                        <li  class="list-group-item fs-3 border border-danger border-2 fw-bold" >Faltan {{ $dias }} dias con {{ $horas }} horas para finalizar </li>                   
+                                                    @endif
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
