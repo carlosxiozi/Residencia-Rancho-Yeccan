@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('principal');
 })->middleware('auth');
 Route::get('/encender', function() {
-    Artisan::call('websockets:serve');
+    Artisan::call('websockets:serve --port=6002');
     return 'Done';
 });
 
