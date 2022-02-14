@@ -5,7 +5,7 @@ return [
     'manifest' => [
         'name' => 'Rancho Yeccan',
         'short_name' => 'Yeccan',
-        'start_url' => './tareas',
+        'start_url' => './',
         'background_color' => '#ffffff',
         'theme_color' => '#E0EAFC',
         'display' => 'standalone',
