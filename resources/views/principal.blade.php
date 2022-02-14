@@ -27,8 +27,9 @@
                 <img src="/static/img/suizo.png" alt="" width="80" height="60" class="d-inline-block align-text-top">
                 Rancho Yeccan
             </a>
-           
+            @can('view', Auth::user())
             <a  class="btn btn-primary btn-lg" href="/encender"> <span class="fa-solid fa-turn-up"></span>Encender</a>
+            @endcan
             <a  class="btn btn-dark btn-lg" href="/salir"> <span class="fas fa-sign-out-alt"></span>Cerrar Sesión</a>
         </div>
         <label style="font-size:20px; " for="">Bienvenido : {{Auth::user()->nombre}}</label>
