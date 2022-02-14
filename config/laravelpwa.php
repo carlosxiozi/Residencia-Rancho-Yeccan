@@ -13,35 +13,35 @@ return [
         'status_bar'=> 'black',
         'icons' => [
             '72x72' => [
-                'path' => '/images/icons/toro-72x72.png',
+                'path' => '/images/icons/suizo-72x72.png',
                 'purpose' => 'any'
             ],
             '96x96' => [
-                'path' => '/images/icons/toro-96x96.png',
+                'path' => '/images/icons/suizo-96x96.png',
                 'purpose' => 'any'
             ],
             '128x128' => [
-                'path' => '/images/icons/toro-128x128.png',
+                'path' => '/images/icons/suizo-128x128.png',
                 'purpose' => 'any'
             ],
             '144x144' => [
-                'path' => '/images/icons/toro-144x144.png',
+                'path' => '/images/icons/suizo-144x144.png',
                 'purpose' => 'any'
             ],
             '152x152' => [
-                'path' => '/images/icons/toro-152x152.png',
+                'path' => '/images/icons/suizo-152x152.png',
                 'purpose' => 'any'
             ],
             '192x192' => [
-                'path' => '/images/icons/toro-192x192.png',
+                'path' => '/images/icons/suizo-192x192.png',
                 'purpose' => 'any'
             ],
             '384x384' => [
-                'path' => '/images/icons/toro-384x384.png',
+                'path' => '/images/icons/suizo-384x384.png',
                 'purpose' => 'any'
             ],
             '512x512' => [
-                'path' => '/images/icons/toro-512x512.png',
+                'path' => '/images/icons/suizo-512x512.png',
                 'purpose' => 'any'
             ],
         ],
@@ -63,7 +63,7 @@ return [
                 'description' => 'Shortcut Link 1 Description',
                 'url' => '/shortcutlink1',
                 'icons' => [
-                    "src" => "/images/icons/toro-72x72.png",
+                    "src" => "/images/icons/suizo-72x72.png",
                     "purpose" => "any"
                 ]
             ],

@@ -32,6 +32,9 @@ const filesToCache = [
 ]
 const filesToCacheInmutable = [
     '/static/img/cow.png',
+    '/static/img/suizo.png',
+    '/static/img/rancho1.png',
+    '/static/img/bonita.gif',
     '/static/js/libss/mdtoast.min.js',
     '/static/js/libss/mdtoast.min.css',
     '/images/icons/toro-72x72.png',
@@ -42,6 +45,14 @@ const filesToCacheInmutable = [
     '/images/icons/toro-192x192.png',
     '/images/icons/toro-384x384.png',
     '/images/icons/toro-512x512.png',
+    '/images/icons/suizo-72x72.png',
+    '/images/icons/suizo-96x96.png',
+    '/images/icons/suizo-128x128.png',
+    '/images/icons/suizo-144x144.png',
+    '/images/icons/suizo-152x152.png',
+    '/images/icons/suizo-192x192.png',
+    '/images/icons/suizo-384x384.png',
+    '/images/icons/suizo-512x512.png',
 
 ]
 self.addEventListener('install', event => {
