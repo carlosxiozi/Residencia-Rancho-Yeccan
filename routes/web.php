@@ -20,7 +20,10 @@ Route::post('/login','autenticarController@login');
 Route::get('/', function () {
     return view('principal');
 })->middleware('auth');
-
+Route::get('/encender', function() {
+    Artisan::call('websockets:serve');
+    return 'Done';
+});
 
 Route::get('/cambio','AnimalesController@cambio');
 Route::get('/salir','autenticarController@salir');

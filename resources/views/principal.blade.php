@@ -28,7 +28,7 @@
                 Rancho Yeccan
             </a>
            
-            
+            <a  class="btn btn-primary btn-lg" href="/encender"> <span class="fa-solid fa-turn-up"></span>Encender</a>
             <a  class="btn btn-dark btn-lg" href="/salir"> <span class="fas fa-sign-out-alt"></span>Cerrar Sesión</a>
         </div>
         <label style="font-size:20px; " for="">Bienvenido : {{Auth::user()->nombre}}</label>
