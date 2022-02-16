@@ -37,6 +37,20 @@
     </nav>
 
     <style>
+        * {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: url("/static/img/rancho1.png");
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  
+}
         .fs-1 {
             font-size: calc(1.35rem + 2.2vw) !important;
         }
