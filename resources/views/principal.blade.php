@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('static/css/principal.css') }}">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -42,15 +41,6 @@
             font-size: calc(1.35rem + 2.2vw) !important;
         }
 
-        /* .opciones-container {
-            width: 80vw;
-    height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: auto;
-    align-content: flex-end
-        } */
         .opciones-container {
             width: 80vw;
             height: auto;
