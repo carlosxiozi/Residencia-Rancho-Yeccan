@@ -129,7 +129,7 @@ class EventosController extends Controller
     public function edit($id)
     {
         $eventos1= Evento::find($id);
-        return view('Eventos.edit', compact('eventos1'));
+        return view('eventos.edit', compact('eventos1'));
     }
 
     /**
