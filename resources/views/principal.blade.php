@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('static/js/libss/mdtoast.min.css') }}">
     <title>Animales</title>
 </head>
-
+  
 <body>
     <nav class="navbar navbar-light " style="background: #E0EAFC;
     background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
@@ -27,6 +27,7 @@
                 Rancho Yeccan
             </a>
             @can('view', Auth::user())
+  
             <a  class="btn btn-primary btn-lg" href="/encender"> <span class="fa-solid fa-turn-up"></span>Encender</a>
             @endcan
             <a  class="btn btn-dark btn-lg" href="/salir"> <span class="fas fa-sign-out-alt"></span>Cerrar Sesión</a>
