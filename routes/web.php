@@ -28,7 +28,7 @@ Route::get('/encender', function() {
         
       } catch (Exception $e) {
           echo "<script>alert('Ya se encuentra encendido');</script>";
-          return view('/');
+          return redirect('/');
         
         die();
       }
