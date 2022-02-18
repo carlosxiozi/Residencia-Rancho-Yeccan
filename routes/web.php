@@ -27,7 +27,9 @@ Route::get('/encender', function() {
         Artisan::call('websockets:serve --port=6002');
         
       } catch (Exception $e) {
-        echo 'Error';
+          echo "<script>alert('Ya se encuentra encendido');</script>";
+          return view('/');
+        
         die();
       }
        
